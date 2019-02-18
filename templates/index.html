@@ -8,14 +8,21 @@
     <body>
         <section class="section">
             <div class="container">
-                <h1 class="title">
-                Upcoming events
-                </h1>
-                <ul class="content">
-                    {{#events}}
-                    <li>{{starts}}: {{name}}</li>
-                    {{/events}}
-                </ul>
+                <div class="columns">
+                    <div class="column">
+                        <h1 class="title">
+                                Upcoming events
+                        </h1>
+                        <ul class="content">
+                            {{#events}}
+                            <li>{{starts}}: {{name}}</li>
+                            {{/events}}
+                        </ul>
+                    </div>
+                    <div class="column">
+                            <iframe style="width:100%;height:100%;" src="https://www.youtube.com/embed/L_LUpnjgPso" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
                 <footer class="footer">
                     <div class="columns is-vcentered">
                         <div class="column is-6 has-text-centered">
