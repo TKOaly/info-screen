@@ -1,15 +1,24 @@
 {
   "name": "tkoalyinfo-poc",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "@material-ui/core": "^3.9.2",
     "express": "^4.16.4",
     "moment": "^2.24.0",
     "ramda": "^0.26.1",
-    "tkoalyevents": "^1.1.0"
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-jss": "^8.6.1",
+    "tkoalyevents": "^1.1.0",
+    "webpack": "^4.29.5"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node server.js"
   }
 }
