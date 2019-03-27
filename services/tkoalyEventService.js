@@ -15,4 +15,4 @@ export const fetchUpcomingEvents = () =>
   request
     .get(`${ENTRYPOINT}?fromDate=${getFromDateString()}`, {headers: requestHeaders})
     .then(JSON.parse)
-    .then(events => events.filter(({deleted, name}) => !deleted && !name.includes('TEMPLATE')))
+    .then(events => events.filter(({deleted, name, starts}) => !deleted && !name.includes('TEMPLATE') && new Date(starts).getTime() > Date.now()))
