@@ -1,7 +1,5 @@
-const util = require('util')
-const React = require('react')
-const ReactDOMServer = require('react-dom/server')
-
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
 import App from '../components/App'
 import { SheetsRegistry } from 'jss';
 import JssProvider from 'react-jss/lib/JssProvider';
@@ -14,7 +12,7 @@ import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import { fetchUpcomingEvents } from '../services/tkoalyEventService'
 
-const index = (req, res) => {
+const index = (_, res) => {
 
   const sheetsRegistry = new SheetsRegistry();
 
@@ -62,4 +60,4 @@ const index = (req, res) => {
   })
 }
 
-module.exports = index
+export default index
