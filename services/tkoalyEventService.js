@@ -1,4 +1,4 @@
-import request from 'request-promise'
+import axios from 'axios'
 
 const requestHeaders = {
   'X-Token': process.env.TKOALY_EVENT_MS_TOKEN
@@ -12,7 +12,7 @@ const getFromDateString = () => {
 }
 
 export const fetchUpcomingEvents = () =>
-  request
-    .get(`${ENTRYPOINT}?fromDate=${getFromDateString()}`, {headers: requestHeaders})
-    .then(JSON.parse)
+  axios
+    .get(ENTRYPOINT, {headers: requestHeaders, params: { fromDate: getFromDateString() }})
+    .then(res => res.data)
     .then(events => events.filter(({deleted, name, starts}) => !deleted && !name.includes('TEMPLATE') && new Date(starts).getTime() > Date.now()))

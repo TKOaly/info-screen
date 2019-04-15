@@ -20,9 +20,6 @@
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
     "react-jss": "^8.6.1",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.4",
-    "tkoalyevents": "^1.1.0",
     "webpack": "^4.29.5"
   },
   "scripts": {
