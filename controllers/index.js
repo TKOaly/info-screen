@@ -49,6 +49,8 @@ const index = (_, res) => {
       <html>
         <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <link rel="stylesheet" href="/css/carousel.min.css">
+        <link rel="stylesheet" href="/css/overrides.css">
         <style id="jss-server-side">${css}</style>
         <script>window.INITIAL_STATE=${JSON.stringify({ events, chemicum, exactum })}</script>
         </head>
@@ -61,6 +63,9 @@ const index = (_, res) => {
       </html>
     `
     res.send(html)
+  }).catch(e => {
+    console.error(e)
+    res.send('Internal server error')
   })
 }
 

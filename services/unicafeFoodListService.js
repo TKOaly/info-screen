@@ -1,22 +1,22 @@
-import request from 'request-promise'
+import axios from 'axios'
 import { format } from 'date-fns'
 import en from 'date-fns/locale/en-US'
-import { groupBy, flatten } from 'ramda'
+import { groupBy } from 'ramda'
 
 const EXACTUM_FOOD_URL = 'https://messi.hyyravintolat.fi/publicapi/restaurant/11'
 const CHEMI_FOOD_URL = 'https://messi.hyyravintolat.fi/publicapi/restaurant/10'
 
 export const fetchExactumFoodlist = () => {
-  return request
+  return axios
     .get(EXACTUM_FOOD_URL)
-    .then(JSON.parse)
+    .then(({data}) => data)
     .then(formatResponse)
 }
 
 export const fetchChecmicumFoodlist = () => {
-  return request
+  return axios
     .get(CHEMI_FOOD_URL)
-    .then(JSON.parse)
+    .then(({data}) => data)
     .then(formatResponse)
 }
 

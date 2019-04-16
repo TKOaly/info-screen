@@ -3764,6 +3764,13 @@ react-dom@^16.8.2:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
+react-easy-swipe@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/react-easy-swipe/-/react-easy-swipe-0.0.16.tgz#5a3d949a8f975d05be92a818254315d1318a81ea"
+  integrity sha1-Wj2Umo+XXQW+kqgYJUMV0TGKgeo=
+  dependencies:
+    prop-types "^15.5.8"
+
 react-event-listener@^0.6.2:
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/react-event-listener/-/react-event-listener-0.6.6.tgz#758f7b991cad9086dd39fd29fad72127e1d8962a"
@@ -3793,6 +3800,15 @@ react-lifecycles-compat@^3.0.2, react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+
+react-responsive-carousel@^3.1.47:
+  version "3.1.47"
+  resolved "https://registry.yarnpkg.com/react-responsive-carousel/-/react-responsive-carousel-3.1.47.tgz#0d1442284e2c45854d81bc2f0c24d0f838d274b6"
+  integrity sha512-mA8ZEUGk5UIFskZTa4Tc3dhs7pln+nHxpoOnUhkprr9xK7BSGBfJcHT+EQIrmVNXGKln8t5kzKv3EaXdIaN/Cg==
+  dependencies:
+    classnames "^2.2.5"
+    prop-types "^15.5.8"
+    react-easy-swipe "^0.0.16"
 
 react-transition-group@^2.2.1:
   version "2.9.0"

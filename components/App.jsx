@@ -2,43 +2,25 @@ import React from 'react'
 
 import Grid from '@material-ui/core/Grid'
 import EventList from './EventList.jsx'
-import { Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core'
+import FoodList from './FoodList.jsx'
 
 export default function App({initialState}) {
   const { chemicum, exactum, events } = initialState
 
   return (
     <Grid container>
-      <Grid>
-        <Foodlist chemicum={chemicum} exactum={exactum} />
+      <Grid item md={6}>
+        <Typography variant="h3">Upcoming events</Typography>
+        <EventList initialEvents={events} />
       </Grid>
-      <Grid>
-        <EventListCont events={events} />
+      <Grid item md={6}>
+        <FoodList chemicum={chemicum} exactum={exactum} />
+        <div className="sponsor">
+          <img src="/img/tekis.png" className="logo-tekis" />
+          <img src="/img/reaktorlogo.png" className="logo-reaktor" />
+        </div>
       </Grid>
     </Grid>
-  )
-}
-
-const Foodlist = ({chemicum, exactum}) => {
-  return (
-    <div>
-      <Typography variant="h5">Exactum</Typography>
-        <ul>
-          {Object.keys(exactum).map(key => (<li><h1>{key}</h1><ul>{exactum[key].map(({name}) => (<li>{name}</li>))}</ul></li>))}
-        </ul>
-        <Typography variant="h5">Chemicum</Typography>
-        <ul>
-          {Object.keys(chemicum).map(key => (<li><h1>{key}</h1><ul>{chemicum[key].map(({name}) => (<li>{name}</li>))}</ul></li>))}
-        </ul>
-    </div>
-  )
-}
-
-const EventListCont = ({events}) => {
-  return (
-    <div>
-      <Typography variant="h5">Upcoming events</Typography>
-      <EventList initialEvents={events} />
-    </div>
   )
 }
