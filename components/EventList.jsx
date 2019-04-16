@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import List from '@material-ui/core/List';
 import { ListItem, ListItemText } from '@material-ui/core';
 import axios from 'axios'
-import { formatDistance } from 'date-fns'
+import { formatDistance, format } from 'date-fns'
 
 export default function EventList({initialEvents}) {
   const [events, updateEvents] = useState(initialEvents)
@@ -20,7 +20,7 @@ export default function EventList({initialEvents}) {
       {
         events.map(({name, starts}) => 
         <ListItem>
-          <ListItemText primary={name} secondary={formatDistance(new Date(starts), new Date())}></ListItemText>
+          <ListItemText primary={name} secondary={`${formatDistance(new Date(starts), new Date())} ${format(new Date(starts), 'MM.dd.YYY')}`}></ListItemText>
         </ListItem>)
       }
     </List>
