@@ -56,17 +56,16 @@ const parseFoodlisting = (foodlist) => {
   })
 }
 
-const mapFooditems = (foodItems) => {
-  return foodItems.map(({name, meta}, i) => (
+const mapFooditems = (foodItems) => 
+  foodItems.map(({name, meta}, i) => (
     <ListItem key={i}>
       <ListItemText inset={true} primary={name}></ListItemText>
       {meta.allergies.length > 0 && meta.allergies.split(' ').map(allergy => <Chip label={allergy} />)}
     </ListItem>
   ))
-}
 
-const fetchFoodlists = () => {
-  return Promise.all([axios.get('/api/foodlists/exactum'), axios.get('/api/foodlists/chemicum')])
+const fetchFoodlists = () =>
+  Promise.all([axios.get('/api/foodlists/exactum'), axios.get('/api/foodlists/chemicum')])
     .then(([exaRes, chemRes]) => {
       return {
         exactum: exaRes.data,
@@ -74,4 +73,4 @@ const fetchFoodlists = () => {
       }
     })
     .catch(e => console.error(e))
-}
+    
