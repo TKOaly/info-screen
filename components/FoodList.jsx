@@ -43,7 +43,7 @@ export default function FoodList(initialFoodlists) {
   )
 }
 
-function parseFoodlisting(foodlist) {
+const parseFoodlisting = (foodlist) => {
   const keys = Object.keys(foodlist)
   return keys.map((key, i) => {
     const foodItems = foodlist[key]
@@ -56,7 +56,7 @@ function parseFoodlisting(foodlist) {
   })
 }
 
-function mapFooditems(foodItems) {
+const mapFooditems = (foodItems) => {
   return foodItems.map(({name, meta}, i) => (
     <ListItem key={i}>
       <ListItemText inset={true} primary={name}></ListItemText>
@@ -65,7 +65,7 @@ function mapFooditems(foodItems) {
   ))
 }
 
-function fetchFoodlists() {
+const fetchFoodlists = () => {
   return Promise.all([axios.get('/api/foodlists/exactum'), axios.get('/api/foodlists/chemicum')])
     .then(([exaRes, chemRes]) => {
       return {

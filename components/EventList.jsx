@@ -28,7 +28,7 @@ export default function EventList({initialEvents}) {
   )
 }
 
-function fetchEvents() {
+const fetchEvents = () => {
   return axios
     .get('/api/events/upcoming')
     .then(({data}) => data)
