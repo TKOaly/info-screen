@@ -3,8 +3,15 @@ import List from '@material-ui/core/List';
 import { ListItem, ListItemText, Chip } from '@material-ui/core';
 import axios from 'axios'
 import { formatDistance, format } from 'date-fns'
+import { withStyles } from '@material-ui/core/styles';
 
-export default function EventList({initialEvents}) {
+const styles = theme => ({
+  chip: {
+    margin: theme.spacing.unit,
+  },
+});
+
+const EventList = ({initialEvents, classes}) => {
   const [events, updateEvents] = useState(initialEvents)
 
   useEffect(() => {
@@ -21,12 +28,15 @@ export default function EventList({initialEvents}) {
         events.map(({name, starts}) => 
         <ListItem>
           <ListItemText style={{fontSize: '20px'}} primary={name} />
-          <Chip label={`${formatDistance(new Date(starts), new Date())} ${format(new Date(starts), 'MM.dd.YYY')}`} />
+          <Chip className={classes.chip} label={`in ${formatDistance(new Date(starts), new Date())}`} />
+          <Chip className={classes.chip} label={format(new Date(starts), 'dd.MM.YYY')} variant={'outlined'} />
         </ListItem>)
       }
     </List>
   )
 }
+
+export default withStyles(styles)(EventList)
 
 const fetchEvents = () =>
   axios
