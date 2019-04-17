@@ -11,6 +11,8 @@ import {
 import green from '@material-ui/core/colors/green';
 import red from '@material-ui/core/colors/red';
 import { fetchUpcomingEvents } from '../services/tkoalyEventService'
+import { fetchChecmicumFoodlist, fetchExactumFoodlist } from '../services/unicafeFoodListService'
+
 
 const index = (_, res) => {
 
@@ -31,11 +33,13 @@ const index = (_, res) => {
     // Create a new class name generator.
     const generateClassName = createGenerateClassName();
 
-  fetchUpcomingEvents().then(events => {
+  const initialStatePromise = Promise.all([fetchUpcomingEvents(), fetchChecmicumFoodlist(), fetchExactumFoodlist()])
+
+  initialStatePromise.then(([events, chemicum, exactum]) => {
     const rootComponent = ReactDOMServer.renderToString(
     <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
       <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-        <App initialState={{events}} />
+        <App initialState={{events, chemicum, exactum}} />
       </MuiThemeProvider>
     </JssProvider>
     )
@@ -45,8 +49,10 @@ const index = (_, res) => {
       <html>
         <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <link rel="stylesheet" href="/css/carousel.min.css">
+        <link rel="stylesheet" href="/css/overrides.css">
         <style id="jss-server-side">${css}</style>
-        <script>window.INITIAL_STATE=${JSON.stringify({ events })}</script>
+        <script>window.INITIAL_STATE=${JSON.stringify({ events, chemicum, exactum })}</script>
         </head>
         <body>
           <div id="root">
@@ -57,6 +63,9 @@ const index = (_, res) => {
       </html>
     `
     res.send(html)
+  }).catch(e => {
+    console.error(e)
+    res.send('Internal server error')
   })
 }
 
