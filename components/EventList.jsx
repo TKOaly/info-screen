@@ -42,3 +42,4 @@ const fetchEvents = () =>
   axios
     .get('/api/events/upcoming')
     .then(({data}) => data)
+    .catch(e => console.error(e))
