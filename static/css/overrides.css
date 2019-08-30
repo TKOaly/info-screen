@@ -1,5 +1,5 @@
 .slide {
-  background-color: white !important;
+  background-color: transparent !important;
 }
 
 .sponsor {
@@ -8,13 +8,10 @@
 }
 
 .logo-tekis {
-  width: 100px;
   height: 100px;
   padding: 20px;
 }
 
 .logo-reaktor {
-  width: 190px;
   height: 50px;
-  padding: 40px;
 }
