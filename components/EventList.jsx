@@ -18,6 +18,7 @@ const EventList = ({initialEvents, classes}) => {
     const intervalId = setInterval(() =>
       fetchEvents()
         .then(newEvents => updateEvents(newEvents))
+        .catch(err => console.error(err))
     , 10000)
     return () => clearInterval(intervalId)
   }, [])
