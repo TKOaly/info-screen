@@ -18,7 +18,7 @@ const EventList = ({initialEvents, classes}) => {
     const intervalId = setInterval(() =>
       fetchEvents()
         .then(newEvents => updateEvents(newEvents))
-        .catch(err => console.error(err))
+        .catch(_ => {})
     , 10000)
     return () => clearInterval(intervalId)
   }, [])
@@ -43,4 +43,7 @@ const fetchEvents = () =>
   axios
     .get('/api/events/upcoming')
     .then(({data}) => data)
-    .catch(e => console.error(e))
+    .catch(e => {
+      console.error(e)
+      throw e
+    })

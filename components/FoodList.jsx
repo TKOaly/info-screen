@@ -10,6 +10,7 @@ export default function FoodList(initialFoodlists) {
     const intervalId = setInterval(() =>
       fetchFoodlists()
         .then(newFoodlist => updateFoodlists(newFoodlist))
+        .catch(_ => {})
     , 60000)
     return () => clearInterval(intervalId)
   }, [])
@@ -72,5 +73,8 @@ const fetchFoodlists = () =>
         chemicum: chemRes.data 
       }
     })
-    .catch(e => console.error(e))
+    .catch(e => {
+      console.error(e)
+      throw e
+    })
     
