@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import EventList from './EventList.jsx'
 import { Typography } from '@material-ui/core'
 import FoodList from './FoodList.jsx'
-import theme from './theme';
+import theme from './Theme';
 import { ThemeProvider } from '@material-ui/styles';
 
 export default function App({initialState}) {

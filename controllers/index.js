@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import App from '../components/App'
-import theme from '../components/theme';
+import theme from '../components/Theme';
 import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchUpcomingEvents } from '../services/tkoalyEventService'
