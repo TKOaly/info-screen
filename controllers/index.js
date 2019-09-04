@@ -1,15 +1,8 @@
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import App from '../components/App'
-import { SheetsRegistry } from 'jss';
-import JssProvider from 'react-jss/lib/JssProvider';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  createGenerateClassName,
-} from '@material-ui/core/styles';
-import green from '@material-ui/core/colors/green';
-import red from '@material-ui/core/colors/red';
+import theme from '../components/theme';
+import { ServerStyleSheets, ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { fetchUpcomingEvents } from '../services/tkoalyEventService'
 import { fetchChecmicumFoodlist, fetchExactumFoodlist } from '../services/unicafeFoodListService'
@@ -17,36 +10,21 @@ import { fetchChecmicumFoodlist, fetchExactumFoodlist } from '../services/unicaf
 
 const index = (_, res) => {
 
-  const sheetsRegistry = new SheetsRegistry();
-
-  // Create a sheetsManager instance.
-  const sheetsManager = new Map();
-
-  // Create a theme instance.
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-      accent: red,
-      type: 'dark',
-    },
-  });
-
-    // Create a new class name generator.
-    const generateClassName = createGenerateClassName();
+  const sheets = new ServerStyleSheets()
 
   const initialStatePromise = Promise.all([fetchUpcomingEvents(), fetchChecmicumFoodlist(), fetchExactumFoodlist()])
 
   initialStatePromise.then(([events, chemicum, exactum]) => {
     const rootComponent = ReactDOMServer.renderToString(
-    <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-      <MuiThemeProvider theme={theme} sheetsManager={sheetsManager}>
-        <CssBaseline />
-        <App initialState={{events, chemicum, exactum}} />
-      </MuiThemeProvider>
-    </JssProvider>
+      sheets.collect(
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <App initialState={{events, chemicum, exactum}} />
+        </ThemeProvider>
+      )
     )
     // Grab the CSS from our sheetsRegistry.
-    const css = sheetsRegistry.toString()
+    const css = sheets.toString()
     const html = `
       <html>
         <head>
