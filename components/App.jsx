@@ -1,15 +1,15 @@
-import React from 'react'
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React from "react";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
-import Grid from '@material-ui/core/Grid'
-import EventList from './EventList.jsx'
-import { Typography } from '@material-ui/core'
-import FoodList from './FoodList.jsx'
-import theme from './Theme';
-import { ThemeProvider } from '@material-ui/styles';
+import Grid from "@material-ui/core/Grid";
+import EventList from "./EventList.jsx";
+import { Typography } from "@material-ui/core";
+import FoodList from "./FoodList.jsx";
+import theme from "./Theme";
+import { ThemeProvider } from "@material-ui/styles";
 
-export default function App({initialState}) {
-  const { chemicum, exactum, events } = initialState
+export default function App({ initialState }) {
+  const { chemicum, exactum, events } = initialState;
 
   /* React.useEffect(() => {
     const jssStyles = document.querySelector('#jss-server-side');
@@ -35,5 +35,5 @@ export default function App({initialState}) {
         </Grid>
       </Grid>
     </ThemeProvider>
-  )
+  );
 }

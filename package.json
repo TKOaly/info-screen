@@ -25,9 +25,19 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint . -c .eslintrc.json --ext  .js,.jsx",
+    "lint:fix": "eslint . -c .eslintrc.json --ext .js,.jsx --fix"
   },
   "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "prettier": "1.18.2",
     "webpack-cli": "^3.3.0"
   }
 }
