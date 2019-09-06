@@ -5,8 +5,6 @@ import Grid from "@material-ui/core/Grid";
 import EventList from "./EventList.jsx";
 import { Typography } from "@material-ui/core";
 import FoodList from "./FoodList.jsx";
-import theme from "./Theme";
-import { ThemeProvider } from "@material-ui/styles";
 
 export default function App({ initialState }) {
   const { chemicum, exactum, events } = initialState;
@@ -19,7 +17,7 @@ export default function App({ initialState }) {
   }, []); */
 
   return (
-    <ThemeProvider theme={theme}>
+    <>
       <CssBaseline />
       <Grid container>
         <Grid item md={6}>
@@ -29,11 +27,11 @@ export default function App({ initialState }) {
         <Grid item md={6}>
           <FoodList chemicum={chemicum} exactum={exactum} />
           <div className="sponsor">
-            <img src="/img/tekis.png" className="logo-tekis" />
-            <img src="/img/reaktorlogo.png" className="logo-reaktor" />
+            <img src='/static/reaktorlogo.png' className="logo-tekis" />
+            <img src='/static/tekis.png' className="logo-reaktor" />
           </div>
         </Grid>
       </Grid>
-    </ThemeProvider>
+    </>
   );
 }
