@@ -1,6 +1,6 @@
 import {
     fetchChecmicumFoodlist
-} from "../services/unicafeFoodListService";
+} from "../../../services/unicafeFoodListService";
   
 export default function handle(req, res) {
     fetchChecmicumFoodlist().then(foodlist => {
