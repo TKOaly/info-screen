@@ -49,11 +49,14 @@ export default function FoodList(initialFoodlists) {
     </Carousel>
   );
 
-  // eslint-disable-next-line no-use-before-define
-  const gif = `
-  <blockquote class="imgur-embed-pub" lang="en" data-id="PZ7LKfN" data-context="false"><a href="//imgur.com/PZ7LKfN"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
-    `;
-  const foodClosed = <div dangerouslySetInnerHTML={{ __html: gif }}></div>;
+  const styles = {
+    textAlign: "center"
+  };
+  const foodClosed = (
+    <div style={styles}>
+      <img src="/img/lofihiphop.gif" />
+    </div>
+  );
 
   return <div>{!isClosed ? foodCarousel : foodClosed}</div>;
 }
