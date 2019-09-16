@@ -51,12 +51,8 @@ export default function FoodList(initialFoodlists) {
 
   // eslint-disable-next-line no-use-before-define
   const gif = `
-    <div style='position:relative; padding-bottom:calc(56.25% + 44px)'>
-      <iframe src='https://gfycat.com/ifr/AgedMiniatureBoto'
-      frameborder='0' scrolling='no' width='100%'
-      height='100%' style='position:absolute;top:0;left:0;' allowfullscreen>
-      </iframe>
-    </div>`;
+  <blockquote class="imgur-embed-pub" lang="en" data-id="PZ7LKfN" data-context="false"><a href="//imgur.com/PZ7LKfN"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+    `;
   const foodClosed = <div dangerouslySetInnerHTML={{ __html: gif }}></div>;
 
   return <div>{!isClosed ? foodCarousel : foodClosed}</div>;
