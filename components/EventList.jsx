@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import List from "@material-ui/core/List";
 import { ListItem, ListItemText, Chip } from "@material-ui/core";
 import axios from "axios";
-import { formatDistance, format, isSameDay } from "date-fns";
+import { formatDistance, format, isSameDay, isAfter } from "date-fns";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -35,7 +35,11 @@ const EventList = ({ initialEvents, classes }) => {
             color={
               isSameDay(new Date(starts), new Date()) ? "primary" : "default"
             }
-            label={`in ${formatDistance(new Date(starts), new Date())}`}
+            label={
+              isAfter(new Date(), new Date(starts))
+                ? "now!"
+                : `in ${formatDistance(new Date(starts), new Date())}`
+            }
           />
           <Chip
             className={classes.chip}

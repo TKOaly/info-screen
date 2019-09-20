@@ -1,4 +1,5 @@
 import axios from "axios";
+import { isAfter, addMinutes } from "date-fns";
 
 const requestHeaders = {
   "X-Token": process.env.TKOALY_EVENT_MS_TOKEN
@@ -23,6 +24,6 @@ export const fetchUpcomingEvents = () =>
         ({ deleted, name, starts }) =>
           !deleted &&
           !name.includes("TEMPLATE") &&
-          new Date(starts).getTime() > Date.now()
+          isAfter(new Date(starts), addMinutes(new Date(), -15))
       )
     );
