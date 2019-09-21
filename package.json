@@ -19,7 +19,7 @@
   },
   "scripts": {
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p $PORT",
     "start:dev": "next",
     "lint": "eslint . -c .eslintrc.json --ext  .js,.jsx",
     "lint:fix": "eslint . -c .eslintrc.json --ext .js,.jsx --fix"
