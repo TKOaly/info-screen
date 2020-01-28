@@ -49,8 +49,10 @@ const summarizeDates = R.map(event => {
   };
 });
 
-const addName = pajaEvent =>
-  R.assoc("name", `Paja: ${pajaEvent.courseNames.join(", ")}`, pajaEvent);
+const addName = pajaEvent => {
+  const courses = pajaEvent.courseNames.map(({ short }) => short);
+  return R.assoc("name", `Paja: ${courses.join(", ")}`, pajaEvent);
+}
 
 const formatToEvents = R.pipe(
   flattenWeeks,
