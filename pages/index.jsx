@@ -5,6 +5,9 @@ import {
   fetchChecmicumFoodlist,
   fetchExactumFoodlist
 } from "../services/unicafeFoodListService";
+import { fetchUpcomingEvents as fetchPajaEvents } from "../services/toskaPajaCalendarService"; // eslint-disable-line
+import * as R from "ramda";
+import { compareAsc } from "date-fns";
 
 import '../css/carousel.min.css';
 import '../css/overrides.css';
@@ -12,7 +15,12 @@ import '../css/overrides.css';
 class Index extends React.Component {
     static async getInitialProps() {
         const [events, chemicum, exactum] = await Promise.all([
-            fetchUpcomingEvents(),
+            Promise.all([fetchUpcomingEvents(), fetchPajaEvents()]).then(([tkoalyEvents, pajaEvents]) => {
+                return R.pipe(
+                  R.concat(pajaEvents),
+                  R.sort((a, b) => compareAsc(new Date(a.starts), new Date(b.starts)))
+                )(tkoalyEvents);
+              }),
             fetchChecmicumFoodlist(),
             fetchExactumFoodlist()
         ]);
