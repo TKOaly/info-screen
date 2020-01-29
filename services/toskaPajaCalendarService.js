@@ -52,7 +52,25 @@ const summarizeDates = R.map(event => {
 const addName = pajaEvent => {
   const courses = pajaEvent.courseNames.map(({ short }) => short);
   return R.assoc("name", `Paja: ${courses.join(", ")}`, pajaEvent);
-}
+};
+
+const mergeSimilarEvents = R.reduce((array, event) => {
+  if (R.isEmpty(array)) {
+    return [event];
+  }
+  const previousEvent = R.last(array);
+  const eventNamesAreEqual = event.name === previousEvent.name;
+  const eventsAreBackToBack =
+    event.starts.valueOf() === previousEvent.ends.valueOf();
+  if (eventNamesAreEqual && eventsAreBackToBack) {
+    return [
+      ...R.dropLast(1, array),
+      R.assoc("ends", new Date(event.ends.valueOf()), previousEvent)
+    ];
+  } else {
+    return [...array, event];
+  }
+}, []);
 
 const formatToEvents = R.pipe(
   flattenWeeks,
@@ -64,7 +82,8 @@ const formatToEvents = R.pipe(
   groupByDates,
   summarizeDates,
   R.values,
-  R.map(addName)
+  R.map(addName),
+  mergeSimilarEvents
 );
 
 export const fetchUpcomingEvents = () =>

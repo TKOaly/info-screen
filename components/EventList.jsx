@@ -32,7 +32,7 @@ const EventList = ({ initialEvents, classes }) => {
           <ListItemText
             style={{ fontSize: "20px" }}
             primary={
-              name.length > 30 ? (
+              name.length > 40 ? (
                 <marquee behavior={"alternate"}>{name}</marquee>
               ) : (
                 name
