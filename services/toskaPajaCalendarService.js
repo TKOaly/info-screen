@@ -2,7 +2,8 @@ import axios from "axios";
 import * as R from "ramda";
 import { isWithinInterval, isSameDay, isBefore } from "date-fns";
 
-const ENTRYPOINT = "https://study.cs.helsinki.fi/pajat/api/calendar";
+const CALENDAR_ENTRYPOINT = "https://study.cs.helsinki.fi/pajat/api/calendar";
+const CLASSROOM_ENTRYPOINT = "https://study.cs.helsinki.fi/pajat/api/luokka";
 
 const flattenWeeks = R.flatten();
 const convertStringDateToDate = dateString => {
@@ -86,9 +87,9 @@ const formatToEvents = R.pipe(
   mergeSimilarEvents
 );
 
-export const fetchUpcomingEvents = () =>
+const fetchCalendar = () =>
   axios
-    .get(ENTRYPOINT)
+    .get(CALENDAR_ENTRYPOINT)
     .then(res => res.data)
     .then(formatToEvents)
     .then(events =>
@@ -98,3 +99,17 @@ export const fetchUpcomingEvents = () =>
           (isSameDay(starts, new Date()) && isBefore(new Date(), starts))
       )
     );
+
+const fetchClassRoomInformation = () =>
+  axios.get(CLASSROOM_ENTRYPOINT).then(res => res.data);
+
+const addClassRoomToEventNames = ([calendar, classRoom]) =>
+  R.map(
+    event => R.assoc("name", event.name + ` (${classRoom})`, event),
+    calendar
+  );
+
+export const fetchUpcomingEvents = () =>
+  Promise.all([fetchCalendar(), fetchClassRoomInformation()]).then(
+    addClassRoomToEventNames
+  );
