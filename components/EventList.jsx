@@ -29,16 +29,7 @@ const EventList = ({ initialEvents, classes }) => {
     <List dense={true}>
       {events.map(({ name, starts }) => (
         <ListItem>
-          <ListItemText
-            style={{ fontSize: "20px" }}
-            primary={
-              name.length > 40 ? (
-                <marquee behavior={"alternate"}>{name}</marquee>
-              ) : (
-                name
-              )
-            }
-          />
+          <ListItemText style={{ fontSize: "20px" }} primary={name} />
           <Chip
             className={classes.chip}
             color={
