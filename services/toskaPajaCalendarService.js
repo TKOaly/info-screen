@@ -98,10 +98,20 @@ const fetchCalendar = () =>
           isWithinInterval(new Date(), { start: starts, end: ends }) ||
           (isSameDay(starts, new Date()) && isBefore(new Date(), starts))
       )
-    );
+    )
+    .catch(err => {
+      console.error("Retrieving toska events failed:", err);
+      return [];
+    });
 
 const fetchClassRoomInformation = () =>
-  axios.get(CLASSROOM_ENTRYPOINT).then(res => res.data);
+  axios
+    .get(CLASSROOM_ENTRYPOINT)
+    .then(res => res.data)
+    .catch(err => {
+      console.error("Retrieving toska class room failed:", err);
+      return "";
+    });
 
 const addClassRoomToEventNames = ([calendar, classRoom]) =>
   R.map(

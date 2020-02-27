@@ -26,4 +26,8 @@ export const fetchUpcomingEvents = () =>
           !name.includes("TEMPLATE") &&
           isAfter(new Date(starts), addMinutes(new Date(), -15))
       )
-    );
+    )
+    .catch(err => {
+      console.error("Retrieving tkoaly events failed:", err);
+      return [];
+    });
