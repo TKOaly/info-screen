@@ -14,7 +14,7 @@ const Covid19 = () => (
           Gurula will be closed starting from March 18.
         </Typography>
         <Typography component="p">
-          For more information, go to helsinki.fi and/or hyy.fi
+          For more information, visit helsinki.fi and/or hyy.fi
         </Typography>
       </CardContent>
     </Card>
