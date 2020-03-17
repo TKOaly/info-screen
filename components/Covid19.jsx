@@ -7,7 +7,7 @@ const styles = _ => ({});
 
 const Covid19 = () => (
   <Grid item md={6}>
-    <Typography variant="h3">Covid-19 affecting</Typography>
+    <Typography variant="h3">COVID-19 affecting</Typography>
     <Card>
       <CardContent>
         <Typography component="p">
