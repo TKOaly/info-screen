@@ -15,6 +15,10 @@ const Covid19 = () => (
           starting from March 18.
         </Typography>
         <Typography component="p">
+          We wish that everyone would come pick up their stuff (especially any
+          perishable food items) before the day turns.
+        </Typography>
+        <Typography component="p">
           For more information, visit helsinki.fi and/or hyy.fi
         </Typography>
       </CardContent>
