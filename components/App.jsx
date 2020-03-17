@@ -5,6 +5,8 @@ import Grid from "@material-ui/core/Grid";
 import EventList from "./EventList.jsx";
 import { Typography } from "@material-ui/core";
 import FoodList from "./FoodList.jsx";
+import Covid19 from "./Covid19.jsx";
+import { enableCoronaInfo } from "../config.json";
 
 export default function App({ initialState }) {
   const { chemicum, exactum, events } = initialState;
@@ -16,19 +18,25 @@ export default function App({ initialState }) {
     }
   }, []); */
 
+  const leftGrid = !enableCoronaInfo ? (
+    <Grid item md={6}>
+      <Typography variant="h3">Upcoming events</Typography>
+      <EventList initialEvents={events} />
+    </Grid>
+  ) : (
+    <Covid19 />
+  );
+
   return (
     <>
       <CssBaseline />
       <Grid container>
-        <Grid item md={6}>
-          <Typography variant="h3">Upcoming events</Typography>
-          <EventList initialEvents={events} />
-        </Grid>
+        {leftGrid}
         <Grid item md={6}>
           <FoodList chemicum={chemicum} exactum={exactum} />
           <div className="sponsor">
-            <img src='/static/reaktorlogo.png' className="logo-tekis" />
-            <img src='/static/tekis.png' className="logo-reaktor" />
+            <img src="/static/reaktorlogo.png" className="logo-tekis" />
+            <img src="/static/tekis.png" className="logo-reaktor" />
           </div>
         </Grid>
       </Grid>
