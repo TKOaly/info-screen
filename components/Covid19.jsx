@@ -7,11 +7,12 @@ const styles = _ => ({});
 
 const Covid19 = () => (
   <Grid item md={6}>
-    <Typography variant="h3">COVID-19 effects:</Typography>
+    <Typography variant="h3">Due to COVID-19</Typography>
     <Card>
       <CardContent>
         <Typography component="p">
-          Gurula will be closed starting from March 18.
+          Access to university facilities, including Gurula, will be restricted
+          starting from March 18.
         </Typography>
         <Typography component="p">
           For more information, visit helsinki.fi and/or hyy.fi
