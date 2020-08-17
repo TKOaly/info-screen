@@ -5,7 +5,7 @@ const requestHeaders = {
   "X-Token": process.env.TKOALY_EVENT_MS_TOKEN
 };
 
-const ENTRYPOINT = "https://members.tko-aly.fi/api/events";
+const ENTRYPOINT = "https://event-api.tko-aly.fi/api/events";
 
 const getFromDateString = () => {
   const d = new Date();
