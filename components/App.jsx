@@ -18,14 +18,12 @@ export default function App({ initialState }) {
     }
   }, []); */
 
-  const leftGrid = !enableCoronaInfo ? (
+  const leftGrid =
     <Grid item md={6}>
       <Typography variant="h3">Upcoming events</Typography>
+      {enableCoronaInfo && <Covid19 />}
       <EventList initialEvents={events} />
     </Grid>
-  ) : (
-    <Covid19 />
-  );
 
   return (
     <>

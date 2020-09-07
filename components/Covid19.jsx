@@ -11,12 +11,7 @@ const Covid19 = () => (
     <Card>
       <CardContent>
         <Typography component="p">
-          Access to university facilities, including Gurula, will be restricted
-          starting from March 18.
-        </Typography>
-        <Typography component="p">
-          We wish that everyone would come pick up their stuff (especially any
-          perishable food items) before the day turns.
+          Access to university facilities, including Gurula, are restricted.
         </Typography>
         <Typography component="p">
           For more information, visit helsinki.fi and/or hyy.fi
