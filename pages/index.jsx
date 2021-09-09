@@ -10,9 +10,6 @@ import * as R from "ramda";
 import { enableCoronaInfo } from "../config.json"
 import { compareAsc } from "date-fns";
 
-import '../css/carousel.min.css';
-import '../css/overrides.css';
-
 class Index extends React.Component {
     static async getInitialProps() {
         const getEvents = enableCoronaInfo ?
