@@ -5,9 +5,6 @@ import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../components/Theme';
 
-import '../css/carousel.min.css';
-import '../css/overrides.css';
-
 export default class MyApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.
