@@ -1,22 +1,16 @@
 import axios from "axios";
 import { isAfter, addMinutes } from "date-fns";
-
-const requestHeaders = {
-  "X-Token": process.env.TKOALY_EVENT_MS_TOKEN
-};
+import * as R from "ramda";
+import { compareAsc } from "date-fns";
 
 const ENTRYPOINT = "https://event-api.tko-aly.fi/api/events";
 
-const getFromDateString = () => {
-  const d = new Date();
-  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
-};
+const sortEvents = R.sort((a, b) => compareAsc(new Date(a.starts), new Date(b.starts)));
 
 export const fetchUpcomingEvents = () =>
   axios
     .get(ENTRYPOINT, {
-      headers: requestHeaders,
-      params: { fromDate: getFromDateString() }
+      params: { fromDate: new Date().toJSON() }
     })
     .then(res => res.data)
     .then(events =>
@@ -27,6 +21,7 @@ export const fetchUpcomingEvents = () =>
           isAfter(new Date(starts), addMinutes(new Date(), -15))
       )
     )
+    .then(sortEvents)
     .catch(err => {
       console.error("Retrieving tkoaly events failed:", err);
       return [];
