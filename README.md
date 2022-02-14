@@ -1,7 +1,7 @@
 # TKO-äly info
 ## Run in development mode
-`npm run start:dev`
+`TKOALY_EVENT_MS_TOKEN="" npm run start:dev`
 ## Run in production mode
 `npm run build`
 
-`npm start`
+`TKOALY_EVENT_MS_TOKEN="" npm start -p 3000`
