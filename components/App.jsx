@@ -33,8 +33,13 @@ export default function App({ initialState }) {
         <Grid item md={6}>
           <FoodList chemicum={chemicum} exactum={exactum} />
           <div className="sponsor">
-            <img src="/static/reaktorlogo.png" className="logo-tekis" />
-            <img src="/static/tekis.png" className="logo-reaktor" />
+            <video
+              src="/static/logo.webm"
+              width={400}
+              height={400}
+              loop
+              autoPlay
+            ></video>
           </div>
         </Grid>
       </Grid>
