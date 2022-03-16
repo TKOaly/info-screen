@@ -54,7 +54,7 @@ export default function FoodList(initialFoodlists) {
   };
   const foodClosed = (
     <div style={styles}>
-      <img src="/img/lofihiphop.gif" />
+      <img src="/static/img/lofihiphop.gif" className="lofihiphop" />
     </div>
   );
 

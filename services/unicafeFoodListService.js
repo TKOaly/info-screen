@@ -27,12 +27,12 @@ function formatResponse(response) {
     ({ date_en }) => date_en === format(new Date(), "EEE dd.MM", { locale: en })
   );
   if (foodlistData) {
-    const foodlistDataEn = foodlistData.map(({ name_en, price, meta }) => ({
-      name: name_en,
+    const foodlistDataFi = foodlistData.map(({ name, price, meta }) => ({
+      name: name,
       priceName: price.name,
       meta: { diet: meta["0"].join(" "), allergies: meta["1"].join(" ") }
     }));
     const groupByPrice = groupBy(({ priceName }) => priceName.toLowerCase());
-    return groupByPrice(foodlistDataEn);
+    return groupByPrice(foodlistDataFi);
   }
 }

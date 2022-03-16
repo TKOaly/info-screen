@@ -3,6 +3,7 @@ import List from "@material-ui/core/List";
 import { ListItem, ListItemText, Chip } from "@material-ui/core";
 import axios from "axios";
 import { formatDistance, format, isSameDay, isAfter } from "date-fns";
+import fi from "date-fns/locale/fi";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -37,13 +38,13 @@ const EventList = ({ initialEvents, classes }) => {
             }
             label={
               isAfter(new Date(), new Date(starts))
-                ? "now!"
-                : `in ${formatDistance(new Date(starts), new Date())}`
+                ? "nyt!"
+                : `aikaa ${formatDistance(new Date(starts), new Date(), { locale: fi })}`
             }
           />
           <Chip
             className={classes.chip}
-            label={format(new Date(starts), "dd.MM.YYY")}
+            label={format(new Date(starts), "dd.MM.YYY 'klo' HH:mm")}
             variant={"outlined"}
           />
         </ListItem>

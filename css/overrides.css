@@ -14,3 +14,20 @@
 .logo-reaktor {
   height: 50px;
 }
+
+.lofihiphop {
+  margin-top: 1rem;
+}
+
+h2 {
+  margin-bottom: 0;
+  margin-left: 1rem;
+  font-size: 1.5em;
+}
+
+h3 {
+  margin-top: 0;
+  margin-left: 1rem;
+  font-size: 1.2em;
+  font-style: italic;
+}
