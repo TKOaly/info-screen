@@ -1,9 +1,10 @@
-import { fetchUpcomingEvents } from "../../../services/tkoalyEventService";
+import { fetchGroupedEvents } from "../../../services/tkoalyEventService";
 
 export default function handle(req, res) {
-  fetchUpcomingEvents()
+  fetchGroupedEvents()
     .then(events => res.json(events))
-    .catch(() => {
+    .catch((e) => {
+      console.log(e)
       res.status(500).json({ error: "Internal server error" });
     });
 }
