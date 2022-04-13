@@ -1,6 +1,6 @@
 import React from "react";
 import App from "../components/App";
-import { fetchUpcomingEvents } from "../services/tkoalyEventService";
+import { fetchGroupedEvents } from "../services/tkoalyEventService";
 import {
   fetchChecmicumFoodlist,
   fetchExactumFoodlist
@@ -12,7 +12,7 @@ import '../css/overrides.css';
 
 class Index extends React.Component {
     static async getInitialProps() {
-        const getEvents = enableCoronaInfo ? [] : fetchUpcomingEvents()
+        const getEvents = enableCoronaInfo ? [] : fetchGroupedEvents()
         const [events, chemicum, exactum] = await Promise.all([
             getEvents,
             fetchChecmicumFoodlist(),
