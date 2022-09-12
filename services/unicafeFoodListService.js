@@ -16,6 +16,10 @@ export const fetchFoodlists = () =>
     .then(formatResponse);
 
 const resolveFoodlist = (restaurant) => {
+  if (!restaurant) {
+    return null
+  }
+
   const { data: foodlistData } =
     restaurant.menuData.menus.find(
       ({ date }) => date === format(new Date(), "EEE dd.MM.", { locale: en })
@@ -31,17 +35,15 @@ const resolveFoodlist = (restaurant) => {
     return groupByPrice(foodlistDataEn);
   }
 
-  return {};
+  return null;
 };
 
 const formatResponse = (response) => {
   const exactum = response.find(({ slug }) => slug === EXACTUM_SLUG);
   const chemicum = response.find(({ slug }) => slug === CHEMICUM_SLUG);
 
-  if (exactum && chemicum) {
-    return {
-      exactum: resolveFoodlist(exactum),
-      chemicum: resolveFoodlist(chemicum),
-    };
-  }
+  return {
+    exactum: resolveFoodlist(exactum) ?? {},
+    chemicum: resolveFoodlist(chemicum) ?? {},
+  };
 };
