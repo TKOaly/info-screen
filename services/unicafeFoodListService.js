@@ -3,36 +3,45 @@ import { format } from "date-fns";
 import en from "date-fns/locale/en-US";
 import { groupBy } from "ramda";
 
-const EXACTUM_FOOD_URL =
-  "https://messi.hyyravintolat.fi/publicapi/restaurant/11";
-const CHEMI_FOOD_URL = "https://messi.hyyravintolat.fi/publicapi/restaurant/10";
+const UNICAFE_API_URL =
+  "https://unicafe.fi/wp-json/swiss/v1/restaurants?lang=en";
 
-export const fetchExactumFoodlist = () => {
-  return axios
-    .get(EXACTUM_FOOD_URL)
+const EXACTUM_SLUG = "exactum";
+const CHEMICUM_SLUG = "chemicum";
+
+export const fetchFoodlists = () =>
+  axios
+    .get(UNICAFE_API_URL)
     .then(({ data }) => data)
     .then(formatResponse);
-};
 
-export const fetchChecmicumFoodlist = () => {
-  return axios
-    .get(CHEMI_FOOD_URL)
-    .then(({ data }) => data)
-    .then(formatResponse);
-};
+const resolveFoodlist = (restaurant) => {
+  const { data: foodlistData } =
+    restaurant.menuData.menus.find(
+      ({ date }) => date === format(new Date(), "EEE dd.MM.", { locale: en })
+    ) ?? {};
 
-function formatResponse(response) {
-  const { data } = response;
-  const { data: foodlistData } = data.find(
-    ({ date_en }) => date_en === format(new Date(), "EEE dd.MM", { locale: en })
-  );
   if (foodlistData) {
-    const foodlistDataEn = foodlistData.map(({ name_en, price, meta }) => ({
-      name: name_en,
+    const foodlistDataEn = foodlistData.map(({ name, price, meta }) => ({
+      name,
       priceName: price.name,
-      meta: { diet: meta["0"].join(" "), allergies: meta["1"].join(" ") }
+      meta: { diet: meta["0"].join(" "), allergies: meta["1"].join(" ") },
     }));
     const groupByPrice = groupBy(({ priceName }) => priceName.toLowerCase());
     return groupByPrice(foodlistDataEn);
   }
-}
+
+  return {};
+};
+
+const formatResponse = (response) => {
+  const exactum = response.find(({ slug }) => slug === EXACTUM_SLUG);
+  const chemicum = response.find(({ slug }) => slug === CHEMICUM_SLUG);
+
+  if (exactum && chemicum) {
+    return {
+      exactum: resolveFoodlist(exactum),
+      chemicum: resolveFoodlist(chemicum),
+    };
+  }
+};
