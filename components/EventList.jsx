@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import List from "@material-ui/core/List";
-import { ListItem, ListItemText, Chip, ListSubheader } from "@material-ui/core";
+import { ListItem, ListItemText, Chip } from "@material-ui/core";
 import axios from "axios";
 import { isAfter, isToday, format } from "date-fns";
 import { withStyles } from "@material-ui/core/styles";
@@ -43,10 +43,10 @@ const EventList = ({ initialEvents, classes }) => {
     <List dense={true}>
       {
         Object.entries(events).map(([subtitle, events]) => (
-          <>
+          <React.Fragment key={subtitle}>
             <h3 className={classes.noMargin}>{subtitle}</h3>
             {events.map(({ name, starts }) => (
-              <ListItem>
+              <ListItem key={name}>
                 <ListItemText style={{ fontSize: "20px" }} primary={name} />
                 {
                   subtitle !== 'Today' && subtitle !== 'Tomorrow' &&
@@ -65,7 +65,7 @@ const EventList = ({ initialEvents, classes }) => {
               </ListItem>
             ))}
             <hr/>     
-          </>
+          </React.Fragment>
         ))
       }
     </List>
