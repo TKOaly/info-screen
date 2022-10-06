@@ -79,7 +79,7 @@ const mapFooditems = foodItems =>
     <ListItem key={i}>
       <ListItemText inset={true} primary={name}></ListItemText>
       {meta.allergies.length > 0 &&
-        meta.allergies.split(" ").map(allergy => <Chip label={allergy} />)}
+        meta.allergies.split(" ").map(allergy => <Chip key={`${i}-${allergy}`} label={allergy} />)}
     </ListItem>
   ));
 
