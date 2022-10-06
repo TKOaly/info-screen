@@ -66,10 +66,10 @@ const parseFoodlisting = foodlist => {
   return keys.map((key, i) => {
     const foodItems = foodlist[key];
     return (
-      <>
-        <ListSubheader key={i}>{key}</ListSubheader>
+      <React.Fragment key={i}>
+        <ListSubheader>{key}</ListSubheader>
         {mapFooditems(foodItems)}
-      </>
+      </React.Fragment>
     );
   });
 };
