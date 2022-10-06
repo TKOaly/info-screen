@@ -5,8 +5,6 @@ import Grid from "@material-ui/core/Grid";
 import EventList from "./EventList.jsx";
 import { Typography } from "@material-ui/core";
 import FoodList from "./FoodList.jsx";
-import Covid19 from "./Covid19.jsx";
-import { enableCoronaInfo } from "../config.json";
 
 export default function App({ initialState }) {
   const { chemicum, exactum, events } = initialState;
@@ -21,7 +19,6 @@ export default function App({ initialState }) {
   const leftGrid =
     <Grid item md={6}>
       <Typography variant="h3">Upcoming events</Typography>
-      {enableCoronaInfo && <Covid19 />}
       <EventList initialEvents={events} />
     </Grid>
 
