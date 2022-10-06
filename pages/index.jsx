@@ -5,14 +5,13 @@ import {
   fetchChecmicumFoodlist,
   fetchExactumFoodlist
 } from "../services/unicafeFoodListService";
-import { enableCoronaInfo } from "../config.json"
 
 import '../css/carousel.min.css';
 import '../css/overrides.css';
 
 class Index extends React.Component {
     static async getInitialProps() {
-        const getEvents = enableCoronaInfo ? [] : fetchGroupedEvents()
+        const getEvents = fetchGroupedEvents()
         const [events, chemicum, exactum] = await Promise.all([
             getEvents,
             fetchChecmicumFoodlist(),
