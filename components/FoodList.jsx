@@ -31,11 +31,22 @@ export async function getStaticProps() {
 }
 
 const fetcher = url => fetch(url).then(res => res.json());
+const swrOptions = {
+  refreshInterval: 60 * 60 * 1000 // 1 hour
+};
 const hasValues = obj => obj && Object.entries(obj).length > 0;
 
 export default function FoodList() {
-  const { data: chemicum } = useSWR("/api/foodlists/chemicum", fetcher);
-  const { data: exactum } = useSWR("/api/foodlists/exactum", fetcher);
+  const { data: chemicum } = useSWR(
+    "/api/foodlists/chemicum",
+    fetcher,
+    swrOptions
+  );
+  const { data: exactum } = useSWR(
+    "/api/foodlists/exactum",
+    fetcher,
+    swrOptions
+  );
 
   const hour = new Date().getHours();
   const isClosed = hour >= 16; // TODO: check from api response
