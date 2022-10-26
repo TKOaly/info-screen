@@ -9,13 +9,15 @@ export default function App() {
   return (
     <Grid container>
       <Grid item xs={6}>
-        <Typography variant="h3">Upcoming events</Typography>
+        <Typography variant="h5" sx={{ textAlign: "center" }}>
+          Events
+        </Typography>
         <EventList />
       </Grid>
       <Grid item xs={6}>
         <FoodList />
-        <Logo />
       </Grid>
+      <Logo />
     </Grid>
   );
 }

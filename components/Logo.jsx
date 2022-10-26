@@ -11,9 +11,9 @@ const Logo = () => {
   }, []);
 
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div style={{ position: "fixed", bottom: "5px", right: "1rem" }}>
       {canRenderClientSide && (
-        <video src="/logo.webm" width={400} height={400} loop autoPlay></video>
+        <video src="/logo.webm" width={200} height={200} loop autoPlay></video>
       )}
     </div>
   );
