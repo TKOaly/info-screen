@@ -7,6 +7,9 @@ const theme = createTheme({
       default: "#303030",
       paper: "#303030"
     }
+  },
+  typography: {
+    fontSize: 24
   }
 });
 
