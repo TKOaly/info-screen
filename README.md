@@ -7,18 +7,18 @@ Displays information about upcoming events as well as Unicafe menus.
 ## Install dependencies
 
 ```bash
-yarn install
+npm install
 ```
 
 ## Run in development mode
 
 ```bash
-yarn dev
+npm run dev
 ```
 
 ## Run in production mode
 
 ```bash
-yarn build          # Builds the production version
-yarn start -p 3000  # Serves the production version on port 3000 (can be changed)
+npm build          # Builds the production version
+npm start -p 3000  # Serves the production version on port 3000 (can be changed)
 ```

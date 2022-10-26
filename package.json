@@ -7,7 +7,6 @@
     "@emotion/server": "^11.10.0",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.10",
-    "@mui/styles": "^5.10.10",
     "axios": "^0.18.0",
     "date-fns": "^2.0.0-alpha.27",
     "dotenv": "^7.0.0",
