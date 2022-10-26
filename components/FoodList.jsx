@@ -15,6 +15,7 @@ import {
 } from "services/unicafeFoodListService";
 import Image from "next/image";
 import lofiHiphopGirl from "../public/lofihiphop.gif";
+import { Box } from "@mui/system";
 
 export async function getStaticProps() {
   const chemicum = await fetchChecmicumFoodlist();
@@ -108,10 +109,23 @@ const parseFoodlisting = foodlist => {
 const mapFooditems = foodItems =>
   foodItems.map(({ name, meta }, i) => (
     <ListItem key={i}>
-      <ListItemText inset={true} primary={name}></ListItemText>
-      {meta.allergies.length > 0 &&
-        meta.allergies
-          .split(" ")
-          .map(allergy => <Chip key={`${i}-${allergy}`} label={allergy} />)}
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <ListItemText inset={true} primary={name}></ListItemText>
+        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+          {mapAllergies(meta.allergies.split(" "))}
+        </Box>
+      </Box>
     </ListItem>
   ));
+
+const mapAllergies = allergies => {
+  if (allergies.length === 0) return null;
+
+  return (
+    <>
+      {allergies.map(allergy => (
+        <Chip key={allergy} label={allergy} />
+      ))}
+    </>
+  );
+};
