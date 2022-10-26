@@ -50,7 +50,7 @@ export default function FoodList() {
   );
 
   const hour = new Date().getHours();
-  const isClosed = false; //hour < 6 || hour >= 16; // TODO: check from api response
+  const isClosed = hour < 6 || hour >= 16; // TODO: check from api response
 
   const restaurantsWithData = [
     { name: "Unicafé Chemicum", foodListing: chemicum },
