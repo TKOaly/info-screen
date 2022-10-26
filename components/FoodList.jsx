@@ -1,31 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { Carousel } from "react-responsive-carousel";
 import {
+  Typography,
   List,
   ListSubheader,
   ListItem,
   ListItemText,
-  Chip,
-  Typography
-} from "@material-ui/core";
-import { Carousel } from "react-responsive-carousel";
-import axios from "axios";
+  Chip
+} from "@mui/material";
+import useSWR from "swr";
+import {
+  fetchChecmicumFoodlist,
+  fetchExactumFoodlist
+} from "services/unicafeFoodListService";
+import Image from "next/image";
+import lofiHiphopGirl from "../public/lofihiphop.gif";
 
-export default function FoodList(initialFoodlists) {
-  const [{ chemicum, exactum }, updateFoodlists] = useState(initialFoodlists);
+export async function getStaticProps() {
+  const chemicum = await fetchChecmicumFoodlist();
+  const exactum = await fetchExactumFoodlist();
+
+  return {
+    props: {
+      fallback: {
+        "/api/foodlists/chemicum": chemicum,
+        "/api/foodlists/exactum": exactum
+      }
+    }
+  };
+}
+
+const fetcher = url => fetch(url).then(res => res.json());
+const hasValues = obj => obj && Object.entries(obj).length > 0;
+
+export default function FoodList() {
+  const { data: chemicum } = useSWR("/api/foodlists/chemicum", fetcher);
+  const { data: exactum } = useSWR("/api/foodlists/exactum", fetcher);
 
   const hour = new Date().getHours();
   const isClosed = hour >= 16; // TODO: check from api response
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (!isClosed) {
-        fetchFoodlists()
-          .then(newFoodlist => updateFoodlists(newFoodlist))
-          .catch(_ => {});
-      }
-    }, 60000);
-    return () => clearInterval(intervalId);
-  }, []);
+  const restaurantsWithData = [
+    { name: "Chemicum", foodListing: chemicum },
+    { name: "Exactum", foodListing: exactum }
+  ].filter(({ foodListing }) => hasValues(foodListing));
 
   const foodCarousel = (
     <Carousel
@@ -33,32 +51,34 @@ export default function FoodList(initialFoodlists) {
       showArrows={false}
       infiniteLoop={true}
       autoPlay={true}
-      showIndicators={false}
+      showIndicators={restaurantsWithData.length > 1}
       showStatus={false}
       interval={10000}
       stopOnHover={false}
     >
-      <div>
-        <Typography variant="h5">Exactum</Typography>
-        <List>{parseFoodlisting(exactum)}</List>
-      </div>
-      <div>
-        <Typography variant="h5">Chemicum</Typography>
-        <List>{parseFoodlisting(chemicum)}</List>
-      </div>
+      {restaurantsWithData.map(restaurant => (
+        <div key={restaurant.name}>
+          <Typography variant="h5">{restaurant.name}</Typography>
+          <List>{parseFoodlisting(restaurant.foodListing)}</List>
+        </div>
+      ))}
     </Carousel>
   );
 
-  const styles = {
-    textAlign: "center"
-  };
   const foodClosed = (
-    <div style={styles}>
-      <img src="/static/img/lofihiphop.gif" className="lofi-girl" />
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        marginTop: "5rem",
+        marginBottom: "2rem"
+      }}
+    >
+      <Image src={lofiHiphopGirl} layout="fixed" />
     </div>
   );
 
-  return <div>{!isClosed ? foodCarousel : foodClosed}</div>;
+  return <div>{isClosed ? foodClosed : foodCarousel}</div>;
 }
 
 const parseFoodlisting = foodlist => {
@@ -79,22 +99,8 @@ const mapFooditems = foodItems =>
     <ListItem key={i}>
       <ListItemText inset={true} primary={name}></ListItemText>
       {meta.allergies.length > 0 &&
-        meta.allergies.split(" ").map(allergy => <Chip key={`${i}-${allergy}`} label={allergy} />)}
+        meta.allergies
+          .split(" ")
+          .map(allergy => <Chip key={`${i}-${allergy}`} label={allergy} />)}
     </ListItem>
   ));
-
-const fetchFoodlists = () =>
-  Promise.all([
-    axios.get("/api/foodlists/exactum"),
-    axios.get("/api/foodlists/chemicum")
-  ])
-    .then(([exaRes, chemRes]) => {
-      return {
-        exactum: exaRes.data,
-        chemicum: chemRes.data
-      };
-    })
-    .catch(e => {
-      console.error(e);
-      throw e;
-    });

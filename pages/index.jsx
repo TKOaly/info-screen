@@ -1,33 +1,34 @@
 import React from "react";
-import App from "../components/App";
-import { fetchGroupedEvents } from "../services/tkoalyEventService";
+import { fetchGroupedEvents } from "services/tkoalyEventService";
 import {
   fetchChecmicumFoodlist,
   fetchExactumFoodlist
-} from "../services/unicafeFoodListService";
+} from "services/unicafeFoodListService";
+import { SWRConfig } from "swr/_internal";
+import App from "../components/App";
 
-import '../css/carousel.min.css';
-import '../css/overrides.css';
+export async function getStaticProps() {
+  const events = await fetchGroupedEvents();
+  const chemicum = await fetchChecmicumFoodlist();
+  const exactum = await fetchExactumFoodlist();
 
-class Index extends React.Component {
-    static async getInitialProps() {
-        const getEvents = fetchGroupedEvents()
-        const [events, chemicum, exactum] = await Promise.all([
-            getEvents,
-            fetchChecmicumFoodlist(),
-            fetchExactumFoodlist()
-        ]);
-
-        return {
-            events, chemicum, exactum
-        }
+  return {
+    props: {
+      fallback: {
+        "/api/events/upcoming": events,
+        "/api/foodlists/exactum": exactum,
+        "/api/foodlists/chemicum": chemicum
+      }
     }
-
-    render() {
-        return (
-            <App initialState={this.props} />
-        )
-    }
+  };
 }
+
+const Index = ({ fallback }) => {
+  return (
+    <SWRConfig value={{ fallback }}>
+      <App />
+    </SWRConfig>
+  );
+};
 
 export default Index;

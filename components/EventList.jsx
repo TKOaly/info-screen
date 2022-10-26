@@ -1,84 +1,60 @@
-import React, { useState, useEffect } from "react";
-import List from "@material-ui/core/List";
-import { ListItem, ListItemText, Chip } from "@material-ui/core";
-import axios from "axios";
+import React from "react";
 import { isAfter, isToday, format } from "date-fns";
-import { withStyles } from "@material-ui/core/styles";
+import { List, ListItem, ListItemText, Chip, Typography } from "@mui/material";
+import useSWR from "swr";
 
-const styles = theme => ({
-  chip: {
-    margin: theme.spacing.unit
-  },
-  noMargin: {
-    margin: "0"
-  }
-});
-
-const getFormat = (subtitle) => {
+const getFormat = subtitle => {
   switch (subtitle) {
-    case 'This week':
-      return "'this' EEEE"
-    case 'Next week':
-      return "'next' EEEE"
+    case "This week":
+      return "'this' EEEE";
+    case "Next week":
+      return "'next' EEEE";
     default:
-      return "dd.MM."
+      return "dd.MM.";
   }
-}
+};
 
-const EventList = ({ initialEvents, classes }) => {
-  const [events, updateEvents] = useState(initialEvents);
+const smallHeaderStyle = { fontSize: "18px", fontWeight: "700" };
 
-  useEffect(() => {
-    const intervalId = setInterval(
-      () =>
-        fetchEvents()
-          .then(newEvents => updateEvents(newEvents))
-          .catch(_ => {}),
-      10000
-    );
-    return () => clearInterval(intervalId);
-  }, []);
+const fetcher = url => fetch(url).then(res => res.json());
+
+const EventList = () => {
+  const { data: events, error } = useSWR("/api/events/upcoming", fetcher);
 
   return (
     <List dense={true}>
-      {
+      {error && (
+        <Typography variant="h3" sx={smallHeaderStyle}>
+          Failed to load events
+        </Typography>
+      )}
+      {!error &&
+        events &&
         Object.entries(events).map(([subtitle, events]) => (
           <React.Fragment key={subtitle}>
-            <h3 className={classes.noMargin}>{subtitle}</h3>
+            <Typography variant="h3" sx={smallHeaderStyle}>
+              {subtitle}
+            </Typography>
             {events.map(({ name, starts }) => (
               <ListItem key={name}>
                 <ListItemText style={{ fontSize: "20px" }} primary={name} />
-                {
-                  subtitle !== 'Today' && subtitle !== 'Tomorrow' &&
+                {subtitle !== "Today" && subtitle !== "Tomorrow" && (
                   <Chip
-                    className={classes.chip}
-                    color={
-                      isToday(new Date(starts)) ? "primary" : "default"
-                    }
+                    color={isToday(new Date(starts)) ? "primary" : "default"}
                     label={
                       isAfter(new Date(), new Date(starts))
                         ? "now!"
                         : format(new Date(starts), getFormat(subtitle))
                     }
                   />
-                }
+                )}
               </ListItem>
             ))}
-            <hr/>     
+            <hr />
           </React.Fragment>
-        ))
-      }
+        ))}
     </List>
   );
 };
 
-export default withStyles(styles)(EventList);
-
-const fetchEvents = () =>
-  axios
-    .get("/api/events/upcoming")
-    .then(({ data }) => data)
-    .catch(e => {
-      console.error(e);
-      throw e;
-    });
+export default EventList;

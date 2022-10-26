@@ -1,24 +1,25 @@
-import React from 'react';
-import App from 'next/app';
-import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import theme from '../components/Theme';
+import React from "react";
+import App from "next/app";
+import Head from "next/head";
+import theme from "../config/theme";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import createEmotionCache from "config/createEmotionCache";
+import { CacheProvider } from "@emotion/react";
+import { globalStyles } from "../shared/styles";
 
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
 export default class MyApp extends App {
-  componentDidMount() {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-  }
-
   render() {
-    const { Component, pageProps } = this.props;
+    const {
+      Component,
+      pageProps,
+      emotionCache = clientSideEmotionCache
+    } = this.props;
 
     return (
-      <>
+      <CacheProvider value={emotionCache}>
         <Head>
           <meta
             name="viewport"
@@ -26,11 +27,11 @@ export default class MyApp extends App {
           />
         </Head>
         <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
+          {globalStyles}
           <Component {...pageProps} />
         </ThemeProvider>
-      </>
+      </CacheProvider>
     );
   }
 }

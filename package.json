@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "@material-ui/core": "^4.4.0",
-    "@zeit/next-css": "^1.0.1",
+    "@emotion/react": "^11.10.4",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.10",
+    "@mui/styles": "^5.10.10",
     "axios": "^0.18.0",
     "date-fns": "^2.0.0-alpha.27",
     "dotenv": "^7.0.0",
@@ -12,20 +15,21 @@
     "ical": "^0.6.0",
     "memoizee": "^0.4.14",
     "moment": "^2.24.0",
-    "next": "10",
+    "next": "^12.3.1",
     "ramda": "^0.26.1",
-    "react": "^16.8.2",
-    "react-dom": "^16.8.2",
-    "react-jss": "^8.6.1",
-    "react-responsive-carousel": "^3.1.47",
-    "react-twitter-embed": "^3.0.3"
+    "react": "^18.0.2",
+    "react-dom": "^18.0.2",
+    "react-jss": "^10.9.2",
+    "react-responsive-carousel": "^3.2.23",
+    "react-twitter-embed": "^4.0.4",
+    "swr": "^2.0.0-rc.0"
   },
   "scripts": {
     "build": "next build",
     "start": "next start -p $PORT",
     "dev": "next",
-    "lint": "eslint . -c .eslintrc.json --ext  .js,.jsx",
-    "lint:fix": "eslint . -c .eslintrc.json --ext .js,.jsx --fix"
+    "lint": "eslint . -c .eslintrc.js --ext .js,.jsx",
+    "lint:fix": "eslint . -c .eslintrc.js --ext .js,.jsx --fix"
   },
   "devDependencies": {
     "eslint": "^6.3.0",
@@ -33,9 +37,9 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^1.7.0",
     "prettier": "1.18.2",
-    "webpack": "^4.46.0"
+    "webpack": "^5.74.0"
   }
 }
