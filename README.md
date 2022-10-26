@@ -19,6 +19,6 @@ npm run dev
 ## Run in production mode
 
 ```bash
-npm build          # Builds the production version
+npm run build      # Builds the production version
 npm start -p 3000  # Serves the production version on port 3000 (can be changed)
 ```
