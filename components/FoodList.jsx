@@ -50,11 +50,11 @@ export default function FoodList() {
   );
 
   const hour = new Date().getHours();
-  const isClosed = hour < 6 || hour >= 16; // TODO: check from api response
+  const isClosed = false; //hour < 6 || hour >= 16; // TODO: check from api response
 
   const restaurantsWithData = [
-    { name: "Chemicum", foodListing: chemicum },
-    { name: "Exactum", foodListing: exactum }
+    { name: "Unicafé Chemicum", foodListing: chemicum },
+    { name: "Unicafé Exactum", foodListing: exactum }
   ].filter(({ foodListing }) => hasValues(foodListing));
 
   const foodCarousel = (
@@ -71,7 +71,9 @@ export default function FoodList() {
       {restaurantsWithData.map(restaurant => (
         <div key={restaurant.name}>
           <Typography variant="h5">{restaurant.name}</Typography>
-          <List>{parseFoodlisting(restaurant.foodListing)}</List>
+          <List sx={{ width: "max-content", marginInline: "auto" }}>
+            {parseFoodlisting(restaurant.foodListing)}
+          </List>
         </div>
       ))}
     </Carousel>
@@ -110,8 +112,15 @@ const mapFooditems = foodItems =>
   foodItems.map(({ name, meta }, i) => (
     <ListItem key={i}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <ListItemText inset={true} primary={name}></ListItemText>
-        <Box sx={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+        <ListItemText primary={name}></ListItemText>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "6px",
+            maxWidth: "40ch"
+          }}
+        >
           {mapAllergies(meta.allergies.split(" "))}
         </Box>
       </Box>
