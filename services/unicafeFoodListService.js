@@ -1,40 +1,44 @@
-import axios from "axios";
 import { format } from "date-fns";
 import en from "date-fns/locale/en-US";
 import { groupBy } from "ramda";
 
 const BASE_URL = "https://unicafe.fi/wp-json/swiss/v1/restaurants/?lang=en";
 
-export const fetchExactumFoodlist = () => {
-  return axios
-    .get(BASE_URL)
-    .then(({ data }) => data[15])
-    .then(formatResponse);
+export const fetchFoodlist = async id => {
+  try {
+    const res = await fetch(BASE_URL);
+    const data = await res.json();
+    return formatResponse(data[id]);
+  } catch (error) {
+    console.error(`[fetchFoodlist] ${error}`);
+    return { error: error.message };
+  }
 };
 
-export const fetchChecmicumFoodlist = () => {
-  return axios
-    .get(BASE_URL)
-    .then(({ data }) => data[16])
-    .then(formatResponse);
-};
+const [EXACTUM_ID, CHEMICUM_ID, KAIVOPIHA_ID] = [15, 16, 0];
+
+export const fetchExactumFoodlist = () => fetchFoodlist(EXACTUM_ID);
+export const fetchChecmicumFoodlist = () => fetchFoodlist(CHEMICUM_ID);
+export const fetchKaivopihaFoodlist = () => fetchFoodlist(KAIVOPIHA_ID);
+
+const groupByPrice = groupBy(({ priceName }) => priceName.toLowerCase());
 
 function formatResponse(response) {
   const { menuData } = response;
+
   const { data: foodlistData } = menuData.menus.find(
     ({ date }) => date === format(new Date(), "EE dd.MM.", { locale: en })
   );
 
-  const { lounas } = menuData.visitingHours;
-  const lunchHours = lounas?.items?.[0]?.hours;
+  const lunchHours = menuData.visitingHours?.lounas?.items?.[0]?.hours;
 
-  if (foodlistData) {
-    const foodlistDataEn = foodlistData.map(({ name, price, meta }) => ({
+  const groups = groupByPrice(
+    foodlistData?.map(({ name, price, meta }) => ({
       name: name,
       priceName: price.name,
       meta: { diet: meta["0"], allergies: meta["1"] }
-    }));
-    const groupByPrice = groupBy(({ priceName }) => priceName.toLowerCase());
-    return { groups: groupByPrice(foodlistDataEn), lunchHours };
-  }
+    }))
+  );
+
+  return { name: menuData.name, groups, lunchHours };
 }
