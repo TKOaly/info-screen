@@ -1,0 +1,84 @@
+import {
+  Typography,
+  List,
+  ListSubheader,
+  ListItem,
+  Box,
+  ListItemText,
+  Chip
+} from "@mui/material";
+import { red } from "@mui/material/colors";
+import * as React from "react";
+
+const Restaurant = ({ restaurant }) => {
+  if (restaurant.error) {
+    return (
+      <div>
+        <Typography variant="h5">{restaurant.name}</Typography>
+        <Typography variant="subtitle2" sx={{ color: red[500] }}>
+          Error loading Unicafe data
+        </Typography>
+        <pre style={{ fontSize: "16px", opacity: 0.5 }}>{restaurant.error}</pre>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <Typography variant="h5">Unicafe {restaurant.name}</Typography>
+      {restaurant.lunchHours && (
+        <Typography variant="subtitle1">{restaurant.lunchHours}</Typography>
+      )}
+      <List sx={{ width: "max-content", marginInline: "auto" }}>
+        {parseFoodlisting(restaurant.groups)}
+      </List>
+    </div>
+  );
+};
+
+const parseFoodlisting = foodlist => {
+  const keys = Object.keys(foodlist);
+  return keys.map(key => {
+    const foodItems = foodlist[key];
+    return (
+      <React.Fragment key={`${key}`}>
+        <ListSubheader>{key}</ListSubheader>
+        {mapFooditems(foodItems)}
+      </React.Fragment>
+    );
+  });
+};
+
+const mapFooditems = foodItems =>
+  foodItems.map(({ name, meta }) => (
+    <ListItem key={`${name}`}>
+      <Box sx={{ display: "flex", flexDirection: "column" }}>
+        <ListItemText primary={name} />
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "6px",
+            maxWidth: "40ch"
+          }}
+        >
+          {toChips(meta.diet, { color: "secondary" })}
+          {toChips(meta.allergies)}
+        </Box>
+      </Box>
+    </ListItem>
+  ));
+
+const toChips = (array, chipProps) => {
+  if (array.length === 0) return null;
+
+  return (
+    <>
+      {array.map(chip => (
+        <Chip key={chip} label={chip} {...chipProps} />
+      ))}
+    </>
+  );
+};
+
+export default Restaurant;
