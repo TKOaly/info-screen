@@ -23,20 +23,7 @@ import {
   max,
   parse
 } from "date-fns";
-
-export async function getStaticProps() {
-  const chemicum = await fetchChecmicumFoodlist();
-  const exactum = await fetchExactumFoodlist();
-
-  return {
-    props: {
-      fallback: {
-        "/api/foodlists/chemicum": chemicum,
-        "/api/foodlists/exactum": exactum
-      }
-    }
-  };
-}
+import Restaurant from "./Restaurant";
 
 const fetcher = url => fetch(url).then(res => res.json());
 const swrOptions = {
@@ -121,15 +108,7 @@ export default function FoodList() {
       stopOnHover={false}
     >
       {restaurantsWithData.map(restaurant => (
-        <div key={restaurant.name}>
-          <Typography variant="h5">{restaurant.name}</Typography>
-          {restaurant.lunchHours && (
-            <Typography variant="subtitle1">{restaurant.lunchHours}</Typography>
-          )}
-          <List sx={{ width: "max-content", marginInline: "auto" }}>
-            {parseFoodlisting(restaurant.groups)}
-          </List>
-        </div>
+        <Restaurant key={restaurant.name} restaurant={restaurant} />
       ))}
     </Carousel>
   );
