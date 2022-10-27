@@ -47,4 +47,7 @@ EXPOSE 3000
 
 ENV PORT 3000
 
+# Force timezone to be Helsinki
+ENV TZ Europe/Helsinki
+
 CMD ["node", "server.js"]
