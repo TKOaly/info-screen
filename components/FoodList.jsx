@@ -1,27 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
-import {
-  Typography,
-  List,
-  ListSubheader,
-  ListItem,
-  ListItemText,
-  Chip
-} from "@mui/material";
 import useSWR from "swr";
-import {
-  fetchChecmicumFoodlist,
-  fetchExactumFoodlist
-} from "services/unicafeFoodListService";
 import Image from "next/image";
 import lofiHiphopGirl from "../public/lofihiphop.gif";
-import { Box } from "@mui/system";
 import {
   differenceInMilliseconds,
   isBefore,
   isWithinInterval,
   max,
-  parse
+  parse,
+  isValid
 } from "date-fns";
 import Restaurant from "./Restaurant";
 
@@ -32,27 +20,41 @@ const swrOptions = {
 const hasValues = obj => obj && Object.entries(obj).length > 0;
 
 export default function FoodList() {
-  const { data: chemicum } = useSWR(
+  // TODO: Reduce code duplication
+  const { data: chemicum, isLoading: chemLoading } = useSWR(
     "/api/foodlists/chemicum",
     fetcher,
     swrOptions
   );
-  const { data: exactum } = useSWR(
+  const { data: exactum, isLoading: exaLoading } = useSWR(
     "/api/foodlists/exactum",
     fetcher,
     swrOptions
   );
+  const { data: kaivopiha, isLoading: kaivoLoading } = useSWR(
+    "/api/foodlists/kaivopiha",
+    fetcher,
+    swrOptions
+  );
 
-  const restaurantsWithData = [
-    { name: "Unicafé Chemicum", ...chemicum },
-    { name: "Unicafé Exactum", ...exactum }
-  ].filter(({ groups }) => hasValues(groups));
+  // Update client when all Unicafes loaded to kickstart carousel
+  const [, setLoading] = useState(
+    [chemLoading, exaLoading, kaivoLoading].some(Boolean)
+  );
+  useEffect(() => {
+    setLoading([chemLoading, exaLoading, kaivoLoading].some(Boolean));
+  }, [chemLoading, exaLoading, kaivoLoading]);
+
+  const restaurantsWithData = [chemicum, exactum, kaivopiha].filter(
+    restaurant =>
+      restaurant && (hasValues(restaurant.groups) || restaurant.error)
+  );
 
   const now = new Date();
 
   const parseHour = str => parse(str, "HH:mm", now);
 
-  // Parse closing time as the latest any of our Unicafés is open
+  // Parse closing time as the latest any of our Unicafes is open
   const closingTime = max(
     restaurantsWithData.map(({ lunchHours }) => {
       if (!lunchHours) return;
@@ -65,8 +67,8 @@ export default function FoodList() {
 
   // Show food even if opening time or closing time could not be deduced
   const [showFood, setShowFood] = useState(
-    !openingTime ||
-      !closingTime ||
+    isValid(openingTime) &&
+      isValid(closingTime) &&
       isWithinInterval(now, {
         start: openingTime,
         end: closingTime
@@ -134,48 +136,3 @@ export default function FoodList() {
 
   return <div>{showFood ? foodCarousel : foodClosed}</div>;
 }
-
-const parseFoodlisting = foodlist => {
-  const keys = Object.keys(foodlist);
-  return keys.map((key, i) => {
-    const foodItems = foodlist[key];
-    return (
-      <React.Fragment key={i}>
-        <ListSubheader>{key}</ListSubheader>
-        {mapFooditems(foodItems)}
-      </React.Fragment>
-    );
-  });
-};
-
-const mapFooditems = foodItems =>
-  foodItems.map(({ name, meta }, i) => (
-    <ListItem key={i}>
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <ListItemText primary={name} />
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "6px",
-            maxWidth: "40ch"
-          }}
-        >
-          {toChips(meta.diet, { color: "secondary" })}
-          {toChips(meta.allergies)}
-        </Box>
-      </Box>
-    </ListItem>
-  ));
-
-const toChips = (array, chipProps) => {
-  if (array.length === 0) return null;
-
-  return (
-    <>
-      {array.map(chip => (
-        <Chip key={chip} label={chip} {...chipProps} />
-      ))}
-    </>
-  );
-};
