@@ -9,7 +9,7 @@ import {
   isAfter,
   isBefore,
   isThisWeek,
-  differenceInSeconds
+  differenceInMilliseconds
 } from "date-fns";
 import React from "react";
 import { useState } from "react";
@@ -38,7 +38,7 @@ const RegistrationChip = ({ startDate, endDate, now }) => {
       const timeout = setTimeout(() => {
         setHasCountdown(false);
         setCanRegister(true);
-      }, differenceInSeconds(startDate, now) * 1000);
+      }, differenceInMilliseconds(startDate, now));
       return () => clearTimeout(timeout);
     }
   }, [hasCountdown, setHasCountdown, now, startDate]);
@@ -48,7 +48,7 @@ const RegistrationChip = ({ startDate, endDate, now }) => {
     if (canRegister) {
       const timeout = setTimeout(() => {
         setCanRegister(false);
-      }, Math.min(differenceInSeconds(endDate, now) * 1000, Math.pow(2, 31) - 1)); // If the end date is way in the future, we don't want to overflow
+      }, Math.min(differenceInMilliseconds(endDate, now), Math.pow(2, 31) - 1)); // If the end date is way in the future, we don't want to overflow
       return () => clearTimeout(timeout);
     }
   }, [canRegister, setCanRegister, now, endDate]);
