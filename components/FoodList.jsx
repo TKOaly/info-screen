@@ -21,31 +21,26 @@ const hasValues = obj => obj && Object.entries(obj).length > 0;
 
 export default function FoodList() {
   // TODO: Reduce code duplication
-  const { data: chemicum, isLoading: chemLoading } = useSWR(
-    "/api/foodlists/chemicum",
-    fetcher,
-    swrOptions
-  );
-  const { data: exactum, isLoading: exaLoading } = useSWR(
-    "/api/foodlists/exactum",
-    fetcher,
-    swrOptions
-  );
-  const { data: kaivopiha, isLoading: kaivoLoading } = useSWR(
-    "/api/foodlists/kaivopiha",
-    fetcher,
-    swrOptions
-  );
+  const chemicum = useSWR("/api/foodlists/chemicum", fetcher, swrOptions);
+  const exactum = useSWR("/api/foodlists/exactum", fetcher, swrOptions);
+  const kaivopiha = useSWR("/api/foodlists/kaivopiha", fetcher, swrOptions);
+
+  const requests = [chemicum, exactum, kaivopiha];
+
+  // Data is ready once none of these are loading or validating
+  const isReady = () =>
+    !requests.map(swr => !swr.isLoading && !swr.isValidating).some(Boolean);
 
   // Update client when all Unicafes loaded to kickstart carousel
-  const [, setLoading] = useState(
-    [chemLoading, exaLoading, kaivoLoading].some(Boolean)
-  );
+  const [, setReady] = useState(isReady());
   useEffect(() => {
-    setLoading([chemLoading, exaLoading, kaivoLoading].some(Boolean));
-  }, [chemLoading, exaLoading, kaivoLoading]);
+    console.log(requests);
+    setReady(isReady());
+  }, requests);
 
-  const restaurantsWithData = [chemicum, exactum, kaivopiha].filter(
+  const restaurants = requests.map(request => request.data);
+
+  const restaurantsWithData = restaurants.filter(
     restaurant =>
       restaurant && (hasValues(restaurant.groups) || restaurant.error)
   );
@@ -80,7 +75,7 @@ export default function FoodList() {
 
   // Show food when opening time comes
   useEffect(() => {
-    if (!showFood && openingTime && isBefore(now, openingTime)) {
+    if (!showFood && isValid(openingTime) && isBefore(now, openingTime)) {
       const timeout = setTimeout(() => {
         setShowFood(true);
       }, differenceInMilliseconds(openingTime, now));
@@ -90,7 +85,7 @@ export default function FoodList() {
 
   // Hide food when closing time comes
   useEffect(() => {
-    if (showFood && closingTime && isBefore(now, closingTime)) {
+    if (showFood && isValid(closingTime) && isBefore(now, closingTime)) {
       const timeout = setTimeout(() => {
         setShowFood(false);
       }, differenceInMilliseconds(closingTime, now));
@@ -102,12 +97,12 @@ export default function FoodList() {
     <Carousel
       showThumbs={false}
       showArrows={false}
-      infiniteLoop={true}
-      autoPlay={true}
+      infiniteLoop
+      autoPlay={restaurantsWithData.length > 1}
       showIndicators={restaurantsWithData.length > 1}
-      showStatus={false}
       interval={10000}
       stopOnHover={false}
+      showStatus={false}
     >
       {restaurantsWithData.map(restaurant => (
         <Restaurant key={restaurant.name} restaurant={restaurant} />
