@@ -27,7 +27,9 @@ const Restaurant = ({ restaurant }) => {
     <div>
       <Typography variant="h5">Unicafe {restaurant.name}</Typography>
       {restaurant.lunchHours && (
-        <Typography variant="subtitle1">{restaurant.lunchHours}</Typography>
+        <Typography variant="subtitle1">
+          Lunch {restaurant.lunchHours}
+        </Typography>
       )}
       <List sx={{ width: "max-content", marginInline: "auto" }}>
         {parseFoodlisting(restaurant.groups)}
@@ -50,7 +52,7 @@ const parseFoodlisting = foodlist => {
 };
 
 const mapFooditems = foodItems =>
-  foodItems.map(({ name, meta }) => (
+  foodItems.map(({ name, prices, meta }) => (
     <ListItem key={`${name}`}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <ListItemText primary={name} />
@@ -62,6 +64,9 @@ const mapFooditems = foodItems =>
             maxWidth: "40ch"
           }}
         >
+          {prices?.student && (
+            <Chip color="primary" label={`${prices.student}€`} />
+          )}
           {toChips(meta.diet, { color: "secondary" })}
           {toChips(meta.allergies)}
         </Box>

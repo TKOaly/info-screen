@@ -33,11 +33,14 @@ function formatResponse(response) {
   const lunchHours = menuData.visitingHours?.lounas?.items?.[0]?.hours;
 
   const groups = groupByPrice(
-    foodlistData?.map(({ name, price, meta }) => ({
-      name: name,
-      priceName: price.name,
-      meta: { diet: meta["0"], allergies: meta["1"] }
-    }))
+    foodlistData?.map(({ name, price, meta }) => {
+      return {
+        name: name,
+        priceName: price.name,
+        prices: price.value,
+        meta: { diet: meta["0"], allergies: meta["1"] }
+      };
+    })
   );
 
   return { name: menuData.name, groups, lunchHours };
