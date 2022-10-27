@@ -26,15 +26,16 @@ const useTickingLabel = targetDate => {
   // To match SSR and hydration, use actual dates only after loaded
   const [label, setLabel] = useState("soon");
 
+  const updateLabel = () => {
+    const newLabel = formatCountdown(
+      differenceInSeconds(targetDate, new Date())
+    );
+    if (newLabel) setLabel(newLabel);
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      const newLabel = formatCountdown(
-        differenceInSeconds(targetDate, new Date())
-      );
-      if (newLabel) {
-        setLabel(newLabel);
-      }
-    }, 1000);
+    updateLabel();
+    const interval = setInterval(updateLabel, 1000);
 
     return () => clearTimeout(interval);
   }, [targetDate, setLabel]);
