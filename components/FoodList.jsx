@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import {
   Typography,
@@ -16,7 +16,15 @@ import {
 import Image from "next/image";
 import lofiHiphopGirl from "../public/lofihiphop.gif";
 import { Box } from "@mui/system";
-import { max, min, parse } from "date-fns";
+import {
+  addHours,
+  differenceInMilliseconds,
+  isBefore,
+  isWithinInterval,
+  max,
+  min,
+  parse
+} from "date-fns";
 
 export async function getStaticProps() {
   const chemicum = await fetchChecmicumFoodlist();
@@ -55,19 +63,50 @@ export default function FoodList() {
     { name: "Unicafé Exactum", ...exactum }
   ].filter(({ groups }) => hasValues(groups));
 
-  const parseHour = str => parse(str, "HH:mm", new Date("1970-01-01"));
+  const now = new Date();
+
+  const parseHour = str => parse(str, "HH:mm", now);
   const hours = restaurantsWithData.map(({ lunchHours }) => {
     if (!lunchHours) return;
     return lunchHours.split("–").map(parseHour);
   });
 
-  const firstHourOpen = min(hours.map(a => a[0])).getHours();
-  const lastHourOpen = max(hours.map(a => a[1])).getHours();
+  // Add a 1 hour padding where we still show food
+  const openingTime = addHours(min(hours.map(a => a[0])), -1);
+  const closingTime = addHours(max(hours.map(a => a[1])), 1);
 
-  const hour = new Date().getHours();
-  const [isClosed, setClosed] = useState(
-    hour < firstHourOpen || hour > lastHourOpen
+  // Show food if opening time or closing time could not be deduced or we're within an 1 hour padding of them
+  const [showFood, setShowFood] = useState(
+    !openingTime ||
+      !closingTime ||
+      isWithinInterval(now, {
+        start: openingTime,
+        end: closingTime
+      })
   );
+
+  // These shouldn't need to care for time periods longer than 24 hours
+  // as the API will return a different response for the next day's values
+
+  // Show food when opening time comes
+  useEffect(() => {
+    if (!showFood && openingTime && isBefore(now, openingTime)) {
+      const timeout = setTimeout(() => {
+        setShowFood(true);
+      }, differenceInMilliseconds(openingTime, now));
+      return () => clearTimeout(timeout);
+    }
+  }, [showFood, openingTime, now]);
+
+  // Hide food when closing time comes
+  useEffect(() => {
+    if (showFood && closingTime && isBefore(now, closingTime)) {
+      const timeout = setTimeout(() => {
+        setShowFood(false);
+      }, differenceInMilliseconds(closingTime, now));
+      return () => clearTimeout(timeout);
+    }
+  }, [showFood, closingTime, now]);
 
   const foodCarousel = (
     <Carousel
@@ -107,13 +146,13 @@ export default function FoodList() {
         src={lofiHiphopGirl}
         layout="fixed"
         onClick={() => {
-          setClosed(false);
+          setShowFood(true);
         }}
       />
     </div>
   );
 
-  return <div>{isClosed ? foodClosed : foodCarousel}</div>;
+  return <div>{showFood ? foodCarousel : foodClosed}</div>;
 }
 
 const parseFoodlisting = foodlist => {
