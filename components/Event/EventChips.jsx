@@ -15,8 +15,9 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
+// TODO: Refactor this mess.
 const RegistrationChip = ({ startDate, endDate, now }) => {
-  const validRegistration = !startDate || (endDate && isAfter(endDate, now));
+  const validRegistration = !!startDate && !!endDate;
 
   // We use states here to queue an update for them in the useEffect below.
   // Whether the event should have a countdown.
@@ -29,8 +30,21 @@ const RegistrationChip = ({ startDate, endDate, now }) => {
   );
   // Whether this event can be registered for.
   const [canRegister, setCanRegister] = useState(
-    endDate && isBefore(now, endDate)
+    startDate &&
+      isAfter(now, startDate) &&
+      (!endDate || (endDate && isBefore(now, endDate)))
   );
+
+  // Start the countdown when there's 2 hours left
+  // TODO: account for if registration is delayed after this kicks in
+  useEffect(() => {
+    if (startDate && isAfter(addHours(now, 2), startDate)) {
+      const timeout = setTimeout(() => {
+        setHasCountdown(true);
+      }, differenceInMilliseconds(startDate, addHours(now, 2)));
+      return () => clearTimeout(timeout);
+    }
+  }, [now, startDate]);
 
   // If the event has a countdown, clear it when it ends
   useEffect(() => {
@@ -70,7 +84,10 @@ const RegistrationChip = ({ startDate, endDate, now }) => {
     return <Chip color="success" label="📝" />;
   }
 
-  return null;
+  // The event has a valid registration period but it is not yet open or in countdown
+  return (
+    <Chip color="info" label={`📝 ${format(startDate, "dd.MM. HH:mm")}`} />
+  );
 };
 
 const DateChip = ({ startDate, subtitle, now }) => {
