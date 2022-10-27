@@ -1,4 +1,3 @@
-import axios from "axios";
 import {
   isAfter,
   addMinutes,
@@ -46,25 +45,23 @@ const groupEvents = R.groupBy(a =>
   })
 );
 
-export const fetchUpcomingEvents = () =>
-  axios
-    .get(ENTRYPOINT, {
-      // Get events that are happening today and in the future
-      params: { fromDate: startOfToday().toJSON() }
-    })
-    .then(res => res.data)
-    .then(events =>
-      events.filter(
-        ({ deleted, name, starts }) =>
-          !deleted &&
-          !name.includes("TEMPLATE") &&
-          isAfter(new Date(starts), addMinutes(new Date(), -15))
-      )
-    )
-    .then(sortEvents)
-    .catch(err => {
-      console.error("Retrieving tkoaly events failed:", err);
-      return [];
-    });
+export const fetchUpcomingEvents = async () => {
+  try {
+    const result = await fetch(
+      `${ENTRYPOINT}?fromDate=${encodeURIComponent(startOfToday().toJSON())}`
+    );
+    const events = await result.json();
+    const filteredEvents = events.filter(
+      ({ deleted, name, starts }) =>
+        !deleted &&
+        !name.includes("TEMPLATE") &&
+        isAfter(new Date(starts), addMinutes(new Date(), -15))
+    );
+    return sortEvents(filteredEvents);
+  } catch (error) {
+    console.error(`[fetchUpcomingEvents] ${error}`);
+    return [];
+  }
+};
 
 export const fetchGroupedEvents = () => fetchUpcomingEvents().then(groupEvents);
