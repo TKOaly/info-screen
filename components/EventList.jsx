@@ -37,7 +37,7 @@ const EventList = () => {
               {subtitle}
             </Typography>
             {events.map(event => (
-              <Event key={event.id} event={event} subtitle={subtitle} />
+              <Event key={event.id} event={event} />
             ))}
             <hr />
           </React.Fragment>

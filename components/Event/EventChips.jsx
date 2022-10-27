@@ -3,7 +3,7 @@ import React from "react";
 import DateChip from "./DateChip";
 import RegistrationChip from "./RegistrationChip";
 
-const EventChips = ({ event, subtitle }) => {
+const EventChips = ({ event }) => {
   const { starts, registration_starts, registration_ends } = event;
   const now = new Date();
   const startDate = new Date(starts);
@@ -17,7 +17,7 @@ const EventChips = ({ event, subtitle }) => {
         endDate={regEndDate}
         now={now}
       />
-      <DateChip startDate={startDate} subtitle={subtitle} now={now} />
+      <DateChip startDate={startDate} now={now} />
     </Box>
   );
 };
