@@ -17,12 +17,10 @@ import Image from "next/image";
 import lofiHiphopGirl from "../public/lofihiphop.gif";
 import { Box } from "@mui/system";
 import {
-  addHours,
   differenceInMilliseconds,
   isBefore,
   isWithinInterval,
   max,
-  min,
   parse
 } from "date-fns";
 
@@ -66,16 +64,19 @@ export default function FoodList() {
   const now = new Date();
 
   const parseHour = str => parse(str, "HH:mm", now);
-  const hours = restaurantsWithData.map(({ lunchHours }) => {
-    if (!lunchHours) return;
-    return lunchHours.split("–").map(parseHour);
-  });
 
-  // Add a 1 hour padding where we still show food
-  const openingTime = addHours(min(hours.map(a => a[0])), -1);
-  const closingTime = addHours(max(hours.map(a => a[1])), 1);
+  // Parse closing time as the latest any of our Unicafés is open
+  const closingTime = max(
+    restaurantsWithData.map(({ lunchHours }) => {
+      if (!lunchHours) return;
+      return parseHour(lunchHours.split("–")[1]);
+    })
+  );
 
-  // Show food if opening time or closing time could not be deduced or we're within an 1 hour padding of them
+  // Opening time is hard-coded to be reasonably in the morning
+  const openingTime = parseHour("08:00");
+
+  // Show food even if opening time or closing time could not be deduced
   const [showFood, setShowFood] = useState(
     !openingTime ||
       !closingTime ||
