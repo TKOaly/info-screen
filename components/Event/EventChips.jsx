@@ -1,4 +1,4 @@
-import { Chip } from "@mui/material";
+import { Box, Chip } from "@mui/material";
 import TickingChip from "components/TickingChip";
 import {
   isWithinInterval,
@@ -93,14 +93,14 @@ const EventChips = ({ event, subtitle }) => {
   const regEndDate = registration_ends && new Date(registration_ends);
 
   return (
-    <>
+    <Box sx={{ display: "flex", gap: "1ch" }}>
       <RegistrationChip
         startDate={regStartDate}
         endDate={regEndDate}
         now={now}
       />
       <DateChip startDate={startDate} subtitle={subtitle} now={now} />
-    </>
+    </Box>
   );
 };
 
