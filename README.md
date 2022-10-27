@@ -4,6 +4,8 @@ A simple info screen to show on student room's television.
 
 Displays information about upcoming events as well as Unicafe menus.
 
+Production version is live at https://info.tko-aly.fi.
+
 ## Install dependencies
 
 ```bash
