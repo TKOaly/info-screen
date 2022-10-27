@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import {
   Typography,
@@ -16,6 +16,7 @@ import {
 import Image from "next/image";
 import lofiHiphopGirl from "../public/lofihiphop.gif";
 import { Box } from "@mui/system";
+import { max, min, parse } from "date-fns";
 
 export async function getStaticProps() {
   const chemicum = await fetchChecmicumFoodlist();
@@ -49,13 +50,24 @@ export default function FoodList() {
     swrOptions
   );
 
-  const hour = new Date().getHours();
-  const isClosed = hour < 6 || hour >= 16; // TODO: check from api response
-
   const restaurantsWithData = [
-    { name: "Unicafé Chemicum", foodListing: chemicum },
-    { name: "Unicafé Exactum", foodListing: exactum }
-  ].filter(({ foodListing }) => hasValues(foodListing));
+    { name: "Unicafé Chemicum", ...chemicum },
+    { name: "Unicafé Exactum", ...exactum }
+  ].filter(({ groups }) => hasValues(groups));
+
+  const parseHour = str => parse(str, "HH:mm", new Date("1970-01-01"));
+  const hours = restaurantsWithData.map(({ lunchHours }) => {
+    if (!lunchHours) return;
+    return lunchHours.split("–").map(parseHour);
+  });
+
+  const firstHourOpen = min(hours.map(a => a[0])).getHours();
+  const lastHourOpen = max(hours.map(a => a[1])).getHours();
+
+  const hour = new Date().getHours();
+  const [isClosed, setClosed] = useState(
+    hour < firstHourOpen || hour > lastHourOpen
+  );
 
   const foodCarousel = (
     <Carousel
@@ -71,8 +83,11 @@ export default function FoodList() {
       {restaurantsWithData.map(restaurant => (
         <div key={restaurant.name}>
           <Typography variant="h5">{restaurant.name}</Typography>
+          {restaurant.lunchHours && (
+            <Typography variant="subtitle1">{restaurant.lunchHours}</Typography>
+          )}
           <List sx={{ width: "max-content", marginInline: "auto" }}>
-            {parseFoodlisting(restaurant.foodListing)}
+            {parseFoodlisting(restaurant.groups)}
           </List>
         </div>
       ))}
@@ -88,7 +103,13 @@ export default function FoodList() {
         marginBottom: "2rem"
       }}
     >
-      <Image src={lofiHiphopGirl} layout="fixed" />
+      <Image
+        src={lofiHiphopGirl}
+        layout="fixed"
+        onClick={() => {
+          setClosed(false);
+        }}
+      />
     </div>
   );
 
@@ -112,7 +133,7 @@ const mapFooditems = foodItems =>
   foodItems.map(({ name, meta }, i) => (
     <ListItem key={i}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <ListItemText primary={name}></ListItemText>
+        <ListItemText primary={name} />
         <Box
           sx={{
             display: "flex",
@@ -121,19 +142,20 @@ const mapFooditems = foodItems =>
             maxWidth: "40ch"
           }}
         >
-          {mapAllergies(meta.allergies.split(" "))}
+          {toChips(meta.diet, { color: "secondary" })}
+          {toChips(meta.allergies)}
         </Box>
       </Box>
     </ListItem>
   ));
 
-const mapAllergies = allergies => {
-  if (allergies.length === 0) return null;
+const toChips = (array, chipProps) => {
+  if (array.length === 0) return null;
 
   return (
     <>
-      {allergies.map(allergy => (
-        <Chip key={allergy} label={allergy} />
+      {array.map(chip => (
+        <Chip key={chip} label={chip} {...chipProps} />
       ))}
     </>
   );

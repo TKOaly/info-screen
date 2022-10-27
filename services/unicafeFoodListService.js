@@ -24,13 +24,17 @@ function formatResponse(response) {
   const { data: foodlistData } = menuData.menus.find(
     ({ date }) => date === format(new Date(), "EE dd.MM.", { locale: en })
   );
+
+  const { lounas } = menuData.visitingHours;
+  const lunchHours = lounas?.items?.[0]?.hours;
+
   if (foodlistData) {
     const foodlistDataEn = foodlistData.map(({ name, price, meta }) => ({
       name: name,
       priceName: price.name,
-      meta: { diet: meta["0"].join(" "), allergies: meta["1"].join(" ") }
+      meta: { diet: meta["0"], allergies: meta["1"] }
     }));
     const groupByPrice = groupBy(({ priceName }) => priceName.toLowerCase());
-    return groupByPrice(foodlistDataEn);
+    return { groups: groupByPrice(foodlistDataEn), lunchHours };
   }
 }
