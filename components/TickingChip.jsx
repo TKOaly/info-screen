@@ -43,7 +43,7 @@ const useTickingLabel = targetDate => {
   return [label];
 };
 
-const TickingChip = ({ end, prefix, ...props }) => {
+const TickingChip = ({ end, prefix = "", ...props }) => {
   const [label] = useTickingLabel(end);
   if (!label) {
     return null;
