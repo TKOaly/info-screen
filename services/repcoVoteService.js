@@ -6,7 +6,7 @@ export const fetchSciencePercentage = async () => {
     const result = await fetch(BY_FACULTY);
     const data = await result.json();
     const matlu = data?.children?.faculties?.find(
-      obj => obj && obj.name && obj.name === "Maatalous-metsätieteellinen"
+      obj => obj && obj.name && obj.name === "Matemaattis-luonnontieteellinen"
     );
     return matlu?.percentage;
   } catch (error) {
