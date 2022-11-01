@@ -21,7 +21,11 @@ const VotePercentage = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        position: "relative"
+        position: "absolute",
+        width: "calc(50vw - 1rem)",
+        bottom: "1rem",
+        left: "1rem",
+        backgroundColor: "#303030"
       }}
     >
       <TickingChip
