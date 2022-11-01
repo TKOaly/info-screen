@@ -12,8 +12,8 @@ import { enGB } from "date-fns/locale";
 const ENTRYPOINT = "https://event-api.tko-aly.fi/api/events";
 
 const formatRelativeLocale = {
-  today: "'Today', EEEE dd.MM.",
-  tomorrow: "'Tomorrow', EEEE dd.MM.",
+  today: "'This week'",
+  tomorrow: "'This week'",
   nextWeek: function(date, baseDate) {
     if (isSameWeek(date, baseDate)) {
       return "'This week'";

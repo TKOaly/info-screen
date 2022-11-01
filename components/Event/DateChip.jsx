@@ -3,16 +3,21 @@ import { isToday, isTomorrow, format, isThisWeek } from "date-fns";
 import React from "react";
 import PropTypes from "prop-types";
 
-const DateChip = ({ startDate, now }) => {
-  if (isToday(startDate) || isTomorrow(startDate)) {
-    return <Chip color="default" label={format(startDate, "HH:mm")} />;
-  }
+const getLabelFormat = startDate => {
+  if (isToday(startDate)) return "'Today' HH:mm";
+  if (isTomorrow(startDate)) return "'Tomorrow' HH:mm";
+  if (isThisWeek(startDate)) return "EEEE HH:mm";
+  return "dd.MM.";
+};
 
-  if (isThisWeek(startDate)) {
-    return <Chip color="default" label={format(startDate, "EEEE HH:mm")} />;
-  }
-
-  return <Chip color="default" label={format(startDate, "dd.MM.")} />;
+const DateChip = ({ startDate }) => {
+  const labelFormat = getLabelFormat(startDate);
+  return (
+    <Chip
+      color={isToday(startDate) ? "info" : "default"}
+      label={format(startDate, labelFormat)}
+    />
+  );
 };
 
 // Props are dates ( Date objects )

@@ -1,5 +1,4 @@
 import { Grid, Typography } from "@mui/material";
-import { isBefore } from "date-fns";
 import React from "react";
 
 import EventList from "./EventList.jsx";
@@ -8,7 +7,6 @@ import Logo from "./Logo.jsx";
 import VotePercentage from "./VotePercentage.jsx";
 
 export default function App() {
-  const votingActive = isBefore(new Date(), new Date("2022-11-02T20:00:00"));
   return (
     <Grid container>
       <Grid item xs={6}>
@@ -16,7 +14,7 @@ export default function App() {
           Events
         </Typography>
         <EventList />
-        {votingActive && <VotePercentage />}
+        <VotePercentage />
       </Grid>
       <Grid item xs={6}>
         <FoodList />
