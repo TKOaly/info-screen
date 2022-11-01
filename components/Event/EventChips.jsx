@@ -17,7 +17,7 @@ const EventChips = ({ event }) => {
         endDate={regEndDate}
         now={now}
       />
-      <DateChip startDate={startDate} now={now} />
+      <DateChip startDate={startDate} />
     </Box>
   );
 };
