@@ -1,6 +1,7 @@
 import Chip from "@mui/material/Chip";
 import { differenceInSeconds } from "date-fns";
 import React from "react";
+import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useState } from "react";
 
@@ -50,6 +51,12 @@ const TickingChip = ({ end, prefix = "", ...props }) => {
   }
 
   return <Chip {...props} label={`${prefix}${label}`} />;
+};
+
+// props end is date, prefix is string
+TickingChip.propTypes = {
+  end: PropTypes.instanceOf(Date),
+  prefix: PropTypes.string
 };
 
 export default TickingChip;

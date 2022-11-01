@@ -11,6 +11,7 @@ import {
   format
 } from "date-fns";
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 const noteEmoji = "📝";
 const countdownHours = 2;
@@ -124,5 +125,12 @@ const RegistrationChip = ({ startDate, endDate, now }) => {
 
   return null;
 };
+
+// Props are dates ( Date objects )
+RegistrationChip.propTypes = {
+  startDate: PropTypes.instanceOf(Date),
+  endDate: PropTypes.instanceOf(Date),
+  now: PropTypes.instanceOf(Date)
+}
 
 export default RegistrationChip;
