@@ -45,13 +45,13 @@ const parseFoodlisting = foodlist => {
     return (
       <React.Fragment key={`${key}`}>
         <ListSubheader>{key}</ListSubheader>
-        {mapFooditems(foodItems)}
+        {mapFooditems(foodItems, key !== "tiedoitus")}
       </React.Fragment>
     );
   });
 };
 
-const mapFooditems = foodItems =>
+const mapFooditems = (foodItems, displayMeta) =>
   foodItems.map(({ name, prices, meta }) => (
     <ListItem key={`${name}`}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -64,11 +64,15 @@ const mapFooditems = foodItems =>
             maxWidth: "40ch"
           }}
         >
-          {prices?.student && (
-            <Chip color="primary" label={`${prices.student}€`} />
+          {displayMeta && (
+            <>
+              {prices?.student && (
+                <Chip color="primary" label={`${prices.student}€`} />
+              )}
+              {toChips(meta.diet, { color: "secondary" })}
+              {toChips(meta.allergies)}
+            </>
           )}
-          {toChips(meta.diet, { color: "secondary" })}
-          {toChips(meta.allergies)}
         </Box>
       </Box>
     </ListItem>
