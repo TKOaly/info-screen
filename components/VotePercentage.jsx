@@ -1,15 +1,30 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React from "react";
+import { differenceInMilliseconds, isBefore } from "date-fns";
+import React, { useState } from "react";
+import { useEffect } from "react";
 import useSWR from "swr";
 import TickingChip from "./TickingChip";
 
 const fetcher = url => fetch(url).then(res => res.json());
 
 const VotePercentage = () => {
+  const votingEnds = new Date("2022-11-01T13:54:20");
+  const [votingActive, setActive] = useState(isBefore(new Date(), votingEnds));
+
+  useEffect(() => {
+    if (!votingActive) return;
+    const id = setTimeout(() => {
+      setActive(false);
+    }, differenceInMilliseconds(votingEnds, new Date()));
+    return () => clearTimeout(id);
+  }, [votingActive, setActive]);
+
   const { data } = useSWR("/api/voting_activity", fetcher, {
     refreshInterval: 30 * 60 * 1000 // 30 minutes
   });
+
+  if (!votingActive) return null;
 
   return (
     <Box
@@ -29,7 +44,7 @@ const VotePercentage = () => {
       }}
     >
       <TickingChip
-        end={new Date("2022-11-02T20:00:00")}
+        end={votingEnds}
         sx={{
           position: "absolute",
           left: "1rem",
