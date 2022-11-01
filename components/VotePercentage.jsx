@@ -9,7 +9,7 @@ import TickingChip from "./TickingChip";
 const fetcher = url => fetch(url).then(res => res.json());
 
 const VotePercentage = () => {
-  const votingEnds = new Date("2022-11-01T13:54:20");
+  const votingEnds = new Date("2022-11-02T20:00:00");
   const [votingActive, setActive] = useState(isBefore(new Date(), votingEnds));
 
   useEffect(() => {
