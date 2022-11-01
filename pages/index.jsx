@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {
   fetchSciencePercentage,
   fetchTotalPercentage
@@ -38,6 +39,11 @@ const Index = ({ fallback }) => {
       <App />
     </SWRConfig>
   );
+};
+
+// fallback is an js-object
+Index.propTypes = {
+  fallback: PropTypes.object
 };
 
 export default Index;

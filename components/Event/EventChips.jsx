@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
 import DateChip from "./DateChip";
 import RegistrationChip from "./RegistrationChip";
 
@@ -20,6 +21,11 @@ const EventChips = ({ event }) => {
       <DateChip startDate={startDate} />
     </Box>
   );
+};
+
+// prop is object "event"
+EventChips.propTypes = {
+  event: PropTypes.object
 };
 
 export default EventChips;
