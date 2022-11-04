@@ -1,6 +1,7 @@
 import { Chip } from "@mui/material";
 import { isToday, isTomorrow, format, isThisWeek } from "date-fns";
 import React from "react";
+import PropTypes from "prop-types";
 
 const getLabelFormat = startDate => {
   if (isToday(startDate)) return "'Today' HH:mm";
@@ -17,6 +18,12 @@ const DateChip = ({ startDate }) => {
       label={format(startDate, labelFormat)}
     />
   );
+};
+
+// Props are dates ( Date objects )
+DateChip.propTypes = {
+  startDate: PropTypes.instanceOf(Date),
+  now: PropTypes.instanceOf(Date)
 };
 
 export default DateChip;

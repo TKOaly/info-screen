@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 import * as React from "react";
+import PropTypes from 'prop-types';
 
 const Restaurant = ({ restaurant }) => {
   if (restaurant.error) {
@@ -36,6 +37,11 @@ const Restaurant = ({ restaurant }) => {
       </List>
     </div>
   );
+};
+
+// prop is object "restaurant"
+Restaurant.propTypes = {
+  restaurant: PropTypes.object,
 };
 
 const parseFoodlisting = foodlist => {

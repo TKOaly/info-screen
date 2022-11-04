@@ -1,5 +1,6 @@
 import { ListItem, ListItemText } from "@mui/material";
 import React from "react";
+import PropTypes from "prop-types";
 import EventChips from "./EventChips";
 
 const Event = ({ event }) => {
@@ -9,6 +10,11 @@ const Event = ({ event }) => {
       <EventChips event={event} />
     </ListItem>
   );
+};
+
+// prop is object "event"
+Event.propTypes = {
+  event: PropTypes.object
 };
 
 export default Event;
