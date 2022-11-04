@@ -16,18 +16,13 @@ export async function getStaticProps() {
   const events = await fetchGroupedEvents();
   const chemicum = await fetchChecmicumFoodlist();
   const exactum = await fetchExactumFoodlist();
-  const voting_activity = {
-    total: await fetchTotalPercentage(),
-    faculty: await fetchSciencePercentage()
-  };
 
   return {
     props: {
       fallback: {
         "/api/events/upcoming": events,
         "/api/foodlists/exactum": exactum,
-        "/api/foodlists/chemicum": chemicum,
-        "/api/voting_activity": voting_activity
+        "/api/foodlists/chemicum": chemicum
       }
     },
     // Revalidate every minute

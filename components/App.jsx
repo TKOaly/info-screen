@@ -4,7 +4,6 @@ import React from "react";
 import EventList from "./EventList.jsx";
 import FoodList from "./FoodList.jsx";
 import Logo from "./Logo.jsx";
-import VotePercentage from "./VotePercentage.jsx";
 
 export default function App() {
   return (
@@ -14,7 +13,6 @@ export default function App() {
           Events
         </Typography>
         <EventList />
-        <VotePercentage />
       </Grid>
       <Grid item xs={6}>
         <FoodList />
