@@ -34,7 +34,6 @@ export default function FoodList() {
   // Update client when all Unicafes loaded to kickstart carousel
   const [, setReady] = useState(isReady());
   useEffect(() => {
-    console.log(requests);
     setReady(isReady());
   }, requests);
 
