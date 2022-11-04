@@ -29,7 +29,10 @@ export async function getStaticProps() {
         "/api/foodlists/chemicum": chemicum,
         "/api/voting_activity": voting_activity
       }
-    }
+    },
+    // Revalidate every minute
+    // https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration
+    revalidate: 60
   };
 }
 
