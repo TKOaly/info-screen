@@ -1,4 +1,5 @@
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
+import { zonedTimeToUtc } from "date-fns-tz";
 import en from "date-fns/locale/en-US";
 import { groupBy } from "ramda";
 
@@ -30,7 +31,13 @@ function formatResponse(response) {
     ({ date }) => date === format(new Date(), "EE dd.MM.", { locale: en })
   );
 
+  const now = new Date();
   const lunchHours = menuData.visitingHours?.lounas?.items?.[0]?.hours;
+  const [openingHour = null, closingHour = null] = lunchHours
+    .split("–")
+    .map(hour => parse(hour, "HH:mm", now))
+    .map(date => zonedTimeToUtc(date, "Europe/Helsinki"))
+    .map(date => date.toISOString());
 
   const groups = groupByPrice(
     foodlistData?.map(({ name, price, meta }) => {
@@ -48,5 +55,6 @@ function formatResponse(response) {
     })
   );
 
-  return { name: menuData.name, groups, lunchHours };
+  // openingHour and closingHour are in UTC (Z)
+  return { name: menuData.name, groups, lunchHours, openingHour, closingHour };
 }
