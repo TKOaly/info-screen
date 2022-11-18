@@ -1,11 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Carousel } from "react-responsive-carousel";
 import useSWR from "swr";
-import Image from "next/image";
-import lofiHiphopGirl from "../public/lofihiphop.gif";
 import { isWithinInterval, parse } from "date-fns";
-import Restaurant from "./Restaurant";
-import PropTypes from "prop-types";
+import RestaurantCarousel from "./Restaurant/RestaurantCarousel";
+import LofiGirl from "./LofiGirl";
 
 const fetcher = url => fetch(url).then(res => res.json());
 const swrOptions = {
@@ -25,41 +22,6 @@ const isRestaurantOpen = restaurant => {
   const closingHour = parseHour(restaurant.lunchHours.split("–")[1]);
   return isWithinInterval(now, { start: parseHour("08:00"), end: closingHour });
 };
-
-const RestaurantCarousel = ({ restaurants, ...rest }) => (
-  <Carousel
-    showThumbs={false}
-    showArrows={false}
-    infiniteLoop
-    autoPlay={restaurants.length > 1}
-    showIndicators={restaurants.length > 1}
-    interval={10000}
-    stopOnHover={false}
-    showStatus={false}
-    {...rest}
-  >
-    {restaurants.map(restaurant => (
-      <Restaurant key={restaurant.name} restaurant={restaurant} />
-    ))}
-  </Carousel>
-);
-RestaurantCarousel.propTypes = {
-  restaurants: PropTypes.object
-};
-
-const LofiGirl = props => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      marginTop: "5rem",
-      marginBottom: "2rem"
-    }}
-    {...props}
-  >
-    <Image src={lofiHiphopGirl} layout="fixed" />
-  </div>
-);
 
 export default function FoodList() {
   // TODO: Reduce code duplication
