@@ -21,7 +21,7 @@ const RestaurantCarousel = ({ restaurants, ...rest }) => (
   </Carousel>
 );
 RestaurantCarousel.propTypes = {
-  restaurants: PropTypes.object
+  restaurants: PropTypes.array
 };
 
 export default RestaurantCarousel;
