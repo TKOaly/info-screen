@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { red } from "@mui/material/colors";
 import * as React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const Restaurant = ({ restaurant }) => {
   if (restaurant.error) {
@@ -41,7 +41,7 @@ const Restaurant = ({ restaurant }) => {
 
 // prop is object "restaurant"
 Restaurant.propTypes = {
-  restaurant: PropTypes.object,
+  restaurant: PropTypes.object
 };
 
 const parseFoodlisting = foodlist => {
@@ -74,6 +74,9 @@ const mapFooditems = (foodItems, displayMeta) =>
             <>
               {prices?.student && (
                 <Chip color="primary" label={`${prices.student}€`} />
+              )}
+              {meta.climateChoice && (
+                <Chip color="success" label="Climate choice" />
               )}
               {toChips(meta.diet, { color: "secondary" })}
               {toChips(meta.allergies)}

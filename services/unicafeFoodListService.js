@@ -38,7 +38,12 @@ function formatResponse(response) {
         name: name,
         priceName: price.name,
         prices: price.value,
-        meta: { diet: meta["0"], allergies: meta["1"] }
+        meta: {
+          diet: meta["0"],
+          allergies: meta["1"],
+          climateChoice:
+            Array.isArray(meta["2"]) && meta["2"].includes("Ilmastovalinta")
+        }
       };
     })
   );
