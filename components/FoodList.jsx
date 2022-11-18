@@ -1,23 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Carousel } from "react-responsive-carousel";
 import useSWR from "swr";
 import Image from "next/image";
 import lofiHiphopGirl from "../public/lofihiphop.gif";
-import {
-  differenceInMilliseconds,
-  isBefore,
-  isWithinInterval,
-  max,
-  parse,
-  isValid
-} from "date-fns";
+import { isWithinInterval, parse } from "date-fns";
 import Restaurant from "./Restaurant";
+import PropTypes from "prop-types";
 
 const fetcher = url => fetch(url).then(res => res.json());
 const swrOptions = {
   refreshInterval: 60 * 60 * 1000 // 1 hour
 };
 const hasValues = obj => obj && Object.entries(obj).length > 0;
+
+const isRestaurantOpen = restaurant => {
+  if (!restaurant.lunchHours) {
+    // Assume it is open if we cannot parse lunch hours
+    return true;
+  }
+
+  const now = new Date();
+  const parseHour = str => parse(str, "HH:mm", now);
+
+  const closingHour = parseHour(restaurant.lunchHours.split("–")[1]);
+  return isWithinInterval(now, { start: parseHour("08:00"), end: closingHour });
+};
+
+const RestaurantCarousel = ({ restaurants, ...rest }) => (
+  <Carousel
+    showThumbs={false}
+    showArrows={false}
+    infiniteLoop
+    autoPlay={restaurants.length > 1}
+    showIndicators={restaurants.length > 1}
+    interval={10000}
+    stopOnHover={false}
+    showStatus={false}
+    {...rest}
+  >
+    {restaurants.map(restaurant => (
+      <Restaurant key={restaurant.name} restaurant={restaurant} />
+    ))}
+  </Carousel>
+);
+RestaurantCarousel.propTypes = {
+  restaurants: PropTypes.object
+};
+
+const LofiGirl = props => (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      marginTop: "5rem",
+      marginBottom: "2rem"
+    }}
+    {...props}
+  >
+    <Image src={lofiHiphopGirl} layout="fixed" />
+  </div>
+);
 
 export default function FoodList() {
   // TODO: Reduce code duplication
@@ -44,89 +86,22 @@ export default function FoodList() {
       restaurant && (hasValues(restaurant.groups) || restaurant.error)
   );
 
-  const now = new Date();
+  const [showAll, setShowAll] = useState(false);
+  const restaurantsToShow = useMemo(() => {
+    if (showAll) return restaurantsWithData;
+    return restaurantsWithData.filter(isRestaurantOpen);
+  }, [showAll, restaurants]);
 
-  const parseHour = str => parse(str, "HH:mm", now);
-
-  // Parse closing time as the latest any of our Unicafes is open
-  const closingTime = max(
-    restaurantsWithData.map(({ lunchHours }) => {
-      if (!lunchHours) return;
-      return parseHour(lunchHours.split("–")[1]);
-    })
-  );
-
-  // Opening time is hard-coded to be reasonably in the morning
-  const openingTime = parseHour("08:00");
-
-  // Show food even if opening time or closing time could not be deduced
-  const [showFood, setShowFood] = useState(
-    isValid(openingTime) &&
-      isValid(closingTime) &&
-      isWithinInterval(now, {
-        start: openingTime,
-        end: closingTime
-      })
-  );
-
-  // These shouldn't need to care for time periods longer than 24 hours
-  // as the API will return a different response for the next day's values
-
-  // Show food when opening time comes
-  useEffect(() => {
-    if (!showFood && isValid(openingTime) && isBefore(now, openingTime)) {
-      const timeout = setTimeout(() => {
-        setShowFood(true);
-      }, differenceInMilliseconds(openingTime, now));
-      return () => clearTimeout(timeout);
-    }
-  }, [showFood, openingTime, now]);
-
-  // Hide food when closing time comes
-  useEffect(() => {
-    if (showFood && isValid(closingTime) && isBefore(now, closingTime)) {
-      const timeout = setTimeout(() => {
-        setShowFood(false);
-      }, differenceInMilliseconds(closingTime, now));
-      return () => clearTimeout(timeout);
-    }
-  }, [showFood, closingTime, now]);
-
-  const foodCarousel = (
-    <Carousel
-      showThumbs={false}
-      showArrows={false}
-      infiniteLoop
-      autoPlay={restaurantsWithData.length > 1}
-      showIndicators={restaurantsWithData.length > 1}
-      interval={10000}
-      stopOnHover={false}
-      showStatus={false}
-    >
-      {restaurantsWithData.map(restaurant => (
-        <Restaurant key={restaurant.name} restaurant={restaurant} />
-      ))}
-    </Carousel>
-  );
-
-  const foodClosed = (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        marginTop: "5rem",
-        marginBottom: "2rem"
-      }}
-    >
-      <Image
-        src={lofiHiphopGirl}
-        layout="fixed"
-        onClick={() => {
-          setShowFood(true);
-        }}
-      />
+  return (
+    <div>
+      {restaurantsToShow.length > 0 ? (
+        <RestaurantCarousel
+          restaurants={restaurantsToShow}
+          onClickItem={() => setShowAll(current => !current)}
+        />
+      ) : (
+        <LofiGirl onClick={() => setShowAll(true)} />
+      )}
     </div>
   );
-
-  return <div>{showFood ? foodCarousel : foodClosed}</div>;
 }
