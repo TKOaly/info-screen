@@ -15,7 +15,7 @@ const formatRelativeLocale = {
   today: "'This week'",
   tomorrow: "'This week'",
   nextWeek: function(date, baseDate) {
-    if (isSameWeek(date, baseDate)) {
+    if (isSameWeek(date, baseDate, { weekStartsOn: 1 })) {
       return "'This week'";
     } else {
       return "'Next week'";
