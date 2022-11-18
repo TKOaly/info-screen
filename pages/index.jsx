@@ -1,9 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  fetchSciencePercentage,
-  fetchTotalPercentage
-} from "services/repcoVoteService";
 import { fetchGroupedEvents } from "services/tkoalyEventService";
 import {
   fetchChecmicumFoodlist,
