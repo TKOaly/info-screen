@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { fetchGroupedEvents } from "services/tkoalyEventService";
+import { fetchGroupedEvents } from "../services/combinedEventService";
 import {
   fetchChecmicumFoodlist,
   fetchExactumFoodlist

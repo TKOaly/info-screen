@@ -1,4 +1,4 @@
-import { fetchGroupedEvents } from "../../../services/tkoalyEventService";
+import { fetchGroupedEvents } from "../../../services/combinedEventService";
 
 export default async function handle(_req, res) {
   try {
