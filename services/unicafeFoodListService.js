@@ -5,22 +5,24 @@ import { groupBy } from "ramda";
 
 const BASE_URL = "https://unicafe.fi/wp-json/swiss/v1/restaurants/?lang=en";
 
-export const fetchFoodlist = async id => {
+const findByName = (data, name) =>
+  data.find(({ title }) => title.includes(name));
+
+export const fetchFoodlist = async name => {
   try {
     const res = await fetch(BASE_URL);
     const data = await res.json();
-    return formatResponse(data[id]);
+    const restaurant = findByName(data, name);
+    return formatResponse(restaurant);
   } catch (error) {
     console.error(`[fetchFoodlist] ${error}`);
     return { error: error.message };
   }
 };
 
-const [EXACTUM_ID, CHEMICUM_ID, KAIVOPIHA_ID] = [15, 16, 0];
-
-export const fetchExactumFoodlist = () => fetchFoodlist(EXACTUM_ID);
-export const fetchChecmicumFoodlist = () => fetchFoodlist(CHEMICUM_ID);
-export const fetchKaivopihaFoodlist = () => fetchFoodlist(KAIVOPIHA_ID);
+export const fetchExactumFoodlist = () => fetchFoodlist("Exactum");
+export const fetchChecmicumFoodlist = () => fetchFoodlist("Chemicum");
+export const fetchKaivopihaFoodlist = () => fetchFoodlist("Kaivopiha");
 
 const groupByPrice = groupBy(({ priceName }) => priceName.toLowerCase());
 
