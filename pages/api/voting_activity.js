@@ -1,14 +1,14 @@
 import {
-  fetchSciencePercentage,
-  fetchTotalPercentage
-} from "services/repcoVoteService";
+	fetchSciencePercentage,
+	fetchTotalPercentage,
+} from 'services/repcoVoteService';
 
 export default async function handle(_req, res) {
-  const facultyPercentage = await fetchSciencePercentage();
-  const totalPercentage = await fetchTotalPercentage();
+	const facultyPercentage = await fetchSciencePercentage();
+	const totalPercentage = await fetchTotalPercentage();
 
-  return res.json({
-    faculty: facultyPercentage,
-    total: totalPercentage
-  });
+	return res.json({
+		faculty: facultyPercentage,
+		total: totalPercentage,
+	});
 }

@@ -24,7 +24,7 @@
 		"start": "next start -p $PORT",
 		"dev": "next",
 		"lint": "next lint",
-		"lint:fix": "prettier --write && next lint --fix"
+		"lint:fix": "prettier . --write && next lint --fix"
 	},
 	"devDependencies": {
 		"eslint": "^8.57.0",

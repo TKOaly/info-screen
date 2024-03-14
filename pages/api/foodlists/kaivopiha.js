@@ -1,5 +1,5 @@
-import { fetchKaivopihaFoodlist } from "../../../services/unicafeFoodListService";
+import { fetchKaivopihaFoodlist } from '../../../services/unicafeFoodListService';
 
 export default function handle(req, res) {
-  return fetchKaivopihaFoodlist().then(foodlist => res.json(foodlist));
+	return fetchKaivopihaFoodlist().then((foodlist) => res.json(foodlist));
 }
