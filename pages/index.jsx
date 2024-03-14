@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { fetchGroupedEvents } from 'services/tkoalyEventService';
+import { SWRConfig } from 'swr/_internal';
+import App from '../components/App';
+import { fetchGroupedEvents } from '../services/tkoalyEventService';
 import {
 	fetchChecmicumFoodlist,
 	fetchExactumFoodlist,
-} from 'services/unicafeFoodListService';
-import { SWRConfig } from 'swr/_internal';
-import App from '../components/App';
+} from '../services/unicafeFoodListService';
 
 export async function getStaticProps() {
 	const events = await fetchGroupedEvents();

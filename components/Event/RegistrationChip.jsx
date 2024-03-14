@@ -1,17 +1,17 @@
 import { Chip } from '@mui/material';
-import TickingChip from 'components/TickingChip';
 import {
-	isValid,
-	isAfter,
-	isWithinInterval,
 	addHours,
-	isToday,
 	differenceInMilliseconds,
-	startOfDay,
 	format,
+	isAfter,
+	isToday,
+	isValid,
+	isWithinInterval,
+	startOfDay,
 } from 'date-fns';
-import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import TickingChip from '../TickingChip';
 
 const noteEmoji = '📝';
 const countdownHours = 2;
