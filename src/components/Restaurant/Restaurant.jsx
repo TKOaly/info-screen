@@ -1,27 +1,24 @@
 import {
-	Typography,
-	List,
-	ListSubheader,
-	ListItem,
 	Box,
-	ListItemText,
 	Chip,
+	List,
+	ListItem,
+	ListItemText,
+	ListSubheader,
+	Typography,
 } from '@mui/material';
-import { red } from '@mui/material/colors';
-import * as React from 'react';
 import PropTypes from 'prop-types';
+import * as React from 'react';
 
 const Restaurant = ({ restaurant }) => {
 	if (restaurant.error) {
 		return (
 			<div>
-				<Typography variant="h5">{restaurant.name}</Typography>
-				<Typography variant="subtitle2" sx={{ color: red[500] }}>
+				<h5 className="text-base font-semibold">{restaurant.name}</h5>
+				<p className="text-sm font-semibold text-red-500">
 					Error loading Unicafe data
-				</Typography>
-				<pre style={{ fontSize: '16px', opacity: 0.5 }}>
-					{restaurant.error}
-				</pre>
+				</p>
+				<pre className="text-base opacity-50">{restaurant.error}</pre>
 			</div>
 		);
 	}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState , useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Logo = () => {
 	// Render the logo only on the client-side
@@ -10,7 +10,7 @@ const Logo = () => {
 	}, []);
 
 	return (
-		<div style={{ position: 'fixed', bottom: '5px', right: '1rem' }}>
+		<div className="fixed bottom-2 right-2">
 			{canRenderClientSide && (
 				<video
 					src="/logo.webm"

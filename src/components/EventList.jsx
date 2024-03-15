@@ -1,20 +1,7 @@
+import { List } from '@mui/material';
 import React from 'react';
-import { List, Typography } from '@mui/material';
 import useSWR from 'swr';
-import { red } from '@mui/material/colors';
 import Event from './Event/Event';
-
-const subtitleHeadingStyle = {
-	fontSize: '1.5rem',
-	fontWeight: '700',
-};
-const errorHeadingStyle = {
-	fontSize: '18px',
-	fontWeight: '700',
-	opacity: 0.5,
-	color: red[500],
-	marginBottom: '1rem',
-};
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -26,16 +13,14 @@ const EventList = () => {
 	return (
 		<List dense={true}>
 			{error && (
-				<Typography variant="h3" sx={{ ...errorHeadingStyle }}>
+				<h3 className="text-lg font-bold opacity-50 text-red-500 mb-4">
 					Failed to load events, this list may be out of date.
-				</Typography>
+				</h3>
 			)}
 			{events &&
 				Object.entries(events).map(([subtitle, events]) => (
 					<React.Fragment key={subtitle}>
-						<Typography variant="h3" sx={subtitleHeadingStyle}>
-							{subtitle}
-						</Typography>
+						<h3 className="text-2xl font-bold">{subtitle}</h3>
 						{events.map((event) => (
 							<Event key={event.id} event={event} />
 						))}
