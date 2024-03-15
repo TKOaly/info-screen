@@ -20,7 +20,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="fi">
 			<body
 				className={merge(
 					'h-screen overflow-hidden font-sans antialiased',
