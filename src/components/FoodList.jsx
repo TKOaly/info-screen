@@ -1,5 +1,3 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import useSWR from 'swr';
 import {
 	differenceInMilliseconds,
 	isAfter,
@@ -8,8 +6,10 @@ import {
 	min,
 	parse,
 } from 'date-fns';
-import RestaurantCarousel from './Restaurant/RestaurantCarousel';
+import React, { useEffect, useMemo, useState } from 'react';
+import useSWR from 'swr';
 import LofiGirl from './LofiGirl';
+import RestaurantCarousel from './Restaurant/RestaurantCarousel';
 
 // FIXME: Refactor
 
@@ -55,7 +55,7 @@ export default function FoodList() {
 		(restaurant) =>
 			restaurant && (hasValues(restaurant.groups) || restaurant.error)
 	);
-	console.log('======UPDATE=======');
+	console.log('======FOOD=UPDATE=======');
 
 	const [showAll, setShowAll] = useState(false);
 	const restaurantsToShow = useMemo(() => {
