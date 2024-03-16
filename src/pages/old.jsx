@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { SWRConfig } from 'swr/_internal';
-import App from '../components/App';
+import App from '../old-components/App';
 import { fetchGroupedEvents } from '../services/tkoalyEventService';
 import {
 	fetchChecmicumFoodlist,
