@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 
 const Logo = ({
 	width = 400,
@@ -7,14 +7,17 @@ const Logo = ({
 	...rest
 }: Partial<React.HTMLProps<HTMLVideoElement>>) => {
 	return (
-		<video
-			src="/logo.webm"
-			width={width}
-			height={height}
-			loop={autoPlay}
-			autoPlay={autoPlay}
-			{...rest}
-		></video>
+		<Suspense fallback={null}>
+			<video
+				src="/logo.webm"
+				width={width}
+				height={height}
+				loop={autoPlay}
+				autoPlay={autoPlay}
+				muted
+				{...rest}
+			></video>
+		</Suspense>
 	);
 };
 

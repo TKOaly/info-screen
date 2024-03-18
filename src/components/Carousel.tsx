@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 
 type CarouselProps = {
 	delay?: number;
-	children: React.ReactElement<SlideProps>[];
+	children: SlideElement[];
 };
 
 export const Carousel = ({
@@ -24,10 +24,13 @@ export const Carousel = ({
 	const [emblaRef, emblaApi] = useEmblaCarousel(
 		{
 			align: 'start',
+			// Makes sure full slides are not shown only partially
 			slidesToScroll: 'auto',
+			// Makes sure off screen slides are not counted if using emblaApi.slidesInView()
 			inViewThreshold: 0.1,
 			...rest,
 		},
+		// Autoplay only if slides are over a page long in total
 		slidesLength > 2 ? [Autoplay({ delay })] : undefined
 	);
 
@@ -41,16 +44,16 @@ export const Carousel = ({
 
 	return (
 		<>
+			{/* Carousel */}
 			<div
-				className="overflow-hidden min-h-full min-w-full"
+				className="min-w-full flex-auto overflow-hidden"
 				ref={emblaRef}
 			>
-				<div className={`flex min-h-full mx-6 -mr-0 py-6`}>
-					{children}
-				</div>
+				<div className={`mx-6 -mr-0 flex h-full py-6`}>{children}</div>
 			</div>
+			{/* Continue autoplay button */}
 			<div
-				className={`${autoplay ? 'invisible' : 'visible'} z-50 absolute bottom-8 right-8 p-2 rounded bg-white bg-opacity-0 hover:bg-opacity-30`}
+				className={`${autoplay ? 'invisible' : 'visible'} absolute bottom-8 right-8 z-50 rounded bg-white/0 p-2 hover:bg-white/30`}
 				onClick={() => {
 					if (emblaApi) emblaApi.plugins().autoplay?.play();
 				}}
@@ -75,6 +78,10 @@ type SlideProps = (
 	children: React.ReactNode;
 };
 
+export type SlideElement = React.ReactElement<SlideProps>;
+
+// Slide component to be placed in the Carousel
+// Can be either full or half width
 export const Slide = ({
 	full = false, // Either full or half, not both
 	half = !full, // Default to half
@@ -82,13 +89,16 @@ export const Slide = ({
 	children,
 }: SlideProps) => {
 	return (
+		// Handles slide width and vertical gap
 		<div
-			className={`flex flex-grow-0 flex-shrink-0 ${full && !half ? 'basis-full' : 'basis-1/2'} pr-6`}
+			className={`flex shrink-0 grow-0 ${full && !half ? 'basis-full' : 'basis-1/2'} pr-6`}
 		>
-			<div className="flex p-0.5 flex-auto">
+			{/* Makes sure a 1px line is not left at the sides at the end of the slide animation */}
+			<div className="flex flex-auto p-0.5">
+				{/* Colored slide */}
 				<div
 					className={merge(
-						'flex p-4 min-h-full min-w-full',
+						'flex p-4 min-h-0 min-w-full bg-stone-800',
 						className,
 						'overflow-hidden rounded-2xl'
 					)}
