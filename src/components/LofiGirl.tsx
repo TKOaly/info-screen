@@ -1,12 +1,11 @@
 import Image from 'next/image';
-import React from 'react';
 
-const LofiGirl = (props) => (
+const LofiGirl = (props: React.ComponentProps<'div'>) => (
 	<div className="relative flex" {...props}>
 		<Image
 			src={'/lofihiphop.gif'}
 			fill
-			className="object-contain z-20"
+			className="z-20 object-contain"
 			unoptimized
 			alt={'Lo-Fi Girl'}
 		/>

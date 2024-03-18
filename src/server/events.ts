@@ -10,7 +10,7 @@ import {
 } from 'date-fns';
 import { enGB } from 'date-fns/locale';
 import { groupBy } from 'ramda';
-import { get } from './wrappers';
+import { GET } from './wrappers';
 
 const ENTRYPOINT = 'https://event-api.tko-aly.fi/api/events';
 
@@ -24,11 +24,12 @@ export type TKOalyEvent = {
 };
 
 const getUpcomingEvents = async () => {
-	const events = await get<TKOalyEvent[]>(
+	const events = await GET<TKOalyEvent[]>(
 		`${ENTRYPOINT}?fromDate=${encodeURIComponent(startOfToday().toJSON())}`,
 		{
 			next: {
-				revalidate: 5 * 60, // Refetch every 5 minutes
+				tags: ['events'],
+				revalidate: 15 * 60,
 			},
 		}
 	);

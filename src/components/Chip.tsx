@@ -9,14 +9,14 @@ type ChipProps = {
 };
 
 const variants = {
-	primary: 'bg-stone-700 text-stone-100 ',
-	secondary: 'bg-stone-100 text-stone-800',
+	primary: 'bg-grey-700 text-grey-100 ',
+	secondary: 'bg-grey-100 text-grey-800',
 	error: 'bg-red-600 text-white',
-	info: 'bg-sky-600 text-stone-800',
-	success: 'bg-green-600 text-stone-800',
-	green: 'bg-green-600 text-stone-800',
-	warning: 'bg-yellow-400 text-stone-800',
-	special: 'bg-purple-500 text-stone-800',
+	info: 'bg-sky-600 text-grey-800',
+	success: 'bg-green-600 text-grey-800',
+	green: 'bg-green-600 text-grey-800',
+	warning: 'bg-yellow-400 text-grey-800',
+	special: 'bg-purple-500 text-grey-800',
 };
 
 const Chip = ({

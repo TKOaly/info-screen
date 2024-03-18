@@ -1,10 +1,10 @@
+'use server';
+
 import ical from 'ical';
 
 const ENTRYPOINTS = [
 	'https://future.optime.helsinki.fi/icalservice/Department/920',
 ];
-
-const handleCalendars = (calendars) => calendars.flat();
 
 export const fetchUpcomingReservations = () =>
 	Promise.all(
@@ -13,4 +13,4 @@ export const fetchUpcomingReservations = () =>
 			const data = await result.json();
 			return ical.parseICS(data);
 		})
-	).then(handleCalendars);
+	).then((calendars) => calendars.flat());

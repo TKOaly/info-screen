@@ -6,17 +6,8 @@ import {
 	min,
 	parse,
 } from 'date-fns';
-import React, { useEffect, useMemo, useState } from 'react';
-import useSWR from 'swr';
-import LofiGirl from './LofiGirl';
-import RestaurantCarousel from './Restaurant/RestaurantCarousel';
+import { useEffect, useMemo, useState } from 'react';
 
-// FIXME: Refactor
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
-const swrOptions = {
-	refreshInterval: 60 * 60 * 1000, // 1 hour
-};
 const hasValues = (obj) => obj && Object.entries(obj).length > 0;
 // Hardcoded value for when to start showing food lists every day
 const OPENING_HOUR = '08:00';
@@ -42,7 +33,7 @@ const isRestaurantOpen = (restaurant) => {
 	});
 };
 
-export default function FoodList() {
+export default function RestaurantList() {
 	// TODO: Reduce code duplication
 	const chemicum = useSWR('/api/foodlists/chemicum', fetcher, swrOptions);
 	const exactum = useSWR('/api/foodlists/exactum', fetcher, swrOptions);
@@ -57,7 +48,7 @@ export default function FoodList() {
 	);
 	console.log('======FOOD=UPDATE=======');
 
-	const [showAll, setShowAll] = useState(false);
+	const [showAll] = useState(false);
 	const restaurantsToShow = useMemo(() => {
 		if (showAll) return restaurantsWithData;
 		return restaurantsWithData.filter(isRestaurantOpen);
@@ -102,16 +93,5 @@ export default function FoodList() {
 		return () => clearTimeout(timeout);
 	}, [ticked, update]);
 
-	return (
-		<div>
-			{restaurantsToShow.length > 0 ? (
-				<RestaurantCarousel
-					restaurants={restaurantsToShow}
-					onClickItem={() => setShowAll((current) => !current)}
-				/>
-			) : (
-				<LofiGirl onClick={() => setShowAll(true)} />
-			)}
-		</div>
-	);
+	return <div></div>;
 }

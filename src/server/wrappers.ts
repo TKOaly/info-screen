@@ -1,6 +1,6 @@
 'use server';
 
-export async function get<Res>(
+export async function GET<Res>(
 	url: string,
 	config: RequestInit = {}
 ): Promise<Res> {
