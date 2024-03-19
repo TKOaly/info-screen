@@ -55,12 +55,14 @@ function formatRestaurant(restaurant: RestaurantData) {
 	if (!foodlistData) return undefined;
 
 	const now = new Date();
+
 	const lunchHours = menuData.visitingHours?.lounas?.items?.[0]?.hours;
 	const [openingHour = null, closingHour = null] = lunchHours
-		.split('-')
-		.map((hour) => parse(hour, 'HH:mm', now))
-		.map((date) => zonedTimeToUtc(date, 'Europe/Helsinki'))
-		.map((date) => date.toISOString());
+		.split('–')
+		.map((hour) => {
+			const date = parse(hour, 'HH:mm', now);
+			return zonedTimeToUtc(date, 'Europe/Helsinki').toISOString();
+		});
 
 	const groups = groupByPriceCategory(
 		foodlistData?.map(({ name, price, meta }) => {
