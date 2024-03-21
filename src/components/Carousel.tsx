@@ -18,7 +18,7 @@ export const Carousel = ({
 	...rest
 }: CarouselProps & EmblaOptionsType) => {
 	const slidesLength = children
-		.map((child) => (child.props.full ? 2 : 1))
+		.map((child) => (child.props.fullWidth ? 2 : 1))
 		.reduce((a, b) => a + b, 0);
 
 	const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -42,6 +42,10 @@ export const Carousel = ({
 		emblaApi.on('autoplay:play', () => setAutoplay(true));
 	}, [emblaApi]);
 
+	const resumeAutoplay = () => {
+		if (emblaApi) emblaApi.plugins().autoplay?.play();
+	};
+
 	return (
 		<>
 			{/* Carousel */}
@@ -54,9 +58,7 @@ export const Carousel = ({
 			{/* Continue autoplay button */}
 			<div
 				className={`${autoplay ? 'invisible' : 'visible'} absolute bottom-8 right-8 z-50 rounded bg-white/0 p-2 hover:bg-white/30`}
-				onClick={() => {
-					if (emblaApi) emblaApi.plugins().autoplay?.play();
-				}}
+				onClick={resumeAutoplay}
 			>
 				<Play width={16} height={16} color="white" />
 			</div>
@@ -64,16 +66,8 @@ export const Carousel = ({
 	);
 };
 
-type SlideProps = (
-	| {
-			full?: false;
-			half?: true;
-	  }
-	| {
-			full: true;
-			half?: false;
-	  }
-) & {
+type SlideProps = {
+	fullWidth?: boolean;
 	className?: string;
 	children: React.ReactNode;
 };
@@ -81,17 +75,15 @@ type SlideProps = (
 export type SlideElement = React.ReactElement<SlideProps>;
 
 // Slide component to be placed in the Carousel
-// Can be either full or half width
 export const Slide = ({
-	full = false, // Either full or half, not both
-	half = !full, // Default to half
+	fullWidth = false, // Default half
 	className,
 	children,
 }: SlideProps) => {
 	return (
 		// Handles slide width and vertical gap
 		<div
-			className={`flex shrink-0 grow-0 ${full && !half ? 'basis-full' : 'basis-1/2'} pr-6`}
+			className={`flex shrink-0 grow-0 ${fullWidth ? 'basis-full' : 'basis-1/2'} pr-6`}
 		>
 			{/* Makes sure a 1px line is not left at the sides at the end of the slide animation */}
 			<div className="flex flex-auto p-0.5">

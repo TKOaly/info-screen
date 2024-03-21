@@ -6,6 +6,29 @@ import en from 'date-fns/locale/en-US';
 import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
+type Restaurants =
+	| 'Tähkä'
+	| 'Biokeskus 3'
+	| 'Infokeskus alakerta'
+	| 'Myöhä Café & Bar'
+	| 'Kaivopiha'
+	| 'Kaisa-talo'
+	| 'Viikuna'
+	| 'Soc&Kom'
+	| 'Rotunda'
+	| 'Porthania Opettajien ravintola'
+	| 'Porthania'
+	| 'Physicum'
+	| 'Topelias'
+	| 'Olivia'
+	| 'Metsätalo'
+	| 'Meilahti'
+	| 'Infokeskus'
+	| 'Exactum'
+	| 'Chemicum'
+	| 'Chemicum Opettajien ravintola'
+	| 'Cafe Portaali';
+
 type RestaurantData = {
 	id: number;
 	title: string;
@@ -29,6 +52,10 @@ type RestaurantData = {
 					value: {
 						student: string;
 						student_hyy: string;
+						graduate: string;
+						graduate_hyy: string;
+						contract: string;
+						normal: string;
 					};
 				};
 				meta: {
@@ -41,22 +68,40 @@ type RestaurantData = {
 	};
 };
 
-const groupByPriceCategory = groupBy(({ category }: { category: string }) =>
-	category.toLowerCase()
+type FoodData = RestaurantData['menuData']['menus'][number]['data'][number];
+
+const mapFood = ({ name, price, meta }: FoodData) => {
+	return {
+		name,
+		category: price.name,
+		price:
+			Number(price.value.student || price.value.student_hyy) !== 0
+				? price.value.student || price.value.student_hyy
+				: price.value.contract || price.value.normal,
+		meta: {
+			diet: meta['0'].map((diet) => (diet === '[S]' ? 'KELA' : diet)),
+			allergies: meta['1'],
+			responsibility: Array.isArray(meta['2']) ? meta['2'] : [meta['2']],
+		},
+	};
+};
+
+const groupByPriceCategory = groupBy(
+	({ category }: ReturnType<typeof mapFood>) => category.toLowerCase()
 );
 
 function formatRestaurant(restaurant: RestaurantData) {
 	const { menuData } = restaurant;
 
-	const foodlistData = menuData.menus.find(
+	const menu = menuData.menus.find(
 		({ date }) => date === format(new Date(), 'EE dd.MM.', { locale: en })
 	)?.data;
 
-	if (!foodlistData) return undefined;
+	if (!menu) return undefined;
 
 	const now = new Date();
 
-	const lunchHours = menuData.visitingHours?.lounas?.items?.[0]?.hours;
+	const lunchHours = menuData.visitingHours.lounas.items?.[0].hours;
 	const [openingHour = null, closingHour = null] = lunchHours
 		.split('–')
 		.map((hour) => {
@@ -64,27 +109,12 @@ function formatRestaurant(restaurant: RestaurantData) {
 			return zonedTimeToUtc(date, 'Europe/Helsinki').toISOString();
 		});
 
-	const groups = groupByPriceCategory(
-		foodlistData?.map(({ name, price, meta }) => {
-			return {
-				name,
-				category: price.name,
-				price: price.value.student ?? price.value.student_hyy,
-				meta: {
-					diet: meta['0'],
-					allergies: meta['1'],
-					climateChoice:
-						Array.isArray(meta['2']) &&
-						meta['2'].includes('Ilmastovalinta'),
-				},
-			};
-		})
-	);
+	const menuGroups = groupByPriceCategory(menu.map(mapFood));
 
 	// openingHour and closingHour are in UTC (Z)
 	return {
 		name: menuData.name,
-		groups,
+		menuGroups,
 		lunchHours,
 		openingHour,
 		closingHour,
@@ -95,13 +125,11 @@ export type Restaurant = NonNullable<ReturnType<typeof formatRestaurant>>;
 
 const BASE_URL = 'https://unicafe.fi/wp-json/swiss/v1/restaurants/?lang=en';
 
-type AvailableRestaurant = 'Kaivopiha' | 'Chemicum' | 'Exactum';
-
-export const getRestaurants = async (restaurants: AvailableRestaurant[]) => {
+export const getRestaurants = async (restaurants: Restaurants[]) => {
 	const allRestaurants = await GET<RestaurantData[]>(BASE_URL);
 
 	const menus = {} as Record<
-		AvailableRestaurant,
+		Restaurants,
 		ReturnType<typeof formatRestaurant>
 	>;
 

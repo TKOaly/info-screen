@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import { Inter as FontSans } from 'next/font/google';
 import React from 'react';
 import { merge } from '../lib/utils';
+import fonts from './fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -9,22 +9,17 @@ export const metadata: Metadata = {
 	description: 'TKO-äly ry Infoscreen',
 };
 
-const fontSans = FontSans({
-	subsets: ['latin'],
-	variable: '--font-sans',
-});
-
 export default function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="fi">
+		<html lang="en">
 			<body
 				className={merge(
-					'h-screen overflow-hidden font-sans antialiased',
-					fontSans.variable
+					Object.values(fonts).join(' '),
+					'h-screen overflow-hidden font-inter antialiased'
 				)}
 			>
 				{children}

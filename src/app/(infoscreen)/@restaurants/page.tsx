@@ -4,34 +4,43 @@ import { getRestaurants } from '@/server/restaurants';
 
 const Restaurants = async () => {
 	const restaurants = await getRestaurants([
-		'Chemicum',
 		'Exactum',
+		'Chemicum',
 		'Kaivopiha',
+		'Myöhä Café & Bar',
 	]);
 
-	console.dir(Object.values(restaurants), { depth: 3 });
-
-	return (
-		<Slide full className="bg-green-900 pb-0">
-			{Object.values(restaurants).length === 0 ? (
-				<p>There are no open restaurants at the moment.</p>
-			) : (
-				<div className="flex min-h-0 overflow-hidden">
-					<div className="flex">
-						{restaurants.Chemicum && (
-							<RestaurantMenu restaurant={restaurants.Chemicum} />
-						)}
-						{restaurants.Kaivopiha && (
-							<RestaurantMenu
-								restaurant={restaurants.Kaivopiha}
-							/>
-						)}
-						{restaurants.Exactum && (
-							<RestaurantMenu restaurant={restaurants.Exactum} />
-						)}
-					</div>
-				</div>
-			)}
+	return Object.values(restaurants).length === 0 ? null : (
+		/*
+			<Slide fullWidth className="bg-green-unari p-0 font-gabarito">
+				<LofiGirl />
+			</Slide>
+		*/
+		<Slide
+			fullWidth={Object.keys(restaurants).length > 2}
+			className="flex-col bg-green-unari px-8 font-gabarito"
+		>
+			<div
+				className={`grid w-full min-w-0 ${'grid-cols-' + Math.min(Object.keys(restaurants).length, 4)} gap-8`}
+			>
+				{Object.entries(restaurants).map(([name, restaurant]) => {
+					if (!restaurant)
+						return (
+							<div
+								key={name}
+								className="flex flex-col items-center gap-y-4"
+							>
+								<h1 className="text-4xl">Unicafe {name}</h1>
+								<p className="rounded-2xl bg-grey-800 p-4 text-xl font-semibold">
+									No menu found
+								</p>
+							</div>
+						);
+					return (
+						<RestaurantMenu key={name} restaurant={restaurant} />
+					);
+				})}
+			</div>
 		</Slide>
 	);
 };

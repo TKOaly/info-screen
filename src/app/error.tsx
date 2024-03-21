@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 const ErrorPage = ({ error }: { error: Error }) => {
 	console.error(error);
@@ -15,19 +14,6 @@ const ErrorPage = ({ error }: { error: Error }) => {
 				<Link className="rounded-lg border p-4" href={'/'}>
 					<button>Reload</button>
 				</Link>
-			</div>
-			<div className="flex scale-150 items-center justify-center px-16">
-				<TwitterTweetEmbed
-					placeholder="Loading tweet..."
-					options={{
-						theme: 'dark',
-						width: '800',
-						align: 'center',
-						lang: 'fi',
-						dnt: true,
-					}}
-					tweetId={'1231157901760307200'}
-				/>
 			</div>
 		</div>
 	);
