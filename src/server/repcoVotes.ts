@@ -2,7 +2,7 @@
 
 import { GET } from './wrappers';
 
-const RESULTS = 'http://vaalitulos.hyy.fi/2022/votes_by_faculty.json';
+const RESULTS = 'http://vaalitulos.hyy.fi/2024/votes_by_faculty.json';
 
 type ResultsByFaculty = {
 	children: {

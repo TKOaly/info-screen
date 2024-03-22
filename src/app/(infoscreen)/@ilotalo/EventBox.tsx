@@ -2,12 +2,7 @@ import OrganizationChip from '@/components/Events/OrganizationChip';
 import { IlotaloEvent } from '@/server/ilotaloEvents';
 import DateChip from '../../../components/Events/DateChip';
 
-export const EventBox = async ({
-	event,
-}: {
-	event: IlotaloEvent;
-	idx: number;
-}) => {
+export const EventBox = async ({ event }: { event: IlotaloEvent }) => {
 	const { starts, organization } = event;
 	const startDate = new Date(starts);
 

@@ -35,11 +35,10 @@ const IlotaloEvents = async () => {
 										</h3>
 										<hr className="w-full" />
 										<div className="grid grid-cols-3 gap-4 p-4">
-											{events.map((event, idx) => (
+											{events.map((event) => (
 												<EventBox
 													key={event.id}
 													event={event}
-													idx={idx}
 												/>
 											))}
 										</div>

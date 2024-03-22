@@ -16,7 +16,7 @@ const Events = async () => {
 						src="/orgs/tekis.png"
 						width={50}
 						height={50}
-						alt="matlu logo"
+						alt="TKO-äly logo"
 					/>
 				</div>
 				<h2 className="z-50 rounded-xl bg-grey-900 px-2 text-4xl font-bold">
