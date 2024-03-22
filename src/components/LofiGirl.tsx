@@ -1,18 +1,18 @@
 import Image from 'next/image';
-import { ComponentProps } from 'react';
+import { Slide } from './Carousel';
 
-const LofiGirl = ({
-	objectFit = 'cover',
-}: Pick<ComponentProps<typeof Image>, 'objectFit'>) => (
-	<div className="relative size-full">
-		<Image
-			unoptimized
-			fill
-			objectFit={objectFit}
-			src={'/lofihiphop.gif'}
-			alt={'Lo-Fi Girl'}
-		/>
-	</div>
+const LofiGirl = () => (
+	<Slide>
+		<div className="relative size-full">
+			<Image
+				unoptimized
+				fill
+				className="object-cover"
+				src={'/lofihiphop.gif'}
+				alt={'Lo-Fi Girl'}
+			/>
+		</div>
+	</Slide>
 );
 
 export default LofiGirl;

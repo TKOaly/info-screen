@@ -5,10 +5,7 @@ import { BusFront } from 'lucide-react';
 
 const Transit = async () => {
 	return (
-		<Slide
-			fullWidth
-			className="flex-col bg-blue-hsl p-0 font-m_plus_rounded"
-		>
+		<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
 			<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
 				<BusFront width={64} height={64} strokeWidth={1.5} />
 				<div className="h-full w-[10px] border-x-[3px]"></div>

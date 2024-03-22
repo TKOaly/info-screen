@@ -10,7 +10,7 @@ const IlotaloEvents = async () => {
 	const events = await getIlotaloEvents();
 
 	return (
-		<Slide className="bg-org-matlu-primary p-0 pt-3 text-grey-900">
+		<Slide className="bg-org-matlu-primary pt-3 text-grey-900">
 			<div className="flex size-full min-h-0 flex-col items-center justify-start gap-y-4">
 				<div className="relative -mt-4 max-h-0 w-full">
 					<Image

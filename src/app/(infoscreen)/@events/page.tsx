@@ -8,7 +8,7 @@ const Events = async () => {
 	const events = await getTKOalyEvents();
 
 	return (
-		<Slide className="bg-grey-900 p-0 pt-3">
+		<Slide className="bg-grey-900 pt-3">
 			<div className="flex size-full min-h-0 flex-col items-center justify-start gap-y-4">
 				<div className="relative -mt-4 max-h-0 w-full">
 					<Image

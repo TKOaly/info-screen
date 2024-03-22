@@ -13,7 +13,7 @@ const Restaurants = async () => {
 	return Object.values(restaurants).length === 0 ? null : (
 		<Slide
 			fullWidth={Object.keys(restaurants).length > 2}
-			className="flex-col bg-green-unari px-8 pb-0 font-gabarito"
+			className="flex-col bg-green-unari px-8 pt-3 font-gabarito"
 		>
 			<div
 				className={`grid size-full ${'grid-cols-' + Math.min(Object.keys(restaurants).length, 4)} gap-8`}

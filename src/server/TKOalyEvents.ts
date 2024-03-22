@@ -8,6 +8,7 @@ import {
 	isAfter,
 	startOfToday,
 } from 'date-fns';
+import { revalidateTag } from 'next/cache';
 import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
@@ -50,13 +51,15 @@ type organizers =
 	| 'Tiedekunta // Faculty';
 */
 
+const fetchTag = 'tko_aly_events';
+
 const getUpcomingEvents = async () =>
 	await GET<TKOalyEvent[]>(
 		`${ENTRYPOINT}?fromDate=${encodeURIComponent(startOfToday().toJSON())}`,
 		{
 			next: {
-				tags: ['events'],
-				revalidate: 15 * 60,
+				tags: [fetchTag],
+				revalidate: 3600,
 			},
 		}
 	).then((events) =>
@@ -133,4 +136,9 @@ export const getTKOalyEvents = async () => {
 					}) as mappedRelativeDateToken
 			)(rest),
 		}));
+};
+
+export const revalidateTKOalyEvents = async () => {
+	'use server';
+	revalidateTag(fetchTag);
 };

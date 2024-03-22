@@ -1,5 +1,9 @@
-const DataRefetchIntervals = async () => {
-	return null;
+'use client';
+
+import RefetchIntervals from './RefetchIntervals';
+
+const RefetchRoutes = () => {
+	return <RefetchIntervals />;
 };
 
-export default DataRefetchIntervals;
+export default RefetchRoutes;

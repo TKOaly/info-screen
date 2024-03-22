@@ -1,8 +1,11 @@
+'use server';
+
 import { addMinutes, addYears, compareAsc, formatRelative } from 'date-fns';
 
 const ENTRYPOINT = 'https://ilotalo.matlu.fi/api/events/';
 
 import { customLocale, mappedRelativeDateToken } from '@/lib/eventUtils';
+import { revalidateTag } from 'next/cache';
 import { groupBy, sort } from 'ramda';
 import { GET } from './wrappers';
 
@@ -65,12 +68,15 @@ type IlotaloEventData = {
 
 export type IlotaloEvent = ReturnType<typeof mapEvents>[number];
 
+const fetchTag = 'ilotalo_events';
+
 export const getIlotaloEvents = async () => {
 	'use server';
+
 	return GET<IlotaloEventData[]>(ENTRYPOINT, {
 		next: {
-			tags: ['ilotalo_events'],
-			revalidate: 60 * 60,
+			tags: [fetchTag],
+			revalidate: 3 * 3600,
 		},
 	})
 		.then((events) => {
@@ -101,4 +107,9 @@ export const getIlotaloEvents = async () => {
 		.then((events) => mapEvents(events))
 		.then(sortEvents)
 		.then(groupEvents);
+};
+
+export const revalidateIlotaloEvents = async () => {
+	'use server';
+	revalidateTag(fetchTag);
 };

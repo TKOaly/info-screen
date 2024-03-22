@@ -3,6 +3,7 @@
 import { format, parse } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import en from 'date-fns/locale/en-US';
+import { revalidateTag } from 'next/cache';
 import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
@@ -125,8 +126,15 @@ export type Restaurant = NonNullable<ReturnType<typeof formatRestaurant>>;
 
 const BASE_URL = 'https://unicafe.fi/wp-json/swiss/v1/restaurants/?lang=en';
 
+const fetchTag = 'restaurants';
+
 export const getRestaurants = async (restaurants: Restaurants[]) => {
-	const allRestaurants = await GET<RestaurantData[]>(BASE_URL);
+	const allRestaurants = await GET<RestaurantData[]>(BASE_URL, {
+		cache: 'force-cache',
+		next: {
+			tags: [fetchTag],
+		},
+	});
 
 	const menus = {} as Record<
 		Restaurants,
@@ -144,4 +152,9 @@ export const getRestaurants = async (restaurants: Restaurants[]) => {
 	});
 
 	return menus;
+};
+
+export const revalidateRestaurants = async () => {
+	'use server';
+	revalidateTag(fetchTag);
 };

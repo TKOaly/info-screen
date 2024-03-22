@@ -22,8 +22,9 @@ const CarouselLayout = ({
 				<Slide className="items-center justify-center bg-black text-yellow-400">
 					<Logo />
 				</Slide>
-				{restaurants}
+				{/* <LofiGirl /> */}
 				{/* transit */}
+				{restaurants}
 				{ilotalo}
 				{children}
 			</Carousel>
