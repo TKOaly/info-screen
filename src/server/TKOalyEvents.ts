@@ -50,8 +50,8 @@ type organizers =
 	| 'Tiedekunta // Faculty';
 */
 
-const getUpcomingEvents = async () => {
-	const events = await GET<TKOalyEvent[]>(
+const getUpcomingEvents = async () =>
+	await GET<TKOalyEvent[]>(
 		`${ENTRYPOINT}?fromDate=${encodeURIComponent(startOfToday().toJSON())}`,
 		{
 			next: {
@@ -59,29 +59,79 @@ const getUpcomingEvents = async () => {
 				revalidate: 15 * 60,
 			},
 		}
+	).then((events) =>
+		events
+			.filter(
+				({ deleted, name, starts }) =>
+					!deleted &&
+					!name.includes('TEMPLATE') &&
+					isAfter(new Date(starts), new Date())
+			)
+			.sort((a, b) =>
+				compareAsc(
+					new Date(a.starts),
+					addMinutes(new Date(b.starts), 5)
+				)
+			)
 	);
 
-	return events
-		.filter(
-			({ deleted, name, starts }) =>
-				!deleted &&
-				!name.includes('TEMPLATE') &&
-				isAfter(new Date(starts), new Date())
-		)
-		.sort((a, b) =>
-			compareAsc(new Date(a.starts), addMinutes(new Date(b.starts), 5))
-		);
+const separateWeeklyAndMeetings = (events: TKOalyEvent[]) => {
+	const Weekly: TKOalyEvent[] = [];
+	const Meetings: TKOalyEvent[] = [];
+	const rest = events.filter((event) => {
+		if (/weekly|club\b|kerho\b/i.test(event.name)) {
+			if (
+				!Weekly.some(
+					(e) =>
+						e.name.toLowerCase().trim() ===
+						event.name.toLowerCase().trim()
+				)
+			) {
+				Weekly.push(event);
+			}
+			return false;
+		}
+		if (/kokous\b|meeting\b/i.test(event.name)) {
+			if (
+				/syys|kevät|statutory|sääntömääräinen|ylimääräinen/i.test(
+					event.name
+				) ||
+				!Meetings.some(
+					(e) =>
+						!/syys|kevät|statutory|sääntömääräinen|ylimääräinen/i.test(
+							e.name
+						)
+				)
+			) {
+				Meetings.push(event);
+			}
+			return false;
+		}
+		return true;
+	});
+
+	const result = {
+		Weekly,
+		Meetings,
+		rest,
+	};
+
+	return result;
 };
 
 export const getTKOalyEvents = async () => {
 	'use server';
-	return await getUpcomingEvents().then(
-		groupBy(
-			(a: TKOalyEvent) =>
-				formatRelative(new Date(a.starts), new Date(), {
-					locale: customLocale,
-					weekStartsOn: 1,
-				}) as mappedRelativeDateToken
-		)
-	);
+	return await getUpcomingEvents()
+		.then(separateWeeklyAndMeetings)
+		.then(({ Weekly, Meetings, rest }) => ({
+			Weekly,
+			Meetings,
+			...groupBy(
+				(a: TKOalyEvent) =>
+					formatRelative(new Date(a.starts), new Date(), {
+						locale: customLocale,
+						weekStartsOn: 1,
+					}) as mappedRelativeDateToken
+			)(rest),
+		}));
 };

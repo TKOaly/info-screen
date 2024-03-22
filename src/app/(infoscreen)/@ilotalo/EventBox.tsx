@@ -13,7 +13,7 @@ export const EventBox = async ({
 
 	return (
 		<div
-			className={`flex flex-col justify-between gap-2 rounded-2xl bg-black/10 p-3`}
+			className={`flex flex-col justify-between gap-2 rounded-2xl bg-black/10 p-3 pt-2`}
 			key={event.name}
 		>
 			<p className="text-wrap text-xl font-semibold">{event.name}</p>

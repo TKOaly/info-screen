@@ -27,32 +27,32 @@ const orgColors: Partial<
 	>
 > = {
 	'TKO-äly': {
-		bg: 'bg-[#000000]',
+		bg: 'ring-[#fff500] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#fff500]',
 	},
 	Matlu: {
-		bg: 'bg-[#ffb412]',
-		text: 'text-[#09773a]',
+		bg: 'ring-[#09773a] ring-1 ring-offset-1 ring-offset-transparent bg-[#ffb412]',
+		text: 'text-[#111111]',
 	},
 	Limes: {
-		bg: 'bg-[#000000]',
+		bg: 'ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ffffff]',
 	},
 	Matrix: {
-		bg: 'bg-[#eeeeee]',
+		bg: 'ring-[#000083] ring-1 ring-offset-1 ring-offset-transparent bg-[#eeeeee]',
 		text: 'text-[#ff0000]',
 	},
 	Resonanssi: {
-		bg: 'bg-[#000000]',
-		text: 'text-[#00ff00]',
+		bg: 'ring-[#00ff00] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
+		text: 'text-[#fe00fe]',
 	},
 	HYK: {
-		bg: 'bg-[#000000]',
+		bg: 'ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ffffff]',
 	},
 	MaO: {
-		bg: 'bg-[#00634C]',
-		text: 'text-[#ffffff]',
+		bg: 'ring-[#669999] ring-1 ring-offset-1 ring-offset-transparent bg-[#ffffff]',
+		text: 'text-[#2b2a29]',
 	},
 	EGEA: {
 		bg: 'bg-[#eeeeee]',
@@ -71,11 +71,11 @@ const orgColors: Partial<
 		text: 'text-[#368722]',
 	},
 	Synop: {
-		bg: 'bg-[#ffd202]',
-		text: 'text-[#000000]',
+		bg: 'ring-[#ff0000] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
+		text: 'text-[#ffd202]',
 	},
 	Vasara: {
-		bg: 'bg-[#eeeeee]',
+		bg: 'ring-[#000000] ring-1 ring-offset-1 ring-offset-transparent bg-[#eeeeee]',
 		text: 'text-[#000000]',
 	},
 	Moodi: {
@@ -95,27 +95,27 @@ const orgColors: Partial<
 		text: 'text-[#000000]',
 	},
 	Integralis: {
-		bg: 'bg-gradient-to-r from-[#13DBFC] to-[#FD0AD4]',
-		text: 'text-[#000000]',
+		bg: 'ring-[#000000] ring-1 ring-offset-1 ring-offset-transparent bg-gradient-to-r from-[#13DBFC] to-[#FD0AD4]',
+		text: 'text-[#ffffff]',
 	},
 	tiedekunta: {
-		bg: 'bg-[#000000]',
+		bg: 'font-inter ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ffffff]',
 	},
 	faculty: {
-		bg: 'bg-[#000000]',
+		bg: 'font-inter ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ffffff]',
 	},
 	kandiohjelma: {
-		bg: 'bg-[#000000]',
+		bg: 'font-inter ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ffffff]',
 	},
 	hyy: {
-		bg: 'bg-[#000000]',
-		text: 'text-[#ffffff]',
+		bg: 'font-inter ring-[#000000] ring-1 ring-offset-1 ring-offset-transparent bg-[#ffffff]',
+		text: 'text-[#000000]',
 	},
 	'tkt-alumni': {
-		bg: 'bg-[#000000]',
+		bg: 'ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ee981b]',
 	},
 	titol: {
@@ -123,11 +123,11 @@ const orgColors: Partial<
 		text: 'text-[#ffffff]',
 	},
 	tik: {
-		bg: 'bg-[#000000]',
+		bg: 'ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ffffff]',
 	},
 	tietokilta: {
-		bg: 'bg-[#000000]',
+		bg: 'ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#000000]',
 		text: 'text-[#ffffff]',
 	},
 	prodeko: {
@@ -135,7 +135,7 @@ const orgColors: Partial<
 		text: 'text-[#002851]',
 	},
 	'kimmon ystävät': {
-		bg: 'bg-[#ff0000]',
+		bg: 'ring-[#ffffff] ring-1 ring-offset-1 ring-offset-transparent bg-[#ff0000]',
 		text: 'text-[#ffffff]',
 	},
 };
@@ -170,7 +170,9 @@ const OrganizationChip = ({
 			: nameOnly;
 
 	return (
-		<Chip className={orgTWColor || 'bg-black/20 text-grey-50'}>
+		<Chip
+			className={`font-serif ${orgTWColor || 'bg-black/20 text-grey-50'}`}
+		>
 			{displayName}
 		</Chip>
 	);

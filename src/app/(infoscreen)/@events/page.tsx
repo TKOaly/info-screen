@@ -19,16 +19,16 @@ const Events = async () => {
 						alt="matlu logo"
 					/>
 				</div>
-				<h2 className="z-50 h-16 rounded-xl bg-grey-900 px-2 text-4xl font-bold">
+				<h2 className="z-50 rounded-xl bg-grey-900 px-2 text-4xl font-bold">
 					Events
 				</h2>
-				<div className="scrollbar-none -mt-16 flex min-h-0 w-full overflow-y-auto">
-					<div className="flex min-h-0 w-full flex-col pt-10">
+				<div className="scrollbar-none -mt-20 flex min-h-0 w-full overflow-y-auto">
+					<div className="flex min-h-0 w-full flex-col pt-16">
 						{events &&
 							Object.entries(events).map(
 								([relativeWeek, events]) => (
 									<Fragment key={relativeWeek}>
-										<h3 className="p-2 text-2xl font-bold text-org-tkoaly">
+										<h3 className="px-2 py-1 text-2xl font-bold text-org-tkoaly">
 											{relativeWeek}
 										</h3>
 										<hr className="w-full text-org-tkoaly" />

@@ -48,6 +48,7 @@ module.exports = {
 			},
 			fontFamily: {
 				inter: ['var(--font-inter)'],
+				sans: ['var(--font-inter)'],
 				m_plus_rounded: ['var(--font-m-plus-rounded)'],
 				syne: ['var(--font-syne)'],
 				gabarito: ['var(--font-gabarito)'],
