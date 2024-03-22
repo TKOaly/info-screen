@@ -18,11 +18,11 @@ export const EventBox = async ({
 		>
 			<p className="text-wrap text-xl font-semibold">{event.name}</p>
 			<div className="flex flex-wrap justify-end gap-2">
-				<OrganizationChip org={organization} truncate={16} />
 				<DateChip
 					startDate={startDate}
 					className="bg-org-matlu-primary text-black"
 				/>
+				<OrganizationChip org={organization} truncate={16} />
 			</div>
 		</div>
 	);

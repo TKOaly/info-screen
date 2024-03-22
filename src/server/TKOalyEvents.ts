@@ -77,7 +77,6 @@ const getUpcomingEvents = async () =>
 
 const separateWeeklyAndMeetings = (events: TKOalyEvent[]) => {
 	const Weekly: TKOalyEvent[] = [];
-	const Meetings: TKOalyEvent[] = [];
 	const rest = events.filter((event) => {
 		if (/weekly|club\b|kerho\b/i.test(event.name)) {
 			if (
@@ -91,28 +90,29 @@ const separateWeeklyAndMeetings = (events: TKOalyEvent[]) => {
 			}
 			return false;
 		}
-		if (/kokous\b|meeting\b/i.test(event.name)) {
-			if (
-				/syys|kevät|statutory|sääntömääräinen|ylimääräinen/i.test(
-					event.name
-				) ||
-				!Meetings.some(
-					(e) =>
-						!/syys|kevät|statutory|sääntömääräinen|ylimääräinen/i.test(
-							e.name
-						)
-				)
-			) {
-				Meetings.push(event);
+		/* Separate meetings to it own category (unused)
+			if (/kokous\b|meeting\b/i.test(event.name)) {
+				if (
+					/syys|kevät|statutory|sääntömääräinen|ylimääräinen/i.test(
+						event.name
+					) ||
+					!Meetings.some(
+						(e) =>
+							!/syys|kevät|statutory|sääntömääräinen|ylimääräinen/i.test(
+								e.name
+							)
+					)
+				) {
+					Meetings.push(event);
+				}
+				return false;
 			}
-			return false;
-		}
+		*/
 		return true;
 	});
 
 	const result = {
 		Weekly,
-		Meetings,
 		rest,
 	};
 
@@ -123,9 +123,8 @@ export const getTKOalyEvents = async () => {
 	'use server';
 	return await getUpcomingEvents()
 		.then(separateWeeklyAndMeetings)
-		.then(({ Weekly, Meetings, rest }) => ({
+		.then(({ Weekly, rest }) => ({
 			Weekly,
-			Meetings,
 			...groupBy(
 				(a: TKOalyEvent) =>
 					formatRelative(new Date(a.starts), new Date(), {

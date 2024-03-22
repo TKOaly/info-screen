@@ -11,11 +11,6 @@ const Restaurants = async () => {
 	]);
 
 	return Object.values(restaurants).length === 0 ? null : (
-		/*
-			<Slide fullWidth className="bg-green-unari p-0 font-gabarito">
-				<LofiGirl />
-			</Slide>
-		*/
 		<Slide
 			fullWidth={Object.keys(restaurants).length > 2}
 			className="flex-col bg-green-unari px-8 pb-0 font-gabarito"
