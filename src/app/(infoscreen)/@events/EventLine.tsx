@@ -1,5 +1,7 @@
-import { type TKOalyEvent } from '@/server/events';
-import DateChip from './DateChip';
+import OrganizationChip from '@/components/Events/OrganizationChip';
+import { type TKOalyEvent } from '@/server/TKOalyEvents';
+import DateChip from '../../../components/Events/DateChip';
+import EventName from './EventName';
 import RegistrationChip from './RegistrationChip';
 
 export const EventLine = async ({
@@ -9,7 +11,8 @@ export const EventLine = async ({
 	event: TKOalyEvent;
 	idx: number;
 }) => {
-	const { starts, registration_starts, registration_ends } = event;
+	const { name, starts, registration_starts, registration_ends, organizer } =
+		event;
 
 	const startDate = new Date(starts);
 	const regStartDate = new Date(registration_starts);
@@ -18,12 +21,13 @@ export const EventLine = async ({
 	return (
 		<div
 			className={`flex items-center justify-between gap-x-4 p-3 ${!(idx % 2) && 'bg-grey-800'}`}
-			key={event.name}
+			key={name}
 		>
-			<p className=" items-start gap-x-2 text-wrap text-xl font-semibold">
-				{event.name}
-			</p>
-			<div className="flex gap-x-2">
+			<EventName>{name}</EventName>
+			<div className="flex flex-wrap-reverse justify-end gap-3">
+				{organizer !== null && (
+					<OrganizationChip org={organizer.name} />
+				)}
 				{regStartDate && regEndDate && (
 					<RegistrationChip
 						startDate={regStartDate}

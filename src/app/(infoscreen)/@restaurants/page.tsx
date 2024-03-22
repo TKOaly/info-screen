@@ -1,5 +1,5 @@
+import { RestaurantMenu } from '@/app/(infoscreen)/@restaurants/Restaurant';
 import { Slide } from '@/components/Carousel';
-import { RestaurantMenu } from '@/components/Restaurants/Restaurant';
 import { getRestaurants } from '@/server/restaurants';
 
 const Restaurants = async () => {
@@ -18,10 +18,10 @@ const Restaurants = async () => {
 		*/
 		<Slide
 			fullWidth={Object.keys(restaurants).length > 2}
-			className="flex-col bg-green-unari px-8 font-gabarito"
+			className="flex-col bg-green-unari px-8 pb-0 font-gabarito"
 		>
 			<div
-				className={`grid w-full min-w-0 ${'grid-cols-' + Math.min(Object.keys(restaurants).length, 4)} gap-8`}
+				className={`grid size-full ${'grid-cols-' + Math.min(Object.keys(restaurants).length, 4)} gap-8`}
 			>
 				{Object.entries(restaurants).map(([name, restaurant]) => {
 					if (!restaurant)

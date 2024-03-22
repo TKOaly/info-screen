@@ -1,14 +1,13 @@
 'use server';
 
+import { customLocale, mappedRelativeDateToken } from '@/lib/eventUtils';
 import {
 	addMinutes,
 	compareAsc,
 	formatRelative,
 	isAfter,
-	isSameWeek,
 	startOfToday,
 } from 'date-fns';
-import { enGB } from 'date-fns/locale';
 import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
@@ -16,12 +15,40 @@ const ENTRYPOINT = 'https://event-api.tko-aly.fi/api/events';
 
 export type TKOalyEvent = {
 	id: string;
-	deleted: boolean;
 	name: string;
+	price: string;
 	starts: string;
 	registration_starts: string;
 	registration_ends: string;
+	organizer: {
+		name: string;
+		url: string;
+	};
+	location: string;
+	category: string;
+	deleted: number;
 };
+
+/* Organizers that have appeared in the data
+type organizers =
+	| 'Matlu'
+	| 'Matlu ry'
+	| 'Limes ry'
+	| 'HYY'
+	| 'Tietotekniikan opiskelijoiden liitto ry TiTOL'
+	| 'Skripti ry'
+	| 'TKT-alumni ry'
+	| 'Prodeko'
+	| 'Opiskelijat'
+	| 'Kimmon ystävät ry x Matlu'
+	| 'Integralis'
+	| 'Hanken BBall'
+	| 'Vapaateekkarit'
+	| 'Limes, Matlu, Kannunvalajat, Biosfääri, Condus & TYT'
+	| 'Euroopan parlamentin Suomi-toimisto'
+	| 'Tietojenkäsittelytieteen kandiohjelma'
+	| 'Tiedekunta // Faculty';
+*/
 
 const getUpcomingEvents = async () => {
 	const events = await GET<TKOalyEvent[]>(
@@ -33,6 +60,7 @@ const getUpcomingEvents = async () => {
 			},
 		}
 	);
+
 	return events
 		.filter(
 			({ deleted, name, starts }) =>
@@ -45,36 +73,7 @@ const getUpcomingEvents = async () => {
 		);
 };
 
-// This is a custom locale for separating events into the desired groups
-type relativeDateToken = 'today' | 'tomorrow' | 'nextWeek' | 'other';
-type mappedRelativeDateToken = "'This week'" | "'Next week'" | "'Later'";
-const customLocale = {
-	...enGB,
-	formatRelative: function (
-		// We are only grouping future events
-		formatRelativeToken: relativeDateToken,
-		date: Date,
-		baseDate: Date
-	) {
-		if (
-			formatRelativeToken === 'tomorrow' &&
-			!isSameWeek(date, baseDate, { weekStartsOn: 1 })
-		)
-			return "'Next week'";
-		const relativeTokens: Record<
-			relativeDateToken,
-			mappedRelativeDateToken
-		> = {
-			today: "'This week'",
-			tomorrow: "'This week'",
-			nextWeek: "'Next week'",
-			other: "'Later'",
-		};
-		return relativeTokens[formatRelativeToken];
-	},
-};
-
-export const getGroupedEvents = async () => {
+export const getTKOalyEvents = async () => {
 	'use server';
 	return await getUpcomingEvents().then(
 		groupBy(

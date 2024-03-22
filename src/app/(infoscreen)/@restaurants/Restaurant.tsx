@@ -1,19 +1,21 @@
+import Chip from '@/components/Chip';
 import { Restaurant } from '@/server/restaurants';
 import * as React from 'react';
-import Chip from '../Chip';
 
 type RestaurantMenuProps = {
 	restaurant: Restaurant;
 };
 
 export const RestaurantMenu = ({ restaurant }: RestaurantMenuProps) => (
-	<div className="flex flex-col items-center gap-y-4">
+	<div className="flex min-h-0 w-full flex-col items-center gap-y-4">
 		<h1 className="-mb-4 text-4xl">Unicafe {restaurant.name}</h1>
 		{restaurant.lunchHours && (
 			<p className="text-xl">Lunch {restaurant.lunchHours}</p>
 		)}
-		<div className="flex w-full flex-col items-center gap-y-3">
-			<Menu foodlist={restaurant.menuGroups} />
+		<div className="scrollbar-none overflow-y-auto rounded-t-2xl pb-4">
+			<div className="flex w-full flex-col items-center gap-y-3">
+				<Menu foodlist={restaurant.menuGroups} />
+			</div>
 		</div>
 	</div>
 );
@@ -29,10 +31,7 @@ const Menu = ({ foodlist }: { foodlist: Restaurant['menuGroups'] }) => {
 		return (
 			<div key={category} className="flex w-full flex-col gap-y-2">
 				<h2 className="-mb-2 ml-3 text-lg">
-					{category
-						.toLocaleUpperCase('fi-FI')
-						.replace('KAIVOPIHA', '')
-						.trim()}
+					{category.toUpperCase().replace('KAIVOPIHA', '').trim()}
 				</h2>
 				{categoryFoods.map((food) => (
 					<Food
@@ -73,7 +72,7 @@ const Food = ({
 	displayMeta: boolean;
 }) => (
 	<div
-		className={`flex flex-col gap-y-4 rounded-2xl p-4 ${foodColor(
+		className={`flex flex-col gap-y-3 rounded-2xl p-3 ${foodColor(
 			price,
 			responsibility,
 			diet

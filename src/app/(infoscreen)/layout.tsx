@@ -5,12 +5,14 @@ type CarouselLayoutProps = {
 	events: SlideElement;
 	restaurants: SlideElement;
 	transit: SlideElement; // TODO
+	ilotalo: SlideElement;
 	children: SlideElement;
 };
 
 const CarouselLayout = ({
 	events,
 	restaurants,
+	ilotalo,
 	children,
 }: CarouselLayoutProps) => {
 	return (
@@ -21,6 +23,8 @@ const CarouselLayout = ({
 					<Logo />
 				</Slide>
 				{restaurants}
+				{/* transit */}
+				{ilotalo}
 				{children}
 			</Carousel>
 		</main>

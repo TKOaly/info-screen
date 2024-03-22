@@ -11,8 +11,8 @@ import {
 	startOfDay,
 } from 'date-fns';
 import { useCallback, useEffect, useState } from 'react';
-import Chip from '../Chip';
-import TickingChip from './TickingChip';
+import Chip from '../../../components/Chip';
+import TickingChip from '../../../components/Events/TickingChip';
 
 const noteEmoji = '📝';
 const countdownHours = 2;
@@ -107,23 +107,25 @@ const RegistrationChip = ({
 
 	switch (registrationState) {
 		case 'open':
-			return <Chip color="success">{noteEmoji}</Chip>;
+			return (
+				<Chip variant="success">{`${noteEmoji} Registration open`}</Chip>
+			);
 		case 'future':
 			return (
-				<Chip color="info">
-					{`${noteEmoji} ${format(startDate, 'dd.MM. HH:mm')}`}
+				<Chip variant="info">
+					{`${noteEmoji} Registration starts ${format(startDate, 'dd.MM. HH:mm')}`}
 				</Chip>
 			);
 		case 'countdown':
 			return (
 				<TickingChip
-					color="warning"
+					variant="warning"
 					end={startDate}
-					prefix={`${noteEmoji} starts in `}
+					prefix={`${noteEmoji} Registration starts in `}
 				/>
 			);
 		case 'closing':
-			return <Chip color="error">{`${noteEmoji} closes today`}</Chip>;
+			return <Chip variant="error">{`${noteEmoji} closes today`}</Chip>;
 	}
 
 	return null;

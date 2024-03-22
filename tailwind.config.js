@@ -35,6 +35,13 @@ module.exports = {
 				blue: { hsl: '#007AC9' },
 				green: { unari: '#155C2C' },
 				yellow: { tkoaly: '#fff500' },
+				org: {
+					tkoaly: '#FFF500',
+					matlu: {
+						primary: '#FCA412',
+						secondary: '#09773A',
+					},
+				},
 			},
 			animation: {
 				'spin-slow': 'spin 10s linear infinite',
