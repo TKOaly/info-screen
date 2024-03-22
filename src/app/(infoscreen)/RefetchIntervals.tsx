@@ -2,6 +2,7 @@
 
 import { revalidateTKOalyEvents } from '@/server/TKOalyEvents';
 import { revalidateIlotaloEvents } from '@/server/ilotaloEvents';
+import { revalidateLectures } from '@/server/lectures';
 import { revalidateRestaurants } from '@/server/restaurants';
 import { useEffect } from 'react';
 
@@ -19,11 +20,16 @@ const RefetchIntervals = () => {
 			async () => await revalidateRestaurants(),
 			60 * 60 * 1000
 		);
+		const lecturesInterval = setInterval(
+			async () => await revalidateLectures(),
+			60 * 60 * 1000
+		);
 
 		return () => {
 			clearInterval(TKOalyEventsInterval);
 			clearInterval(ilotaloEventsInterval);
 			clearInterval(restaurantsInterval);
+			clearInterval(lecturesInterval);
 		};
 	}, []);
 

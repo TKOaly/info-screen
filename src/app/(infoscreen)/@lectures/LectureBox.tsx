@@ -1,12 +1,8 @@
 import Chip from '@/components/Chip';
-import { CalendarComponent } from 'ical';
+import { Lecture } from '@/server/lectures';
 import DateChip from '../../../components/Events/DateChip';
 
-export const LectureBox = async ({
-	lecture,
-}: {
-	lecture: CalendarComponent;
-}) => {
+export const LectureBox = async ({ lecture }: { lecture: Lecture }) => {
 	const { start } = lecture;
 	if (!start) return null;
 

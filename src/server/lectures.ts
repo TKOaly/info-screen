@@ -3,30 +3,35 @@
 import { customLocale } from '@/lib/eventUtils';
 import { addMinutes, compareAsc, formatRelative, isAfter } from 'date-fns';
 import ical from 'ical';
+import { revalidateTag } from 'next/cache';
 import { groupBy } from 'ramda';
 
 const ENTRYPOINT = 'https://optime.helsinki.fi/icalservice/Department/920';
 // const ENTRYPOINT = 'https://future.optime.helsinki.fi/icalservice/Department/920'; // next year's reservations
 
-const groupEvents = groupBy(
-	(a: {
-		uid: string;
-		start: Date;
-		summary: string;
-		location: string | undefined;
-	}) =>
-		formatRelative(a.start, new Date(), {
-			locale: customLocale,
-			weekStartsOn: 1,
-		})
+export type Lecture = {
+	uid: string;
+	start: Date;
+	summary: string;
+	location: string | undefined;
+};
+
+const groupEvents = groupBy((a: Lecture) =>
+	formatRelative(a.start, new Date(), {
+		locale: customLocale,
+		weekStartsOn: 1,
+	})
 );
+
+const fetchTag = 'lecture_reservations';
 
 export const getLectureReservations = async () => {
 	'use server';
 
 	const data = await fetch(ENTRYPOINT, {
 		next: {
-			tags: ['lectures'],
+			tags: [fetchTag],
+			revalidate: 3600,
 		},
 	}).then((res) => res.text());
 
@@ -57,4 +62,9 @@ export const getLectureReservations = async () => {
 		}));
 
 	return groupEvents(lectures);
+};
+
+export const revalidateLectures = async () => {
+	'use server';
+	revalidateTag(fetchTag);
 };
