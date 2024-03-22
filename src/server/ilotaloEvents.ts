@@ -76,7 +76,7 @@ export const getIlotaloEvents = async () => {
 	return GET<IlotaloEventData[]>(ENTRYPOINT, {
 		next: {
 			tags: [fetchTag],
-			revalidate: 3 * 3600,
+			revalidate: 900,
 		},
 	})
 		.then((events) => {

@@ -59,7 +59,7 @@ const getUpcomingEvents = async () =>
 		{
 			next: {
 				tags: [fetchTag],
-				revalidate: 3600,
+				revalidate: 300,
 			},
 		}
 	).then((events) =>

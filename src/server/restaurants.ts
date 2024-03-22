@@ -130,9 +130,9 @@ const fetchTag = 'restaurants';
 
 export const getRestaurants = async (restaurants: Restaurants[]) => {
 	const allRestaurants = await GET<RestaurantData[]>(BASE_URL, {
-		cache: 'force-cache',
 		next: {
 			tags: [fetchTag],
+			revalidate: 3600,
 		},
 	});
 
