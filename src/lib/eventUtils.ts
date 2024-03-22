@@ -18,6 +18,13 @@ export const customLocale = {
 			!isSameWeek(date, baseDate, { weekStartsOn: 1 })
 		)
 			return "'Next week'";
+
+		if (
+			formatRelativeToken === 'nextWeek' &&
+			isSameWeek(date, baseDate, { weekStartsOn: 1 })
+		)
+			return "'This week'";
+
 		const relativeTokens: Record<
 			relativeDateToken,
 			mappedRelativeDateToken
