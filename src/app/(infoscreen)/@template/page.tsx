@@ -4,10 +4,8 @@ import { Slide } from '@/components/Carousel';
 Steps for creating a new slide
 - Implement content here
 - Implement loading and error pages
-- Implement data fetching as a server action in @/server if the data updates infrequently
+- Implement data fetching as a server action in @/server
     in order to minimize work the dinky rasberry client has to do
-- If the data needs to update frequently e.g. transit it may me better to do it client side
-    to not call the TKO-äly backend thousands of times per day
 - Add slide to ../layout
 - Add possible revalidation interval to ../page
 */
