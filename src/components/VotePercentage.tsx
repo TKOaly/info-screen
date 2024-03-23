@@ -1,4 +1,4 @@
-import { getVotingActivity } from '@/server/repcoVoteService';
+import { getVotingActivity } from '@/server/repcoVotes';
 import { isBefore } from 'date-fns';
 import TickingChip from './Events/TickingChip';
 

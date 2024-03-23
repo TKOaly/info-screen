@@ -2,21 +2,29 @@ import { merge } from '@/lib/utils';
 import { format, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import Chip from '../Chip';
 
-const getLabelFormat = (startDate: Date) => {
-	if (isToday(startDate)) return "'Today' HH:mm";
-	if (isTomorrow(startDate)) return "'Tomorrow' HH:mm";
-	if (isThisWeek(startDate)) return 'EEEE HH:mm';
-	return 'dd.MM.';
+const getLabelFormat = (
+	startDate: Date,
+	showWeekday?: boolean,
+	showTime?: boolean
+) => {
+	if (isToday(startDate)) return `'Today'${showTime ? ' HH:mm' : ''}`;
+	if (isTomorrow(startDate)) return `'Tomorrow'${showTime ? ' HH:mm' : ''}`;
+	if (isThisWeek(startDate)) return `EEEE${showTime ? ' HH:mm' : ''}`;
+	return `${showWeekday ? 'EEEE ' : ''}dd.MM.`;
 };
 
 const DateChip = ({
 	startDate,
+	showWeekday = false,
+	showTime = true,
 	className,
 }: {
 	startDate: Date;
+	showWeekday?: boolean;
+	showTime?: boolean;
 	className?: string;
 }) => {
-	const labelFormat = getLabelFormat(startDate);
+	const labelFormat = getLabelFormat(startDate, showWeekday, showTime);
 	return (
 		<Chip
 			className={merge(

@@ -39,7 +39,7 @@ const Lectures = async () => {
 												{relativeWeek}
 											</h3>
 											<hr className="w-full" />
-											<div className="grid grid-cols-3 gap-4 p-4">
+											<div className="grid grid-cols-2 gap-4 p-4">
 												{lectures.map((lecture) => (
 													<LectureBox
 														key={lecture.uid}

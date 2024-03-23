@@ -1,12 +1,23 @@
 'use server';
 
 import { customLocale } from '@/lib/eventUtils';
-import { addMinutes, compareAsc, formatRelative, isAfter } from 'date-fns';
+import {
+	addHours,
+	addMinutes,
+	compareAsc,
+	formatRelative,
+	isWithinInterval,
+} from 'date-fns';
 import ical from 'ical';
 import { revalidateTag } from 'next/cache';
 import { groupBy } from 'ramda';
 
-const ENTRYPOINT = 'https://optime.helsinki.fi/icalservice/Department/920';
+const ENTRYPOINTS = [
+	'https://optime.helsinki.fi/icalservice/Department/920', // TKT & BSCS
+	'https://optime.helsinki.fi/icalservice/Department/916', // MAT
+	'https://optime.helsinki.fi/icalservice/Department/931', // CSM
+	'https://optime.helsinki.fi/icalservice/Department/932', // DATA, MATR, MAST & LSI
+];
 // const ENTRYPOINT = 'https://future.optime.helsinki.fi/icalservice/Department/920'; // next year's reservations
 
 export type Lecture = {
@@ -14,9 +25,10 @@ export type Lecture = {
 	start: Date;
 	summary: string;
 	location: string | undefined;
+	program: string | undefined;
 };
 
-const groupEvents = groupBy((a: Lecture) =>
+const groupLectures = groupBy((a: Lecture) =>
 	formatRelative(a.start, new Date(), {
 		locale: customLocale,
 		weekStartsOn: 1,
@@ -28,16 +40,19 @@ const fetchTag = 'lecture_reservations';
 export const getLectureReservations = async () => {
 	'use server';
 
-	const data = await fetch(ENTRYPOINT, {
-		next: {
-			tags: [fetchTag],
-			revalidate: 3600,
-		},
-	}).then((res) => res.text());
+	const lectures = await Promise.all(
+		ENTRYPOINTS.map(async (ENTRYPOINT) => {
+			const data = await fetch(ENTRYPOINT, {
+				next: {
+					tags: [fetchTag],
+					revalidate: 3600,
+				},
+			}).then((res) => res.text());
+			return Object.values(ical.parseICS(data));
+		})
+	).then((res) => res.flat());
 
-	const now = addMinutes(new Date(), -45);
-
-	const lectures = Object.values(ical.parseICS(data))
+	const filtered = lectures
 		.filter(
 			(
 				lecture
@@ -50,18 +65,30 @@ export const getLectureReservations = async () => {
 				lecture.start !== undefined &&
 				lecture.start !== null &&
 				lecture.summary !== undefined &&
-				lecture.uid !== undefined
+				lecture.uid !== undefined &&
+				lecture.location !== undefined &&
+				lecture.location.length > 0
 		)
-		.filter(({ start }) => isAfter(start, now))
+		.filter(({ start }) =>
+			isWithinInterval(start, {
+				start: addMinutes(new Date(), -30),
+				end: addHours(new Date(), 72),
+			})
+		)
+		.filter(({ summary }) => !/seminar|seminaari/i.test(summary))
 		.sort((a, b) => compareAsc(a.start, addMinutes(b.start, 5)))
-		.map(({ uid, start, summary, location }) => ({
+		.map(({ uid, start, summary, location, description }) => ({
 			uid: uid,
 			start: start,
 			summary: summary.replace(/\(.*\)/, '').trim(),
-			location: location,
+			location,
+			program:
+				description // Match TKT, BSCS, MAT, CSM, DATA, MATR, MAST, LSI
+					?.match(/^.*\n/)?.[0]
+					?.match(/[A-Z]{3,4}(?=\d+\))/)?.[0] || undefined,
 		}));
 
-	return groupEvents(lectures);
+	return groupLectures(filtered);
 };
 
 export const revalidateLectures = async () => {

@@ -28,7 +28,7 @@ const Chip = ({
 	return (
 		<div
 			className={merge(
-				'flex max-h-5 w-fit min-w-fit items-center overflow-y-hidden whitespace-nowrap text-nowrap rounded-full p-3 text-lg font-semibold',
+				'flex max-h-5 w-fit min-w-fit items-center overflow-y-hidden whitespace-nowrap text-nowrap rounded-full p-3 pb-[14px] text-lg font-semibold',
 				variants[variant],
 				className
 			)}

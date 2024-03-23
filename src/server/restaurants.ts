@@ -1,6 +1,6 @@
 'use server';
 
-import { format, parse } from 'date-fns';
+import { addMinutes, format, isWithinInterval, parse } from 'date-fns';
 import { zonedTimeToUtc } from 'date-fns-tz';
 import en from 'date-fns/locale/en-US';
 import { revalidateTag } from 'next/cache';
@@ -95,7 +95,7 @@ function formatRestaurant(restaurant: RestaurantData) {
 	const { menuData } = restaurant;
 
 	const menu = menuData.menus.find(
-		({ date }) => date === format(new Date(), 'EE dd.MM.', { locale: en })
+		({ date }) => date === format(new Date(), 'EEE dd.MM.', { locale: en })
 	)?.data;
 
 	if (!menu) return undefined;
@@ -103,7 +103,7 @@ function formatRestaurant(restaurant: RestaurantData) {
 	const now = new Date();
 
 	const lunchHours = menuData.visitingHours.lounas.items?.[0].hours;
-	const [openingHour = null, closingHour = null] = lunchHours
+	const [openingHour = undefined, closingHour = undefined] = lunchHours
 		.split('–')
 		.map((hour) => {
 			const date = parse(hour, 'HH:mm', now);
@@ -136,19 +136,29 @@ export const getRestaurants = async (restaurants: Restaurants[]) => {
 		},
 	});
 
-	const menus = {} as Record<
-		Restaurants,
-		ReturnType<typeof formatRestaurant>
-	>;
+	const menus = {} as Record<Restaurants, Restaurant>;
 
-	restaurants.forEach((restaurant) => {
+	restaurants.forEach((restaurantName) => {
 		const restaurantData = allRestaurants.find(({ title }) =>
-			title.includes(restaurant)
+			title.includes(restaurantName)
 		);
+		if (!restaurantData) return;
 
-		menus[restaurant] = restaurantData
-			? formatRestaurant(restaurantData)
-			: undefined;
+		const restaurant = formatRestaurant(restaurantData);
+
+		if (!restaurant) return;
+
+		if (
+			!restaurant.openingHour ||
+			!restaurant.closingHour ||
+			isWithinInterval(new Date(), {
+				start: addMinutes(new Date(restaurant.openingHour), -210),
+				end: new Date(restaurant.closingHour),
+			})
+		) {
+			menus[restaurantName] = restaurant;
+			return;
+		}
 	});
 
 	return menus;

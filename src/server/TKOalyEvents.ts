@@ -81,12 +81,12 @@ const getUpcomingEvents = async () =>
 const separateWeeklyAndMeetings = (events: TKOalyEvent[]) => {
 	const Weekly: TKOalyEvent[] = [];
 	const rest = events.filter((event) => {
-		if (/weekly|club\b|kerho\b/i.test(event.name)) {
+		if (/weekly|club\b|kerho\b|vuoro\b/i.test(event.name)) {
 			if (
 				!Weekly.some(
 					(e) =>
-						e.name.toLowerCase().trim() ===
-						event.name.toLowerCase().trim()
+						e.name.toLowerCase().slice(0, 16).trim() ===
+						event.name.toLowerCase().slice(0, 16).trim()
 				)
 			) {
 				Weekly.push(event);

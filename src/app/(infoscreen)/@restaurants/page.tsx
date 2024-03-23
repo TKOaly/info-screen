@@ -1,6 +1,7 @@
 import { RestaurantMenu } from '@/app/(infoscreen)/@restaurants/Restaurant';
 import { Slide } from '@/components/Carousel';
 import { getRestaurants } from '@/server/restaurants';
+import CloseRestaurants from './CloseRestaurants';
 
 const Restaurants = async () => {
 	const restaurants = await getRestaurants([
@@ -10,16 +11,19 @@ const Restaurants = async () => {
 		'Myöhä Café & Bar',
 	]);
 
-	return Object.values(restaurants).length === 0 ? null : (
+	if (Object.keys(restaurants).length === 0) return null;
+
+	return (
 		<Slide
 			fullWidth={Object.keys(restaurants).length > 2}
 			className="flex-col bg-green-unari px-8 pt-3 font-gabarito"
 		>
+			<CloseRestaurants restaurants={Object.values(restaurants)} />
 			<div
 				className={`grid size-full ${'grid-cols-' + Math.min(Object.keys(restaurants).length, 4)} gap-8`}
 			>
 				{Object.entries(restaurants).map(([name, restaurant]) => {
-					if (!restaurant)
+					if (!restaurant?.menuGroups)
 						return (
 							<div
 								key={name}
