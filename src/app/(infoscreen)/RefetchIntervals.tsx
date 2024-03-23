@@ -1,13 +1,18 @@
 'use client';
 
+import { langAtom } from '@/lib/lang';
 import { revalidateTKOalyEvents } from '@/server/TKOalyEvents';
 import { revalidateIlotaloEvents } from '@/server/ilotaloEvents';
 import { revalidateLectures } from '@/server/lectures';
 import { revalidateRestaurants } from '@/server/restaurants';
+import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 
 const RefetchIntervals = () => {
+	const [lang, setlang] = useAtom(langAtom);
+
 	useEffect(() => {
+		// Intervals for revalidating slide data
 		const TKOalyEventsInterval = setInterval(
 			async () => await revalidateTKOalyEvents(),
 			5 * 60 * 1000
@@ -25,13 +30,20 @@ const RefetchIntervals = () => {
 			3 * 60 * 60 * 1000
 		);
 
+		// Interval for changing language
+		const langInterval = setInterval(
+			async () => setlang(((lang + 1) % 2) as 0 | 1),
+			10 * 1000
+		);
+
 		return () => {
 			clearInterval(TKOalyEventsInterval);
 			clearInterval(ilotaloEventsInterval);
 			clearInterval(restaurantsInterval);
 			clearInterval(lecturesInterval);
+			clearInterval(langInterval);
 		};
-	}, []);
+	}, [lang, setlang]);
 
 	return null;
 };

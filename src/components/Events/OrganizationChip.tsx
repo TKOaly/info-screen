@@ -1,5 +1,6 @@
 import { Organization as IlotaloOrg } from '@/server/ilotaloEvents';
 import Chip from '../Chip';
+import I18n from '../I18n';
 
 // Common organizations that might be found in Tekis events
 // Not using the actual values as they are not consistent
@@ -162,8 +163,7 @@ const OrganizationChip = ({
 		? `${orgColor?.bg} ${orgColor?.text}`
 		: undefined;
 
-	const intlName = org.includes('//') ? org.split('//')[1].trim() : org; // Only show english name if available
-	const nameOnly = intlName.replace(/ (?:ry|rf)$/, ''); // Remove organization suffixes
+	const nameOnly = org.replace(/ (?:ry|rf)$/, ''); // Remove organization suffixes
 	const displayName = // Truncate name if it's too long
 		truncate > 0 && nameOnly.length > truncate
 			? `${nameOnly.slice(0, truncate).trim()}…`
@@ -173,7 +173,7 @@ const OrganizationChip = ({
 		<Chip
 			className={`font-serif ${orgTWColor || 'bg-black/20 text-grey-50'}`}
 		>
-			{displayName}
+			<I18n>{displayName}</I18n>
 		</Chip>
 	);
 };

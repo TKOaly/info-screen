@@ -1,7 +1,7 @@
 import OrganizationChip from '@/components/Events/OrganizationChip';
+import I18n from '@/components/I18n';
 import { type TKOalyEvent } from '@/server/TKOalyEvents';
 import DateChip from '../../../components/Events/DateChip';
-import EventName from './EventName';
 import RegistrationChip from './RegistrationChip';
 
 export const EventLine = async ({
@@ -23,7 +23,10 @@ export const EventLine = async ({
 			className={`flex items-center justify-between gap-x-4 p-3 ${!(idx % 2) && 'bg-grey-800'}`}
 			key={name}
 		>
-			<EventName>{name}</EventName>
+			<p className="text-wrap text-xl font-semibold">
+				<I18n>{name}</I18n>
+			</p>
+
 			<div className="flex flex-wrap-reverse justify-end gap-3">
 				{organizer !== null && (
 					<OrganizationChip org={organizer.name} />

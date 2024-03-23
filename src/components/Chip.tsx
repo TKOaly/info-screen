@@ -3,7 +3,7 @@ import { merge } from '@/lib/utils';
 
 type ChipProps = {
 	variant?: keyof typeof variants;
-	children?: string | number;
+	children?: string | number | JSX.Element;
 	color?: string;
 	className?: string;
 };
