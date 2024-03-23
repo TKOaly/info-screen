@@ -12,7 +12,7 @@ const Lectures = async () => {
 	if (Object.values(lectures).flat().length === 0) return null;
 
 	return (
-		<Slide className="bg-grey-100 pt-3 font-inter  text-black">
+		<Slide className="bg-grey-900 pt-3 text-grey-100">
 			<div className="flex size-full min-h-0 flex-col items-center justify-start gap-y-4">
 				<div className="relative -mt-4 max-h-0 w-full">
 					<Image
@@ -23,7 +23,7 @@ const Lectures = async () => {
 						alt="HY logo"
 					/>
 				</div>
-				<h2 className="z-50 rounded-xl bg-grey-100 px-2 text-4xl font-bold text-black">
+				<h2 className="z-50 rounded-xl bg-grey-900 px-2 text-4xl font-bold text-grey-100">
 					Lectures
 				</h2>
 				<div className="scrollbar-none -mt-20 flex min-h-0 w-full overflow-y-auto">

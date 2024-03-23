@@ -6,6 +6,7 @@ import {
 	addMinutes,
 	compareAsc,
 	formatRelative,
+	isSameDay,
 	isWithinInterval,
 } from 'date-fns';
 import ical from 'ical';
@@ -14,9 +15,9 @@ import { groupBy } from 'ramda';
 
 const ENTRYPOINTS = [
 	'https://optime.helsinki.fi/icalservice/Department/920', // TKT & BSCS
-	'https://optime.helsinki.fi/icalservice/Department/916', // MAT
 	'https://optime.helsinki.fi/icalservice/Department/931', // CSM
 	'https://optime.helsinki.fi/icalservice/Department/932', // DATA, MATR, MAST & LSI
+	'https://optime.helsinki.fi/icalservice/Department/916', // MAT
 ];
 // const ENTRYPOINT = 'https://future.optime.helsinki.fi/icalservice/Department/920'; // next year's reservations
 
@@ -36,6 +37,17 @@ const groupLectures = groupBy((a: Lecture) =>
 );
 
 const fetchTag = 'lecture_reservations';
+
+const programsOrder = [
+	'TKT',
+	'BSCS',
+	'CSM',
+	'DATA',
+	'MAT',
+	'MAST',
+	'MATR',
+	'LSI',
+];
 
 export const getLectureReservations = async () => {
 	'use server';
@@ -57,9 +69,10 @@ export const getLectureReservations = async () => {
 			(
 				lecture
 			): lecture is ical.CalendarComponent & {
+				uid: string;
 				start: Date;
 				summary: string;
-				uid: string;
+				location: string;
 			} =>
 				lecture.type === 'VEVENT' &&
 				lecture.start !== undefined &&
@@ -71,22 +84,34 @@ export const getLectureReservations = async () => {
 		)
 		.filter(({ start }) =>
 			isWithinInterval(start, {
+				// Next three days so that on friday you can see monday's lectures
 				start: addMinutes(new Date(), -30),
 				end: addHours(new Date(), 72),
 			})
 		)
-		.filter(({ summary }) => !/seminar|seminaari/i.test(summary))
-		.sort((a, b) => compareAsc(a.start, addMinutes(b.start, 5)))
+		.filter(({ summary }) => !/seminar|seminaari/i.test(summary)) // Filter out seminars
 		.map(({ uid, start, summary, location, description }) => ({
-			uid: uid,
-			start: start,
+			uid,
+			start,
 			summary: summary.replace(/\(.*\)/, '').trim(),
 			location,
 			program:
 				description // Match TKT, BSCS, MAT, CSM, DATA, MATR, MAST, LSI
 					?.match(/^.*\n/)?.[0]
 					?.match(/[A-Z]{3,4}(?=\d+\))/)?.[0] || undefined,
-		}));
+		}))
+		.sort(
+			(a, b) =>
+				// Sort first by day, then program (TKT and BSCS first etc.) and then start time
+				(isSameDay(a.start, b.start)
+					? 0
+					: compareAsc(a.start, addMinutes(b.start, 1))) ||
+				programsOrder.indexOf(a.program || programsOrder[0]) -
+					programsOrder.indexOf(
+						b.program || programsOrder.slice(-1)[0]
+					) ||
+				compareAsc(a.start, addMinutes(b.start, 1))
+		);
 
 	return groupLectures(filtered);
 };

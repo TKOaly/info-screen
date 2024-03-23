@@ -19,7 +19,7 @@ export default function RootLayout({
 			<body
 				className={merge(
 					Object.values(fonts).join(' '),
-					'h-screen overflow-hidden font-inter antialiased'
+					'h-screen overflow-hidden font-gabarito antialiased'
 				)}
 			>
 				{children}

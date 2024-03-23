@@ -1,4 +1,4 @@
-import { Gabarito, Inter, M_PLUS_Rounded_1c, Syne } from 'next/font/google';
+import { Gabarito, Inter, M_PLUS_Rounded_1c } from 'next/font/google';
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -13,12 +13,6 @@ const m_plus_rounded = M_PLUS_Rounded_1c({
 	display: 'swap',
 });
 
-const syne = Syne({
-	subsets: ['latin'],
-	variable: '--font-syne',
-	display: 'swap',
-});
-
 const gabarito = Gabarito({
 	subsets: ['latin'],
 	variable: '--font-gabarito',
@@ -30,7 +24,6 @@ const gabarito = Gabarito({
 const fonts = {
 	inter: inter.variable, // https://fonts.google.com/specimen/Inter+Tight
 	m_plus_rounded: m_plus_rounded.variable, // https://fonts.google.com/specimen/M+PLUS+Rounded+1c
-	syne: syne.variable, // https://fonts.google.com/specimen/Syne
 	gabarito: gabarito.variable, // https://fonts.google.com/specimen/Gabarito
 };
 
