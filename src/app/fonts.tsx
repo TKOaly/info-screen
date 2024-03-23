@@ -3,22 +3,26 @@ import { Gabarito, Inter, M_PLUS_Rounded_1c, Syne } from 'next/font/google';
 const inter = Inter({
 	subsets: ['latin'],
 	variable: '--font-inter',
+	display: 'swap',
 });
 
 const m_plus_rounded = M_PLUS_Rounded_1c({
 	weight: ['400', '500', '700', '800'],
 	subsets: ['latin'],
 	variable: '--font-m-plus-rounded',
+	display: 'swap',
 });
 
 const syne = Syne({
 	subsets: ['latin'],
 	variable: '--font-syne',
+	display: 'swap',
 });
 
 const gabarito = Gabarito({
 	subsets: ['latin'],
 	variable: '--font-gabarito',
+	display: 'swap',
 });
 
 // Adding fonts see https://nextjs.org/docs/app/building-your-application/optimizing/fonts#with-tailwind-css

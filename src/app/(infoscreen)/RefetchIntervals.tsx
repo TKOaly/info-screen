@@ -22,7 +22,7 @@ const RefetchIntervals = () => {
 		);
 		const lecturesInterval = setInterval(
 			async () => await revalidateLectures(),
-			60 * 60 * 1000
+			3 * 60 * 60 * 1000
 		);
 
 		return () => {

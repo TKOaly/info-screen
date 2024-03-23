@@ -5,7 +5,6 @@ const LofiGirl = () => (
 	<Slide>
 		<div className="relative size-full">
 			<Image
-				unoptimized
 				fill
 				className="object-cover"
 				src={'/lofihiphop.gif'}
