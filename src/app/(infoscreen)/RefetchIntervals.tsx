@@ -27,7 +27,7 @@ const RefetchIntervals = () => {
 		);
 		const lecturesInterval = setInterval(
 			async () => await revalidateLectures(),
-			3 * 60 * 60 * 1000
+			60 * 60 * 1000
 		);
 
 		// Interval for switching language in event titles etc.
