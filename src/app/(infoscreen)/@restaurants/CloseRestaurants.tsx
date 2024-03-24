@@ -11,29 +11,21 @@ const CloseRestaurants = ({ restaurants }: { restaurants: Restaurant[] }) => {
 			.filter(
 				(
 					restaurant
-				): restaurant is Restaurant & { closingHour: string } =>
+				): restaurant is Restaurant & { closingHour: Date } =>
 					restaurant.closingHour !== undefined
 			)
 			.map(({ closingHour }) => {
 				// Prevent a revalidation call loop in case the server returns a restaurant that is already closed
 				// This should not happen but just in case, also enables testing past days in development
 				// The Unicafe times/dates can't be trusted as they seem to be written manually
-				if (
-					differenceInMilliseconds(
-						new Date(closingHour),
-						new Date()
-					) < 0
-				)
+				if (differenceInMilliseconds(closingHour, new Date()) < 0)
 					return;
 
 				return setTimeout(
 					async () => {
 						await revalidateRestaurants();
 					},
-					differenceInMilliseconds(
-						new Date(closingHour),
-						new Date()
-					) + 10000
+					differenceInMilliseconds(closingHour, new Date()) + 10000
 				);
 			});
 

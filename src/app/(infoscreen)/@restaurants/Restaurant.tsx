@@ -1,29 +1,30 @@
-import { Restaurant as RestaurantData } from '@/server/restaurants';
+import {
+	Restaurant as RestaurantType,
+	Restaurants,
+} from '@/server/restaurants';
 import { Food } from './Food';
 
 type RestaurantMenuProps = {
-	restaurant: RestaurantData;
+	restaurant: RestaurantType;
 };
 
 export const Restaurant = ({ restaurant }: RestaurantMenuProps) => (
 	<div className="flex min-h-0 w-full flex-col items-center gap-y-4">
-		<h1 className="-mb-4 text-4xl">Unicafe {restaurant.name}</h1>
+		<h1 className="-mb-4 text-4xl">{restaurant.name}</h1>
 		{restaurant.lunchHours && (
 			<p className="text-xl">Lunch {restaurant.lunchHours}</p>
 		)}
 		<div className="scrollbar-none overflow-y-auto rounded-t-2xl pb-4">
 			<div className="flex w-full flex-col items-center gap-y-3">
-				<Menu foodlist={restaurant.menuGroups} />
+				<Menu menu={restaurant.menuGroups} />
 			</div>
 		</div>
 	</div>
 );
 
-const Menu = ({ foodlist }: { foodlist: RestaurantData['menuGroups'] }) => {
-	const categories = Object.keys(foodlist);
-
-	return categories.map((category) => {
-		const categoryFoods = foodlist[category];
+const Menu = ({ menu }: { menu: RestaurantType['menuGroups'] }) =>
+	Object.keys(menu).map((category) => {
+		const categoryFoods = menu[category as Restaurants];
 
 		if (!categoryFoods || categoryFoods.length === 0) return null;
 
@@ -42,4 +43,3 @@ const Menu = ({ foodlist }: { foodlist: RestaurantData['menuGroups'] }) => {
 			</div>
 		);
 	});
-};

@@ -7,13 +7,13 @@ import {
 	isWithinInterval,
 	parse,
 } from 'date-fns';
-import { zonedTimeToUtc } from 'date-fns-tz';
 import en from 'date-fns/locale/en-US';
 import { revalidateTag } from 'next/cache';
 import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
-type Restaurants =
+// Restaurants available in the Unicafe API
+export type Restaurants =
 	| 'Tähkä'
 	| 'Biokeskus 3'
 	| 'Infokeskus alakerta'
@@ -36,6 +36,7 @@ type Restaurants =
 	| 'Chemicum Opettajien ravintola'
 	| 'Cafe Portaali';
 
+// Type of data fetched from the Unicafe API
 type RestaurantData = {
 	id: number;
 	title: string;
@@ -75,9 +76,48 @@ type RestaurantData = {
 	};
 };
 
+// Type of food data returned by the Unicafe API
 type FoodData = RestaurantData['menuData']['menus'][number]['data'][number];
 
-const mapFood = ({ name, price, meta }: FoodData) => {
+// Type of food data to be returned to the client
+type Food = {
+	name: string;
+	category: string;
+	price: string;
+	meta: {
+		diet: string[];
+		allergies: string[];
+		responsibility: string[];
+	};
+};
+
+// Type of data to be returned to the client
+export type Restaurant = {
+	name: string;
+	menuGroups: Partial<Record<string, Food[]>>;
+	lunchHours: string;
+	openingHour: Date | undefined;
+	closingHour: Date | undefined;
+};
+
+// Testing offset in hours
+const testingOffset = 0;
+const getNow = () =>
+	process.env.NODE_ENV === 'development'
+		? addHours(new Date(), testingOffset)
+		: new Date();
+
+// Find a menu for the current day and map it to the client format
+const getMenu = (restaurant: RestaurantData): Food[] | undefined =>
+	restaurant.menuData.menus
+		.find(
+			({ date }) =>
+				date === format(getNow(), 'EEE dd.MM.', { locale: en })
+		)
+		?.data.map(mapFood);
+
+// Map food data to the client format
+const mapFood = ({ name, price, meta }: FoodData): Food => {
 	return {
 		name,
 		category: price.name,
@@ -93,98 +133,81 @@ const mapFood = ({ name, price, meta }: FoodData) => {
 	};
 };
 
-// Testing offest in hours
-const testingOffset = 24;
-
-const groupByPriceCategory = groupBy(
-	({ category }: ReturnType<typeof mapFood>) => category.toLowerCase()
+// Group food by price category: vegan, meat, special, notices
+const groupByPriceCategory = groupBy(({ category }: Food) =>
+	category.toLowerCase()
 );
 
-function mapRestaurant(restaurant: RestaurantData) {
-	const { menuData } = restaurant;
-
-	const now =
-		process.env.NODE_ENV === 'development'
-			? addHours(new Date(), testingOffset)
-			: new Date();
-
-	// Find a menu for today
-	const menu = menuData.menus.find(
-		({ date }) => date === format(now, 'EEE dd.MM.', { locale: en })
-	)?.data;
-
-	if (!menu || menu.length === 0) return undefined;
-
-	// Get opening and closing hours
-	const lunchHours = menuData.visitingHours.lounas.items?.[0].hours;
-	const [openingHour = undefined, closingHour = undefined] = lunchHours
+// Parse lunch hours and convert them to UTC
+const getLunchHours = (restaurant: RestaurantData) => {
+	const lunchHours =
+		restaurant.menuData.visitingHours.lounas.items?.[0].hours;
+	const [openingHour, closingHour] = lunchHours
 		.split('–')
-		.map((hour) => {
-			const date = parse(hour, 'HH:mm', now);
-			return zonedTimeToUtc(date, 'Europe/Helsinki').toISOString();
-		});
+		.map((hour) => parse(hour, 'HH:mm', getNow()) || undefined);
 
-	// Group the menu by price category
-	const menuGroups = groupByPriceCategory(menu.map(mapFood));
-
-	// openingHour and closingHour are in UTC (Z)
 	return {
-		name: menuData.name,
-		menuGroups,
-		lunchHours,
+		lunchHours, // String representation for display
 		openingHour,
 		closingHour,
 	};
-}
-
-export type Restaurant = NonNullable<ReturnType<typeof mapRestaurant>>;
+};
 
 const BASE_URL = 'https://unicafe.fi/wp-json/swiss/v1/restaurants/?lang=en';
 
 const fetchTag = 'restaurants';
 
-export const getRestaurants = async (restaurants: Restaurants[]) => {
-	const allRestaurants = await GET<RestaurantData[]>(BASE_URL, {
+/**
+ * Fetches the specified restaurants from the Unicafe API
+ * @param restaurants Restaurants to fetch in the order they should be displayed
+ * @returns Restaurants with a non-empty menu that are currently open
+ */
+export const getRestaurants = async (
+	restaurants: Restaurants[]
+): Promise<Restaurant[]> => {
+	return await GET<RestaurantData[]>(BASE_URL, {
 		next: {
 			tags: [fetchTag],
 			revalidate: 3600,
 		},
-	});
-
-	const menus = {} as Record<Restaurants, Restaurant>;
-
-	restaurants.forEach((restaurantName) => {
-		// Find the matching restaurant
-		const restaurantData = allRestaurants.find(({ title }) =>
-			title.includes(restaurantName)
-		);
-		if (!restaurantData) return;
-
-		// Map the restaurant data to a usable format and get opening and closing hours
-		const restaurant = mapRestaurant(restaurantData);
-
-		if (!restaurant) return;
-
-		// Only include the restaurant if it is open
-		if (
-			!restaurant.openingHour ||
-			!restaurant.closingHour ||
-			isWithinInterval(
-				process.env.NODE_ENV === 'development'
-					? addHours(new Date(), testingOffset)
-					: new Date(),
-				{
-					start: addMinutes(new Date(restaurant.openingHour), -210),
-					end: new Date(restaurant.closingHour),
-				}
+	}).then((allRestaurants) =>
+		allRestaurants
+			// Only include specified restaurants
+			.filter(
+				(
+					restaurant
+				): restaurant is RestaurantData & { title: Restaurants } =>
+					restaurants.some((name) => restaurant.title === name)
 			)
-		) {
-			menus[restaurantName] = restaurant;
-			return;
-		}
-	});
-
-	return menus;
+			// Sort restaurants in the order specified in the input array
+			.sort(
+				(a, b) =>
+					restaurants.indexOf(a.title) - restaurants.indexOf(b.title)
+			)
+			// Map data to client format
+			.map((restaurant) => ({
+				name: restaurant.menuData.name,
+				menuGroups: groupByPriceCategory(getMenu(restaurant) || []),
+				...getLunchHours(restaurant),
+			}))
+			// Filter out restaurants that have an empty menu
+			.filter(
+				(restaurant) =>
+					restaurant.menuGroups &&
+					Object.values(restaurant.menuGroups).flat().length > 0
+			)
+			// Only include restaurants that are currently open, opening soon
+			// Include restaurants that don't have properly resolving opening hours in case there actually is a menu available for that day
+			.filter(
+				(restaurant) =>
+					!restaurant.openingHour ||
+					!restaurant.closingHour ||
+					isWithinInterval(getNow(), {
+						start: addMinutes(restaurant.openingHour, -210),
+						end: restaurant.closingHour,
+					})
+			)
+	);
 };
 
 export const revalidateRestaurants = async () => {
