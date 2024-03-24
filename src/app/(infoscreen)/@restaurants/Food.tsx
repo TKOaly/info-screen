@@ -47,19 +47,21 @@ export const Food = ({
 			<div className="flex w-full flex-wrap gap-2">
 				{displayMeta && (
 					<>
-						{price && <Chip variant="warning">{`${price} €`}</Chip>}
+						{price && Number(price) > 0 && (
+							<Chip variant="warning">{`${price} €`}</Chip>
+						)}
 						{responsibility.join('').includes('Ilmasto') && (
-							<Chip className="bg-green-500 text-grey-800">
+							<Chip className="bg-green-500 text-black/70">
 								Climate choice
 							</Chip>
 						)}
 						{responsibility.join('').includes('kala') && (
-							<Chip className="bg-sky-500 text-grey-800">
+							<Chip className="bg-sky-500 text-black/70">
 								Fish
 							</Chip>
 						)}
-						{Number(price) < 2 && (
-							<Chip className="bg-pink-300 text-grey-800">
+						{Number(price) < 2 && Number(price) > 0 && (
+							<Chip className="bg-pink-300 text-black/70">
 								Dessert
 							</Chip>
 						)}

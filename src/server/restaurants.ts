@@ -1,13 +1,19 @@
 'use server';
 
 import {
+	addDays,
 	addHours,
 	addMinutes,
+	addYears,
 	format,
+	isBefore,
+	isSameDay,
 	isWithinInterval,
 	parse,
+	setHours,
 } from 'date-fns';
 import en from 'date-fns/locale/en-US';
+import fi from 'date-fns/locale/fi';
 import { revalidateTag } from 'next/cache';
 import { groupBy } from 'ramda';
 import { GET } from './wrappers';
@@ -46,6 +52,7 @@ type RestaurantData = {
 			lounas: {
 				items: {
 					closedException: boolean;
+					exception: boolean;
 					label: string;
 					hours: string;
 				}[];
@@ -138,16 +145,110 @@ const groupByPriceCategory = groupBy(({ category }: Food) =>
 	category.toLowerCase()
 );
 
-// Parse lunch hours and convert them to UTC
+/*
+Parse lunch times and exceptions and find the current days correct hours
+
+Opening times are (probably) in format 11:00–14:00 (with an em dash, not a hyphen, probably)
+
+Normal day labels are (probably) in format "Ma" or "Ma–To" (again with an em dash)
+
+Exception day labels are (probably) in format "23.1." or "2.11.–13.11." (again with an em dash)
+
+Exceptions are (usually) in format 11:00–14:00 (again with an em dash) or "Suljettu"
+
+Exceptions seem to have property "exception" set to true but no property "closedException"
+even though normal days have "closedException" set to false but no "exception" property
+
+I'M SO SORRY TO ANYONE WHO HAS TO READ THE FOLLOWING MONSTROSITY
+*/
 const getLunchHours = (restaurant: RestaurantData) => {
+	// Group times by exceptions and normal open times
+	const times = groupBy(
+		(
+			times: RestaurantData['menuData']['visitingHours']['lounas']['items'][number]
+		) =>
+			times.closedException || times.exception ? 'exceptions' : 'normal'
+	)(restaurant.menuData.visitingHours.lounas.items);
+
+	// Get string representation for the day's opening and closing hours for lunch
 	const lunchHours =
+		// Check if there is an exception for the current day
+		times.exceptions?.find((time) => {
+			// Check if the exception is a range of days
+			if (/–/.test(time.label)) {
+				const [startDate, endDate] = time.label
+					.split('–')
+					.map(
+						(date) =>
+							parse(date, 'd.M.', setHours(getNow(), 0)) ||
+							undefined
+					);
+
+				// Check if current date is in that range
+				return isWithinInterval(getNow(), {
+					start: startDate,
+					end: addDays(
+						// Add a day so that the end date is inclusive
+						isBefore(endDate, startDate)
+							? addYears(endDate, 1) // If the end date is the next year, it ends up at the start of the year at first so we have to add a year
+							: endDate,
+						1
+					),
+				});
+			}
+
+			// If the exception is a single day check if it's today
+			const date = parse(time.label, 'd.M.', getNow());
+			return isSameDay(date, getNow());
+		})?.hours ||
+		// Otherwise find the normal open hours by weekdays
+		times.normal?.find((time) => {
+			// Check if the weekdays are a range
+			if (/–/.test(time.label)) {
+				const [startDay, endDay] = time.label.split('–').map(
+					(date) =>
+						parse(date, 'cccccc', setHours(getNow(), 0), {
+							locale: fi,
+						}) || undefined
+				);
+
+				// Check if current date is in that range
+				return isWithinInterval(getNow(), {
+					start: startDay,
+					end: addDays(
+						isBefore(endDay, startDay)
+							? addYears(endDay, 1)
+							: endDay,
+						1
+					),
+				});
+			}
+
+			// If it is a single weekday check if that is today
+			const day = parse(time.label, 'cccccc', getNow(), {
+				locale: fi,
+			});
+			return isSameDay(day, getNow());
+		})?.hours ||
+		// Otherwise return the opening hours of the first entry in the list
+		// This should be Mon-Fri or the most common range for the restaurant
 		restaurant.menuData.visitingHours.lounas.items?.[0].hours;
+
+	// If the hours is not a range of times e.g. "Suljettu" return the lunch hours as is
+	if (!lunchHours || !/–/.test(lunchHours))
+		return {
+			lunchHours,
+			openingHour: undefined,
+			closingHour: undefined,
+		};
+
+	// Get the actual opening and closing times
 	const [openingHour, closingHour] = lunchHours
 		.split('–')
 		.map((hour) => parse(hour, 'HH:mm', getNow()) || undefined);
 
 	return {
-		lunchHours, // String representation for display
+		lunchHours,
 		openingHour,
 		closingHour,
 	};

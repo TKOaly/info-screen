@@ -19,14 +19,14 @@ const CarouselLayout = ({
 }: CarouselLayoutProps) => {
 	return (
 		<main className="flex max-h-screen min-h-screen">
-			<Carousel loop duration={60} delay={10000}>
+			<Carousel loop duration={60} delay={20000}>
 				{events}
 				<Slide className="items-center justify-center bg-black text-yellow-400">
 					<Logo />
 				</Slide>
 				{/* <LofiGirl /> */}
-				{/* transit */}
 				{restaurants}
+				{/* transit */}
 				{lectures}
 				{ilotalo}
 				{children}

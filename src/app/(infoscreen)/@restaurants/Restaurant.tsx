@@ -12,9 +12,13 @@ export const Restaurant = ({ restaurant }: RestaurantMenuProps) => (
 	<div className="flex min-h-0 w-full flex-col items-center gap-y-4">
 		<h1 className="-mb-4 text-4xl">{restaurant.name}</h1>
 		{restaurant.lunchHours && (
-			<p className="text-xl">Lunch {restaurant.lunchHours}</p>
+			<p className="text-xl">
+				{/suljettu/i.test(restaurant.lunchHours)
+					? 'Restaurant closed'
+					: `Lunch ${restaurant.lunchHours}`}
+			</p>
 		)}
-		<div className="scrollbar-none overflow-y-auto rounded-t-2xl pb-4">
+		<div className="scrollbar-none w-full overflow-y-auto rounded-t-2xl pb-4">
 			<div className="flex w-full flex-col items-center gap-y-3">
 				<Menu menu={restaurant.menuGroups} />
 			</div>
