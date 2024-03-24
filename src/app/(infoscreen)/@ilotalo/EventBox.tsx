@@ -14,7 +14,7 @@ export const EventBox = async ({ event }: { event: IlotaloEvent }) => {
 				</div>
 			)}
 			<div
-				className={`flex size-full flex-col justify-between gap-2 rounded-2xl bg-black/10 p-3 pt-2 ${event.isClosed && 'ring-4 ring-red-600'}`}
+				className={`flex size-full flex-col justify-between gap-2 rounded-2xl bg-black/10 p-3 pt-2 ${event.isClosed && 'pt-4 ring-4 ring-red-600'}`}
 				key={event.name}
 			>
 				<p className="text-wrap text-xl font-semibold">{event.name}</p>
