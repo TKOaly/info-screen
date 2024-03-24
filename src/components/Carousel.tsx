@@ -114,7 +114,7 @@ export const Slide = ({
 		<div
 			className={`flex shrink-0 grow-0 ${fullWidth ? 'basis-full' : 'basis-1/2'} pr-6`}
 			// This is appended by Embla anyways to handle slide animations, avoid hydration mismatch
-			style={{ transform: `translate3d(0px, 0px, 0px);` }}
+			style={{ transform: `translate3d(0px, 0px, 0px)` }}
 		>
 			{/* Makes sure a 1px line is not left at the sides at the end of the slide animation */}
 			<div className="flex flex-auto p-0.5">
