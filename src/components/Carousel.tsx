@@ -5,7 +5,7 @@ import { type EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Play } from 'lucide-react';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 type CarouselProps = {
 	delay?: number;
@@ -36,15 +36,27 @@ export const Carousel = ({
 
 	// Show play button when autoplay is stopped
 	const [autoplay, setAutoplay] = React.useState(true);
+
 	useEffect(() => {
 		if (!emblaApi) return;
 		emblaApi.on('autoplay:stop', () => setAutoplay(false));
 		emblaApi.on('autoplay:play', () => setAutoplay(true));
 	}, [emblaApi]);
 
-	const resumeAutoplay = () => {
+	const resumeAutoplay = useCallback(() => {
 		if (emblaApi) emblaApi.plugins().autoplay?.play();
-	};
+	}, [emblaApi]);
+
+	useEffect(() => {
+		if (!autoplay) {
+			return;
+		}
+
+		// Resume autoplay after 5 minutes
+		const autoplayTimeout = setTimeout(resumeAutoplay, 1000 * 60 * 5);
+
+		return () => clearTimeout(autoplayTimeout);
+	}, [autoplay, resumeAutoplay]);
 
 	// Register keyboard event listener to document on mount
 	useEffect(() => {
