@@ -1,7 +1,7 @@
-import { RestaurantMenu } from '@/app/(infoscreen)/@restaurants/Restaurant';
 import { Slide } from '@/components/Carousel';
 import { getRestaurants } from '@/server/restaurants';
 import CloseRestaurants from './CloseRestaurants';
+import { Restaurant } from './Restaurant';
 
 const Restaurants = async () => {
 	const restaurants = await getRestaurants([
@@ -35,9 +35,7 @@ const Restaurants = async () => {
 								</p>
 							</div>
 						);
-					return (
-						<RestaurantMenu key={name} restaurant={restaurant} />
-					);
+					return <Restaurant key={name} restaurant={restaurant} />;
 				})}
 			</div>
 		</Slide>

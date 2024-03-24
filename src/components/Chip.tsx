@@ -13,7 +13,7 @@ const variants = {
 	secondary: 'bg-grey-100 text-grey-800',
 	error: 'bg-red-600 text-white',
 	info: 'bg-sky-600 text-grey-100',
-	success: 'bg-green-600 text-grey-800',
+	success: 'bg-green-600 text-grey-100',
 	green: 'bg-green-600 text-grey-800',
 	warning: 'bg-yellow-400 text-grey-800',
 	special: 'bg-purple-500 text-grey-800',

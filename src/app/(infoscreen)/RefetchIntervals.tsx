@@ -30,7 +30,7 @@ const RefetchIntervals = () => {
 			3 * 60 * 60 * 1000
 		);
 
-		// Interval for changing language
+		// Interval for switching language in event titles etc.
 		const langInterval = setInterval(
 			async () => setlang(((lang + 1) % 2) as 0 | 1),
 			10 * 1000

@@ -30,7 +30,7 @@ const DateChip = ({
 			className={merge(
 				'bg-white/10 text-white',
 				className,
-				isToday(startDate) && 'bg-sky-600 text-white'
+				isToday(startDate) && 'bg-blue-600 text-white'
 			)}
 		>
 			{format(startDate, labelFormat)}

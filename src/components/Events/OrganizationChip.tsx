@@ -52,7 +52,7 @@ const orgColors: Partial<
 		text: 'text-[#ffffff]',
 	},
 	MaO: {
-		bg: 'ring-[#669999] ring-1 ring-offset-1 ring-offset-transparent bg-[#ffffff]',
+		bg: 'ring-[#55bb88] ring-1 ring-offset-1 ring-offset-transparent bg-[#ffffff]',
 		text: 'text-[#2b2a29]',
 	},
 	EGEA: {
@@ -163,7 +163,7 @@ const OrganizationChip = ({
 		? `${orgColor?.bg} ${orgColor?.text}`
 		: undefined;
 
-	const nameOnly = org.replace(/ (?:ry|rf)$/, ''); // Remove organization suffixes
+	const nameOnly = org.replace(/ (?:ry|rf)$/i, ''); // Remove organization suffixes
 	const displayName = // Truncate name if it's too long
 		truncate > 0 && nameOnly.length > truncate
 			? `${nameOnly.slice(0, truncate).trim()}…`
@@ -171,7 +171,7 @@ const OrganizationChip = ({
 
 	return (
 		<Chip
-			className={`font-serif ${orgTWColor || 'bg-black/20 text-grey-50'}`}
+			className={`font-serif text-base ${orgTWColor || 'bg-black/20 text-grey-100'}`}
 		>
 			<I18n>{displayName}</I18n>
 		</Chip>

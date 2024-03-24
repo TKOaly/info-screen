@@ -17,7 +17,10 @@ export const EventBox = async ({ event }: { event: IlotaloEvent }) => {
 					startDate={startDate}
 					className="bg-org-matlu-primary text-black"
 				/>
-				<OrganizationChip org={organization} truncate={16} />
+				<OrganizationChip
+					org={organization.toUpperCase()}
+					truncate={16}
+				/>
 			</div>
 		</div>
 	);
