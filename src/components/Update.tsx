@@ -25,7 +25,6 @@ export const Update = ({ initialVersion }: { initialVersion: string }) => {
 				console.log(
 					`New version '${sha}' (current '${initialVersion}') detected, reloading page`
 				);
-				console.log(window);
 				window.location.reload();
 			}
 		}, VERSION_CHECK_INTERVAL);
