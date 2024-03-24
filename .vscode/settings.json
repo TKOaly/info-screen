@@ -5,14 +5,12 @@
 		"source.organizeImports": "explicit",
 		"source.fixAll.eslint": "explicit"
 	},
-	"files.exclude": {
+	"search.exclude": {
 		"node_modules": true,
 		"next-env.d.ts": true,
 		"postcss.config.js": true,
 		"package-lock.json": true,
-		".next": true
-	},
-	"search.exclude": {
+		".next": true,
 		"public": true
 	},
 	"editor.unicodeHighlight.allowedCharacters": {
