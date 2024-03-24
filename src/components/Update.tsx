@@ -3,7 +3,7 @@
 import { getServerVersion } from '@/server/version';
 import { useEffect } from 'react';
 
-const VERSION_CHECK_INTERVAL = 1000 * 60 * 5;
+const VERSION_CHECK_INTERVAL = 1000 * 60 * 1;
 
 /**
  * Hard reloads the page when the reported server version changes and at 1 minute past midnight.
