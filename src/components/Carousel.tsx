@@ -48,9 +48,12 @@ export const Carousel = ({
 	}, [emblaApi]);
 
 	useEffect(() => {
-		const autoplayTimeout = !autoplay
-			? setTimeout(resumeAutoplay, 300_000)
-			: undefined;
+		if (!autoplay) {
+			return;
+		}
+
+		const autoplayTimeout = setTimeout(resumeAutoplay, 300_000);
+
 		return () => clearTimeout(autoplayTimeout);
 	}, [autoplay, resumeAutoplay]);
 
