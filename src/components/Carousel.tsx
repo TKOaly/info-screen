@@ -46,6 +46,23 @@ export const Carousel = ({
 		if (emblaApi) emblaApi.plugins().autoplay?.play();
 	};
 
+	// Register keyboard event listener to document on mount
+	useEffect(() => {
+		const handleKeyDown = (e: KeyboardEvent) => {
+			if (e.key === 'ArrowRight') {
+				emblaApi?.scrollNext();
+				e.preventDefault();
+			}
+			if (e.key === 'ArrowLeft') {
+				emblaApi?.scrollPrev();
+				e.preventDefault();
+			}
+		};
+
+		document.addEventListener('keydown', handleKeyDown);
+		return () => document.removeEventListener('keydown', handleKeyDown);
+	}, [emblaApi]);
+
 	return (
 		<>
 			{/* Carousel */}
