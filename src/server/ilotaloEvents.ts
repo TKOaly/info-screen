@@ -80,15 +80,15 @@ export const getIlotaloEvents = async () => {
 		},
 	})
 		.then((events) => {
-			const now = addMinutes(new Date(), -15).valueOf() / 1000;
+			const now = addMinutes(new Date(), -60).valueOf() / 1000;
 			const futureCutoff = addYears(new Date(), 1).valueOf() / 1000;
 			return events
 				.filter(
 					({ starts }) => Number(starts) > now // Only future events
 				)
 				.filter(
-					({ isClosed, organization, room }) =>
-						(!isClosed && room !== 'Kokoushuone') || // No meetings or closed events
+					({ organization, room }) =>
+						room !== 'Kokoushuone' || // No meetings
 						// Unless organizer is one of these
 						/tko-äly|matlu|limes/i.test(organization)
 				)

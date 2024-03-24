@@ -79,7 +79,7 @@ type RestaurantData = {
 // Type of food data returned by the Unicafe API
 type FoodData = RestaurantData['menuData']['menus'][number]['data'][number];
 
-// Type of food data to be returned to the client
+// Type of food data to be returned to the component
 type Food = {
 	name: string;
 	category: string;
@@ -91,7 +91,7 @@ type Food = {
 	};
 };
 
-// Type of data to be returned to the client
+// Type of data to be returned to the component
 export type Restaurant = {
 	name: string;
 	menuGroups: Partial<Record<string, Food[]>>;
@@ -107,7 +107,7 @@ const getNow = () =>
 		? addHours(new Date(), testingOffset)
 		: new Date();
 
-// Find a menu for the current day and map it to the client format
+// Find a menu for the current day and map it to the component format
 const getMenu = (restaurant: RestaurantData): Food[] | undefined =>
 	restaurant.menuData.menus
 		.find(
@@ -116,7 +116,7 @@ const getMenu = (restaurant: RestaurantData): Food[] | undefined =>
 		)
 		?.data.map(mapFood);
 
-// Map food data to the client format
+// Map food data to the component format
 const mapFood = ({ name, price, meta }: FoodData): Food => {
 	return {
 		name,
@@ -164,8 +164,8 @@ const fetchTag = 'restaurants';
  */
 export const getRestaurants = async (
 	restaurants: Restaurants[]
-): Promise<Restaurant[]> => {
-	return await GET<RestaurantData[]>(BASE_URL, {
+): Promise<Restaurant[]> =>
+	await GET<RestaurantData[]>(BASE_URL, {
 		next: {
 			tags: [fetchTag],
 			revalidate: 3600,
@@ -184,7 +184,7 @@ export const getRestaurants = async (
 				(a, b) =>
 					restaurants.indexOf(a.title) - restaurants.indexOf(b.title)
 			)
-			// Map data to client format
+			// Map data to component format
 			.map((restaurant) => ({
 				name: restaurant.menuData.name,
 				menuGroups: groupByPriceCategory(getMenu(restaurant) || []),
@@ -208,7 +208,6 @@ export const getRestaurants = async (
 					})
 			)
 	);
-};
 
 export const revalidateRestaurants = async () => {
 	'use server';
