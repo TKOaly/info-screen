@@ -52,7 +52,8 @@ export const Carousel = ({
 			return;
 		}
 
-		const autoplayTimeout = setTimeout(resumeAutoplay, 300_000);
+		// Resume autoplay after 5 minutes
+		const autoplayTimeout = setTimeout(resumeAutoplay, 1000 * 60 * 5);
 
 		return () => clearTimeout(autoplayTimeout);
 	}, [autoplay, resumeAutoplay]);
