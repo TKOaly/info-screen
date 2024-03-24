@@ -3,17 +3,21 @@ import React from 'react';
 import { merge } from '../lib/utils';
 import fonts from './fonts';
 import './globals.css';
+import { getServerVersion } from '@/server/version';
+import { Update } from '@/components/Update';
 
 export const metadata: Metadata = {
 	title: 'Infoscreen',
 	description: 'TKO-äly ry Infoscreen',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const initialVersion = await getServerVersion();
+
 	return (
 		<html lang="en">
 			<body
@@ -23,6 +27,7 @@ export default function RootLayout({
 				)}
 			>
 				{children}
+				<Update initialVersion={initialVersion} />
 			</body>
 		</html>
 	);
