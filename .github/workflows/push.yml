@@ -27,3 +27,12 @@ jobs:
                   export TAG=$(echo $GITHUB_SHA | cut -c1-7)
                   docker build -t ${{ secrets.PRIVATE_REGISTRY_URL }}/infoscreen:$TAG .
                   docker push ${{ secrets.PRIVATE_REGISTRY_URL }}/infoscreen:$TAG
+
+            - name: Trigger deployment
+              uses: aurelien-baudet/workflow-dispatch@v2
+              with:
+                  token: ${{ secrets.DEPLOYMENT_PAT }}
+                  workflow: Bump Service
+                  inputs: '{"service": "infoscreen", "tag": "sha-${{ steps.sha.outputs.value }}"}'
+                  repo: TKOaly/tko-aly-k8s-configs
+                  ref: main
