@@ -1,0 +1,17 @@
+{
+	"env": { "browser": true, "node": true, "es2023": true },
+	"extends": [
+		"eslint:recommended",
+		"next",
+		"plugin:import/recommended",
+		"plugin:tailwindcss/recommended",
+		"prettier"
+	],
+	"parserOptions": {
+		"ecmaFeatures": { "jsx": true },
+		"ecmaVersion": 2023
+	},
+	"rules": {
+		"no-undef": "off"
+	}
+}

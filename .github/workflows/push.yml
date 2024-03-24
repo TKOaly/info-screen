@@ -1,30 +1,29 @@
 name: Push
 
 on:
-  push:
-    branches: [ main ]
+    push:
+        branches: [main]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
-    
-    permissions:
-      contents: read
+        permissions:
+            contents: read
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v2
 
-      - name: Log into registry
-        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-        with:
-          registry: ${{ secrets.PRIVATE_REGISTRY_URL }}
-          username: ${{ secrets.PRIVATE_REGISTRY_USER }}
-          password: ${{ secrets.PRIVATE_REGISTRY_PW }}
+            - name: Log into registry
+              uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
+              with:
+                  registry: ${{ secrets.PRIVATE_REGISTRY_URL }}
+                  username: ${{ secrets.PRIVATE_REGISTRY_USER }}
+                  password: ${{ secrets.PRIVATE_REGISTRY_PW }}
 
-      - name: Build and push Docker image
-        run: |
-          export TAG=$(echo $GITHUB_SHA | cut -c1-7)
-          docker build -t ${{ secrets.PRIVATE_REGISTRY_URL }}/infoscreen:$TAG .
-          docker push ${{ secrets.PRIVATE_REGISTRY_URL }}/infoscreen:$TAG
+            - name: Build and push Docker image
+              run: |
+                  export TAG=$(echo $GITHUB_SHA | cut -c1-7)
+                  docker build -t ${{ secrets.PRIVATE_REGISTRY_URL }}/infoscreen:$TAG .
+                  docker push ${{ secrets.PRIVATE_REGISTRY_URL }}/infoscreen:$TAG
