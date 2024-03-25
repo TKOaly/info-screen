@@ -142,11 +142,11 @@ export const getLectureReservations = async () => {
 				(isSameDay(a.start, b.start)
 					? 0
 					: compareAsc(a.start, addMinutes(b.start, 1))) ||
+				compareAsc(a.start, addMinutes(b.start, 1)) ||
 				programsOrder.indexOf(a.program || programsOrder[0]) -
 					programsOrder.indexOf(
 						b.program || programsOrder.slice(-1)[0]
-					) ||
-				compareAsc(a.start, addMinutes(b.start, 1))
+					)
 		);
 
 	return groupLectures(filtered);
