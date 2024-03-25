@@ -48,11 +48,9 @@ export const Carousel = ({
 	}, [emblaApi]);
 
 	useEffect(() => {
-		if (!autoplay) {
-			return;
-		}
+		if (autoplay) return;
 
-		// Resume autoplay after 5 minutes
+		// Resume autoplay after 5 minutes of inactivity
 		const autoplayTimeout = setTimeout(resumeAutoplay, 1000 * 60 * 5);
 
 		return () => clearTimeout(autoplayTimeout);
