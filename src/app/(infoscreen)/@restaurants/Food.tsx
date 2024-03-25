@@ -43,7 +43,7 @@ export const Food = ({
 		<div
 			className={`flex flex-col gap-y-3 rounded-2xl p-3 ${foodColor(food)}`}
 		>
-			<p className="pl-1 text-xl font-semibold text-white">{name}</p>
+			<p className="pl-1 text-2xl font-semibold text-white">{name}</p>
 			<div className="flex w-full flex-wrap gap-2">
 				{displayMeta && (
 					<>

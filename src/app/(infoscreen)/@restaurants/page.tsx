@@ -8,7 +8,7 @@ const Restaurants = async () => {
 		'Exactum',
 		'Chemicum',
 		'Kaivopiha',
-		'Myöhä Café & Bar',
+		// 'Myöhä Café & Bar',
 	]);
 
 	if (restaurants.length === 0) return null;
