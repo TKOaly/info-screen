@@ -35,7 +35,7 @@ const IlotaloEvents = async () => {
 											<I18n>{relativeWeek}</I18n>
 										</h3>
 										<hr className="w-full" />
-										<div className="grid grid-cols-3 gap-4 p-4">
+										<div className="grid grid-cols-2 gap-4 p-4">
 											{events.map((event) => (
 												<EventBox
 													key={event.id}
