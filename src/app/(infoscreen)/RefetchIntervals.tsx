@@ -4,6 +4,7 @@ import { langAtom } from '@/lib/lang';
 import { revalidateTKOalyEvents } from '@/server/TKOalyEvents';
 import { revalidateIlotaloEvents } from '@/server/ilotaloEvents';
 import { revalidateLectures } from '@/server/lectures';
+import { revalidatePohinaFactor } from '@/server/pohinaFactor';
 import { revalidateRestaurants } from '@/server/restaurants';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
@@ -20,6 +21,10 @@ const RefetchIntervals = () => {
 		const ilotaloEventsInterval = setInterval(
 			async () => await revalidateIlotaloEvents(),
 			15 * 60 * 1000
+		);
+		const pohinaFactorInterval = setInterval(
+			async () => await revalidatePohinaFactor(),
+			2 * 60 * 1000
 		);
 		const restaurantsInterval = setInterval(
 			async () => await revalidateRestaurants(),
@@ -39,6 +44,7 @@ const RefetchIntervals = () => {
 		return () => {
 			clearInterval(TKOalyEventsInterval);
 			clearInterval(ilotaloEventsInterval);
+			clearInterval(pohinaFactorInterval);
 			clearInterval(restaurantsInterval);
 			clearInterval(lecturesInterval);
 			clearInterval(langInterval);
