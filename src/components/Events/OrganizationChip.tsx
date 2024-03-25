@@ -1,6 +1,6 @@
 import { Organization as IlotaloOrg } from '@/server/ilotaloEvents';
 import Chip from '../Chip';
-import I18n from '../I18n';
+import I18n from '../I18n/I18n';
 
 // Common organizations that might be found in Tekis events
 // Not using the actual values as they are not consistent

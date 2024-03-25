@@ -1,6 +1,7 @@
 'use server';
 
 import { Slide } from '@/components/Carousel';
+import I18n from '@/components/I18n/I18n';
 import { getLectureReservations } from '@/server/lectures';
 import Image from 'next/image';
 import { Fragment } from 'react';
@@ -24,7 +25,7 @@ const Lectures = async () => {
 					/>
 				</div>
 				<h2 className="z-50 rounded-xl bg-grey-900 px-2 text-4xl font-bold text-grey-100">
-					Lectures
+					<I18n>Luennot // Lectures</I18n>
 				</h2>
 				<div className="scrollbar-none -mt-20 flex min-h-0 w-full overflow-y-auto">
 					<div className="flex min-h-0 w-full flex-col pt-14">
@@ -36,7 +37,7 @@ const Lectures = async () => {
 									return (
 										<Fragment key={relativeWeek}>
 											<h3 className="p-2 text-2xl font-bold">
-												{relativeWeek}
+												<I18n>{relativeWeek}</I18n>
 											</h3>
 											<hr className="w-full" />
 											<div className="grid grid-cols-2 gap-4 p-4">

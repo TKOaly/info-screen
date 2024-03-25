@@ -1,12 +1,20 @@
 import OrganizationChip from '@/components/Events/OrganizationChip';
+import I18n from '@/components/I18n/I18n';
 import { IlotaloEvent, Room } from '@/server/ilotaloEvents';
 import DateChip from '../../../components/Events/DateChip';
 
-const i18nRoomMapping: Record<Room, string> = {
+const enRoomMapping: Record<Room, string> = {
 	Kerhotila: 'Clubroom',
 	Kokoushuone: 'Meeting room',
 	'Christina Regina': 'Klusteri',
 	Oleskelutila: 'Lounge',
+};
+
+const fiRoomMapping: Record<Room, string> = {
+	Kerhotila: 'Kerhotila',
+	Kokoushuone: 'Kokoushuone',
+	'Christina Regina': 'Klusteri',
+	Oleskelutila: 'Oleskelutila',
 };
 
 export const EventBox = async ({ event }: { event: IlotaloEvent }) => {
@@ -17,7 +25,12 @@ export const EventBox = async ({ event }: { event: IlotaloEvent }) => {
 		<div className="relative text-clip">
 			{isClosed && (
 				<div className="absolute right-0 top-0 rounded-es-xl rounded-se-lg bg-red-600 px-2 text-base font-semibold text-grey-100">
-					<p className="-mt-1">{i18nRoomMapping[room]} reservation</p>
+					<p className="-mt-1">
+						<I18n>
+							{fiRoomMapping[room]} varattu //{' '}
+							{enRoomMapping[room]} reservation
+						</I18n>
+					</p>
 				</div>
 			)}
 			<div

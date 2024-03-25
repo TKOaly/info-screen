@@ -1,14 +1,16 @@
 'use server';
 
-import { customLocale } from '@/lib/eventUtils';
+import { mappedRelativeDateToken } from '@/lib/eventUtils';
 import {
 	addHours,
 	addMinutes,
 	compareAsc,
 	formatRelative,
 	isSameDay,
+	isSameWeek,
 	isWithinInterval,
 } from 'date-fns';
+import { enGB } from 'date-fns/locale';
 import ical from 'ical';
 import { revalidateTag } from 'next/cache';
 import { groupBy } from 'ramda';
@@ -27,6 +29,40 @@ export type Lecture = {
 	summary: string;
 	location: string | undefined;
 	program: string | undefined;
+};
+
+// This is a custom locale for separating events into the desired groups
+type relativeDateToken = 'today' | 'tomorrow' | 'nextWeek' | 'other';
+type mappedRelativeLectureDateToken =
+	| "'Tänään // Today'"
+	| "'Huomenna // Tomorrow'"
+	| mappedRelativeDateToken;
+
+const customLocale = {
+	...enGB,
+	formatRelative: function (
+		// We are only grouping future events
+		formatRelativeToken: relativeDateToken,
+		date: Date,
+		baseDate: Date
+	): mappedRelativeLectureDateToken {
+		if (
+			formatRelativeToken === 'nextWeek' &&
+			isSameWeek(date, baseDate, { weekStartsOn: 1 })
+		)
+			return "'Tällä viikolla // This week'";
+
+		const relativeTokens: Record<
+			relativeDateToken,
+			mappedRelativeLectureDateToken
+		> = {
+			today: "'Tänään // Today'",
+			tomorrow: "'Huomenna // Tomorrow'",
+			nextWeek: "'Ensi viikolla // Next week'",
+			other: "'Myöhemmin // Later'",
+		};
+		return relativeTokens[formatRelativeToken];
+	},
 };
 
 const groupLectures = groupBy((a: Lecture) =>
