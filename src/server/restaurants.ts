@@ -3,7 +3,6 @@
 import {
 	addDays,
 	addHours,
-	addMinutes,
 	addYears,
 	format,
 	isBefore,
@@ -297,14 +296,14 @@ export const getRestaurants = async (
 					restaurant.menuGroups &&
 					Object.values(restaurant.menuGroups).flat().length > 0
 			)
-			// Only include restaurants that are currently open, opening soon
+			// Only include restaurants that are currently open or opening today
 			// Include restaurants that don't have properly resolving opening hours in case there actually is a menu available for that day
 			.filter(
 				(restaurant) =>
 					!restaurant.openingHour ||
 					!restaurant.closingHour ||
 					isWithinInterval(getNow(), {
-						start: addMinutes(restaurant.openingHour, -210),
+						start: setHours(restaurant.openingHour, 6),
 						end: restaurant.closingHour,
 					})
 			)
