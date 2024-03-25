@@ -30,7 +30,7 @@ export const Update = ({ initialVersion }: { initialVersion: string }) => {
 		}, VERSION_CHECK_INTERVAL);
 
 		return () => clearInterval(interval);
-	}, []);
+	}, [initialVersion]);
 
 	/** Reload the page at 1 minute past midnight in local TZ */
 	useEffect(() => {

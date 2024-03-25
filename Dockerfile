@@ -16,7 +16,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ARG COMMIT_SHA
-ENV NEXT_COMMIT_SHA ${COMMIT_SHA}
+# Expose the commit sha environment variable to next for cached build steps
+ENV NEXT_COMMIT_SHA $COMMIT_SHA
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -52,5 +53,8 @@ ENV PORT 3000
 
 # Force timezone to be Helsinki
 ENV TZ Europe/Helsinki
+
+ARG COMMIT_SHA
+ENV NEXT_COMMIT_SHA $COMMIT_SHA
 
 CMD ["node", "server.js"]
