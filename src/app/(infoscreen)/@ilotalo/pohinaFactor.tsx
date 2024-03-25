@@ -1,13 +1,7 @@
 import Chip from '@/components/Chip';
 import I18n from '@/components/I18n/I18n';
 import { getPohinaFactor } from '@/server/pohinaFactor';
-import {
-	differenceInMinutes,
-	isFriday,
-	isSaturday,
-	isWithinInterval,
-	setHours,
-} from 'date-fns';
+import { differenceInMinutes, isWithinInterval, setHours } from 'date-fns';
 
 const PohinaFactor = async () => {
 	const { pohinaFactor, lastActivity } = await getPohinaFactor();
@@ -27,8 +21,7 @@ const PohinaFactor = async () => {
 		!isWithinInterval(new Date(), {
 			start: setHours(new Date(), 7),
 			end: setHours(new Date(), 18),
-		}) &&
-		(isFriday(new Date()) || isSaturday(new Date())) && (
+		}) && (
 			<>
 				<h3 className="p-2 text-2xl font-bold">
 					<I18n>Pöhinäkerroin // Pöhinäfactor</I18n>
