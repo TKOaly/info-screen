@@ -127,7 +127,7 @@ export const getTKOalyEvents = async () => {
 	return await getUpcomingEvents()
 		.then(separateWeeklyAndMeetings)
 		.then(({ Weekly, rest }) => ({
-			Weekly,
+			'Viikottaiset // Weekly': Weekly,
 			...groupBy(
 				(a: TKOalyEvent) =>
 					formatRelative(new Date(a.starts), new Date(), {

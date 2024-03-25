@@ -1,5 +1,6 @@
 import { EventLine } from '@/app/(infoscreen)/@events/EventLine';
 import { Slide } from '@/components/Carousel';
+import I18n from '@/components/I18n/I18n';
 import { getTKOalyEvents } from '@/server/TKOalyEvents';
 import Image from 'next/image';
 import { Fragment } from 'react';
@@ -20,7 +21,7 @@ const Events = async () => {
 					/>
 				</div>
 				<h2 className="z-50 rounded-xl bg-grey-900 px-2 text-4xl font-bold">
-					Events
+					<I18n>Tapahtumat // Events</I18n>
 				</h2>
 				<div className="scrollbar-none -mt-20 flex min-h-0 w-full overflow-y-auto">
 					<div className="flex min-h-0 w-full flex-col pt-16">
@@ -29,7 +30,7 @@ const Events = async () => {
 								([relativeWeek, events]) => (
 									<Fragment key={relativeWeek}>
 										<h3 className="px-2 py-1 text-2xl font-bold text-org-tkoaly">
-											{relativeWeek}
+											<I18n>{relativeWeek}</I18n>
 										</h3>
 										<hr className="w-full text-org-tkoaly" />
 										{events.map((event, idx) => (

@@ -1,6 +1,7 @@
 import Chip from '@/components/Chip';
 import TimeChip from '@/components/Events/TimeChip';
 import { Lecture } from '@/server/lectures';
+import { isToday, isTomorrow } from 'date-fns';
 import DateChip from '../../../components/Events/DateChip';
 
 export const LectureBox = async ({ lecture }: { lecture: Lecture }) => {
@@ -12,19 +13,25 @@ export const LectureBox = async ({ lecture }: { lecture: Lecture }) => {
 			className={`flex flex-col justify-between gap-3 rounded-2xl bg-grey-950 p-3 pt-2 `}
 			key={lecture.uid}
 		>
-			<p className="text-wrap text-xl font-semibold">{lecture.summary}</p>
-			<div className="flex items-end justify-between gap-2">
+			<p className="w-5/6 text-wrap text-xl font-semibold">
+				{lecture.summary}
+			</p>
+			<div
+				className={`${(isToday(start) || isTomorrow(start)) && '-mt-8'} flex items-end justify-between gap-2`}
+			>
 				<div className="flex flex-col items-start gap-2">
 					<TimeChip
 						startDate={start}
 						className="bg-transparent text-grey-100 ring-2 ring-grey-700"
 					/>
-					<DateChip
-						startDate={start}
-						showWeekday
-						showTime={false}
-						className="bg-transparent text-grey-100 ring-2 ring-grey-700"
-					/>
+					{!isToday(start) && !isTomorrow(start) && (
+						<DateChip
+							startDate={start}
+							showWeekday
+							showTime={false}
+							className="bg-transparent text-grey-100 ring-2 ring-grey-700"
+						/>
+					)}
 				</div>
 				<div className="-mr-2 flex flex-col items-end gap-2">
 					{lecture.program && (

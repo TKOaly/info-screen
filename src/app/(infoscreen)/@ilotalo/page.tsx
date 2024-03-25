@@ -1,6 +1,7 @@
 'use server';
 
 import { Slide } from '@/components/Carousel';
+import I18n from '@/components/I18n/I18n';
 import { getIlotaloEvents } from '@/server/ilotaloEvents';
 import Image from 'next/image';
 import { Fragment } from 'react';
@@ -31,7 +32,7 @@ const IlotaloEvents = async () => {
 								([relativeWeek, events]) => (
 									<Fragment key={relativeWeek}>
 										<h3 className="p-2 text-2xl font-bold">
-											{relativeWeek}
+											<I18n>{relativeWeek}</I18n>
 										</h3>
 										<hr className="w-full" />
 										<div className="grid grid-cols-3 gap-4 p-4">

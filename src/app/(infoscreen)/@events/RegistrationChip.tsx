@@ -1,5 +1,6 @@
 'use client';
 
+import I18n from '@/components/I18n/I18n';
 import {
 	addHours,
 	differenceInMilliseconds,
@@ -108,12 +109,18 @@ const RegistrationChip = ({
 	switch (registrationState) {
 		case 'open':
 			return (
-				<Chip variant="success">{`${noteEmoji} Registration open`}</Chip>
+				<Chip variant="success">
+					<I18n>
+						{`${noteEmoji} Ilmoittautuminen auki // ${noteEmoji} Registration open`}
+					</I18n>
+				</Chip>
 			);
 		case 'future':
 			return (
 				<Chip variant="info">
-					{`${noteEmoji} Registration starts ${format(startDate, 'dd.MM. HH:mm')}`}
+					<I18n>
+						{`${noteEmoji} Ilmoittautuminen alkaa ${format(startDate, 'dd.MM. HH:mm')} // ${noteEmoji} Registration starts ${format(startDate, 'dd.MM. HH:mm')}`}
+					</I18n>
 				</Chip>
 			);
 		case 'countdown':
@@ -125,7 +132,13 @@ const RegistrationChip = ({
 				/>
 			);
 		case 'closing':
-			return <Chip variant="error">{`${noteEmoji} closes today`}</Chip>;
+			return (
+				<Chip variant="error">
+					<I18n>
+						{`${noteEmoji} Sulkeutuu tänään // ${noteEmoji} closes today`}
+					</I18n>
+				</Chip>
+			);
 	}
 
 	return null;

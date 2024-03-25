@@ -1,5 +1,5 @@
 import OrganizationChip from '@/components/Events/OrganizationChip';
-import I18n from '@/components/I18n';
+import I18n from '@/components/I18n/I18n';
 import { type TKOalyEvent } from '@/server/TKOalyEvents';
 import DateChip from '../../../components/Events/DateChip';
 import RegistrationChip from './RegistrationChip';

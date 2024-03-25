@@ -1,14 +1,18 @@
 import { merge } from '@/lib/utils';
 import { format, isThisWeek, isToday, isTomorrow } from 'date-fns';
 import Chip from '../Chip';
+import I18n from '../I18n/I18n';
+import I18nFormatDate from '../I18n/I18nFormatDate';
 
 const getLabelFormat = (
 	startDate: Date,
 	showWeekday?: boolean,
 	showTime?: boolean
 ) => {
-	if (isToday(startDate)) return `'Today'${showTime ? ' HH:mm' : ''}`;
-	if (isTomorrow(startDate)) return `'Tomorrow'${showTime ? ' HH:mm' : ''}`;
+	if (isToday(startDate))
+		return `'Tänään'${showTime ? ' HH:mm' : ''} // 'Today'${showTime ? ' HH:mm' : ''}`;
+	if (isTomorrow(startDate))
+		return `'Huomenna'${showTime ? ' HH:mm' : ''} // 'Tomorrow'${showTime ? ' HH:mm' : ''}`;
 	if (isThisWeek(startDate)) return `EEEE${showTime ? ' HH:mm' : ''}`;
 	return `${showWeekday ? 'EEEE ' : ''}dd.MM.`;
 };
@@ -33,7 +37,11 @@ const DateChip = ({
 				isToday(startDate) && 'bg-blue-600 text-white'
 			)}
 		>
-			{format(startDate, labelFormat)}
+			{/\/\//.test(labelFormat) ? (
+				<I18n>{format(startDate, labelFormat)}</I18n>
+			) : (
+				<I18nFormatDate date={startDate} format={labelFormat} />
+			)}
 		</Chip>
 	);
 };

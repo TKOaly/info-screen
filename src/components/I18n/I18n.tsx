@@ -5,15 +5,17 @@ import { useLang } from '@/lib/lang';
 // Changes between Finnish and English on an interval
 // Children is shape of "Finnish // English"
 // If no // is found, the string is returned as is
-const I18n = ({ children }: { children: string }) => {
+const I18n = ({ children }: { children: string | string[] }) => {
 	const lang = useLang();
 
-	const string = children.includes('//')
-		? children
+	const joined = Array.isArray(children) ? children.join('') : children;
+
+	const string = joined.includes('//')
+		? joined
 				.split('//')
 				[lang].replace(/(?<= |\/|^)\/(?= |\/|&)/, '')
 				.trim()
-		: children;
+		: joined;
 
 	return string || children;
 };
