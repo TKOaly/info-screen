@@ -19,9 +19,6 @@ const Restaurants = async () => {
 			className="flex-col bg-green-unari px-8 pt-3 font-gabarito"
 		>
 			<CloseRestaurants restaurants={restaurants} />
-			<div className="flex w-full justify-center py-2">
-				<h1 className="text-5xl">Unicafe</h1>
-			</div>
 			<div
 				className={`grid size-full ${'grid-cols-' + Math.min(restaurants.length, 4)} gap-8`}
 			>

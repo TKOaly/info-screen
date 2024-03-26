@@ -3,6 +3,7 @@
 import { revalidateTKOalyEvents } from '@/server/TKOalyEvents';
 import { revalidateIlotaloEvents } from '@/server/ilotaloEvents';
 import { revalidateLectures } from '@/server/lectures';
+import { revalidatePohinaFactor } from '@/server/pohinaFactor';
 import { revalidateRestaurants } from '@/server/restaurants';
 import { useEffect } from 'react';
 
@@ -17,6 +18,10 @@ export const RefetchIntervals = () => {
 			async () => await revalidateIlotaloEvents(),
 			15 * 60 * 1000
 		);
+		const pohinaFactorInterval = setInterval(
+			async () => await revalidatePohinaFactor(),
+			5 * 60 * 1000
+		);
 		const restaurantsInterval = setInterval(
 			async () => await revalidateRestaurants(),
 			60 * 60 * 1000
@@ -29,6 +34,7 @@ export const RefetchIntervals = () => {
 		return () => {
 			clearInterval(TKOalyEventsInterval);
 			clearInterval(ilotaloEventsInterval);
+			clearInterval(pohinaFactorInterval);
 			clearInterval(restaurantsInterval);
 			clearInterval(lecturesInterval);
 		};
