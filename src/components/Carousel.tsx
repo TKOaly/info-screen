@@ -110,7 +110,7 @@ export const Slide = ({
 	return (
 		// Handles slide width and vertical gap
 		<div
-			className={`flex shrink-0 grow-0 ${fullWidth ? 'basis-full' : 'basis-1/2'} pr-6`}
+			className={`flex shrink-0 grow-0 basis-full ${!fullWidth && 'lg:basis-1/2'} pr-6`}
 			// This is appended by Embla anyways to handle slide animations, avoid hydration mismatch
 			style={{ transform: `translate3d(0px, 0px, 0px)` }}
 		>
