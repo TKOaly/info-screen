@@ -1,9 +1,9 @@
 'use client';
 
-import RefetchIntervals from './RefetchIntervals';
-
-const RefetchRoutes = () => {
-	return <RefetchIntervals />;
+const CarouselPage = () => {
+	// This page is here make this route valid
+	// All content is in ./layout and parallel routes
+	return null;
 };
 
-export default RefetchRoutes;
+export default CarouselPage;
