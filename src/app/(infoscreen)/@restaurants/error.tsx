@@ -2,7 +2,7 @@
 
 import { Slide } from '@/components/Carousel';
 
-const EventsError = () => {
+const RestaurantsError = () => {
 	return (
 		<Slide className="bg-green-unari pb-0">
 			<div className="flex min-h-full min-w-full flex-col items-center justify-center  gap-y-16">
@@ -15,4 +15,4 @@ const EventsError = () => {
 	);
 };
 
-export default EventsError;
+export default RestaurantsError;
