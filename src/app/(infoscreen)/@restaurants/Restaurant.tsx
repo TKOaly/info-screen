@@ -10,7 +10,7 @@ type RestaurantMenuProps = {
 
 export const Restaurant = ({ restaurant }: RestaurantMenuProps) => (
 	<div className="flex min-h-0 w-full flex-col items-center gap-y-4">
-		<h1 className="-mb-4 text-4xl">{restaurant.name}</h1>
+		<h1 className="-mb-4 text-4xl">Unicafe {restaurant.name}</h1>
 		{restaurant.lunchHours && (
 			<p className="text-xl">
 				{/suljettu/i.test(restaurant.lunchHours)
