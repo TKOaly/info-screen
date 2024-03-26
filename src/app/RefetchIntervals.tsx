@@ -20,7 +20,7 @@ export const RefetchIntervals = () => {
 		);
 		const pohinaFactorInterval = setInterval(
 			async () => await revalidatePohinaFactor(),
-			2 * 60 * 1000
+			5 * 60 * 1000
 		);
 		const restaurantsInterval = setInterval(
 			async () => await revalidateRestaurants(),

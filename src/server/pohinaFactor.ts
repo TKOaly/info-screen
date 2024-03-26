@@ -33,7 +33,7 @@ export const getPohinaFactor = async () =>
 	await GET<SensorData>(ENTRYPOINT, {
 		next: {
 			tags: [fetchTag],
-			revalidate: 2 * 60,
+			revalidate: 5 * 60,
 		},
 	}).then(({ events, pohinaFactor }) => ({
 		lastActivity: max(
