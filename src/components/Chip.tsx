@@ -32,6 +32,7 @@ const Chip = ({
 				variants[variant],
 				className
 			)}
+			tabIndex={-1}
 			{...rest}
 		>
 			{children}
