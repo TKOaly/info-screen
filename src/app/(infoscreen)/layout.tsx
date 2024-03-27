@@ -1,5 +1,4 @@
-import { Carousel, Slide, SlideElement } from '@/components/Carousel';
-import Logo from '@/components/Logo';
+import { Carousel, SlideElement } from '@/components/Carousel';
 
 type CarouselLayoutProps = {
 	events: SlideElement;
@@ -21,9 +20,6 @@ const CarouselLayout = ({
 		<main className="flex max-h-screen min-h-screen">
 			<Carousel loop duration={60} delay={20000}>
 				{events}
-				<Slide className="items-center justify-center bg-black text-yellow-400">
-					<Logo />
-				</Slide>
 				{/* <LofiGirl /> */}
 				{restaurants}
 				{/* transit */}
