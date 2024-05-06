@@ -165,8 +165,24 @@ const getLunchHours = (restaurant: RestaurantData) => {
 	const times = groupBy(
 		(
 			times: RestaurantData['menuData']['visitingHours']['lounas']['items'][number]
-		) =>
-			times.closedException || times.exception ? 'exceptions' : 'normal'
+		) => {
+			if (times.closedException) {
+				// If hours are '11:00–19:45' and the label is 'ma-pe', this is a mistake and should be 'normal'
+				// This is a horrid hack. I'm so sorry.
+				// FIXME: Remove this as soon as Unicafe API gives a sensible response
+				if (times.hours === '11:00–19:45' && times.label === 'Ma–Pe') {
+					return 'normal';
+				}
+
+				return 'exceptions';
+			}
+
+			if (times.exception) {
+				return 'exceptions';
+			}
+
+			return 'normal';
+		}
 	)(restaurant.menuData.visitingHours.lounas.items);
 
 	// Get string representation for the day's opening and closing hours for lunch
