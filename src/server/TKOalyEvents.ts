@@ -81,7 +81,8 @@ const getUpcomingEvents = async () =>
 const separateWeeklyAndMeetings = (events: TKOalyEvent[]) => {
 	const Weekly: TKOalyEvent[] = [];
 	const rest = events.filter((event) => {
-		if (/weekly|club\b|kerho\b|vuoro\b/i.test(event.name)) {
+	 	// TODO: Have this not be manual. The best solution would be for the backend to support weekly events natively.
+		if (/weekly|chess club\b|shakkikerho\b|liikuntavuoro\b/i.test(event.name)) {
 			if (
 				!Weekly.some(
 					(e) =>
