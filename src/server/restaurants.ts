@@ -14,7 +14,6 @@ import {
 import en from 'date-fns/locale/en-US';
 import fi from 'date-fns/locale/fi';
 import { revalidateTag } from 'next/cache';
-import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
 // Restaurants available in the Unicafe API
@@ -108,6 +107,7 @@ export type Restaurant = {
 
 // Testing offset in hours
 const testingOffset = 0;
+
 const getNow = () =>
 	process.env.NODE_ENV === 'development'
 		? addHours(new Date(), testingOffset)
@@ -140,9 +140,10 @@ const mapFood = ({ name, price, meta }: FoodData): Food => {
 };
 
 // Group food by price category: vegan, meat, special, notices
-const groupByPriceCategory = groupBy(({ category }: Food) =>
-	category.toLowerCase()
-);
+const groupByPriceCategory = (menu: Food[]) =>
+	Object.fromEntries(
+		Map.groupBy(menu, (food) => food.category.toLowerCase())
+	);
 
 /*
 Parse lunch times and exceptions and find the current days correct hours
@@ -162,10 +163,9 @@ I'M SO SORRY TO ANYONE WHO HAS TO READ THE FOLLOWING MONSTROSITY
 */
 const getLunchHours = (restaurant: RestaurantData) => {
 	// Group times by exceptions and normal open times
-	const times = groupBy(
-		(
-			times: RestaurantData['menuData']['visitingHours']['lounas']['items'][number]
-		) => {
+	const times = Object.groupBy(
+		restaurant.menuData.visitingHours.lounas.items,
+		(times) => {
 			if (times.closedException) {
 				// If hours are '11:00–19:45' and the label is 'ma-pe', this is a mistake and should be 'normal'
 				// This is a horrid hack. I'm so sorry.
@@ -183,7 +183,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 
 			return 'normal';
 		}
-	)(restaurant.menuData.visitingHours.lounas.items);
+	);
 
 	// Get string representation for the day's opening and closing hours for lunch
 	const lunchHours =

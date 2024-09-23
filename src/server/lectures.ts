@@ -13,7 +13,6 @@ import {
 import { enGB } from 'date-fns/locale';
 import ical from 'ical';
 import { revalidateTag } from 'next/cache';
-import { groupBy } from 'ramda';
 
 const ENTRYPOINTS = [
 	'https://optime.helsinki.fi/icalservice/Department/920', // TKT & BSCS
@@ -65,12 +64,13 @@ const customLocale = {
 	},
 };
 
-const groupLectures = groupBy((a: Lecture) =>
-	formatRelative(a.start, new Date(), {
-		locale: customLocale,
-		weekStartsOn: 1,
-	})
-);
+const groupLectures = (lectures: Lecture[]) =>
+	Object.groupBy(lectures, (lecture) =>
+		formatRelative(lecture.start, new Date(), {
+			locale: customLocale,
+			weekStartsOn: 1,
+		})
+	);
 
 const fetchTag = 'lecture_reservations';
 

@@ -1,4 +1,5 @@
 import { getServerVersion } from '@/server/version';
+import { Provider } from 'jotai';
 import type { Metadata } from 'next';
 import React from 'react';
 import { merge } from '../lib/utils';
@@ -28,10 +29,12 @@ export default async function RootLayout({
 					'h-screen overflow-hidden font-gabarito antialiased'
 				)}
 			>
-				{children}
-				<LanguageInterval />
-				<RefetchIntervals />
-				<Update initialVersion={initialVersion} />
+				<Provider>
+					{children}
+					<LanguageInterval />
+					<RefetchIntervals />
+					<Update initialVersion={initialVersion} />
+				</Provider>
 			</body>
 		</html>
 	);
