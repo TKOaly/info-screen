@@ -190,7 +190,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 		// Check if there is an exception for the current day
 		times.exceptions?.find((time) => {
 			// Check if the exception is a range of days
-			if (/–/.test(time.label)) {
+			if (time.label.includes('–')) {
 				const [startDate, endDate] = time.label
 					.split('–')
 					.map(
@@ -219,7 +219,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 		// Otherwise find the normal open hours by weekdays
 		times.normal?.find((time) => {
 			// Check if the weekdays are a range
-			if (/–/.test(time.label)) {
+			if (time.label.includes('–')) {
 				const [startDay, endDay] = time.label.split('–').map(
 					(date) =>
 						parse(date, 'cccccc', setHours(getNow(), 0), {
@@ -250,7 +250,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 		restaurant.menuData.visitingHours.lounas.items?.[0].hours;
 
 	// If the hours is not a range of times e.g. "Suljettu" return the lunch hours as is
-	if (!lunchHours || !/–/.test(lunchHours))
+	if (!lunchHours?.includes('–'))
 		return {
 			lunchHours,
 			openingHour: undefined,

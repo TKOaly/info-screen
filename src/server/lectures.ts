@@ -1,6 +1,6 @@
 'use server';
 
-import { mappedRelativeDateToken } from '@/lib/eventUtils';
+import { type mappedRelativeDateToken } from '@/lib/eventUtils';
 import {
 	addHours,
 	addMinutes,

@@ -1,4 +1,4 @@
-import { Organization as IlotaloOrg } from '@/server/ilotaloEvents';
+import { type Organization as IlotaloOrg } from '@/server/ilotaloEvents';
 import Chip from '../Chip';
 import I18n from '../I18n/I18n';
 

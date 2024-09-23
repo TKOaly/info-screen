@@ -1,6 +1,6 @@
 import OrganizationChip from '@/components/Events/OrganizationChip';
 import I18n from '@/components/I18n/I18n';
-import { IlotaloEvent, Room } from '@/server/ilotaloEvents';
+import { type IlotaloEvent, type Room } from '@/server/ilotaloEvents';
 import DateChip from '../../../components/Events/DateChip';
 
 const enRoomMapping: Record<Room, string> = {

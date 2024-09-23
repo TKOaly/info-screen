@@ -1,6 +1,6 @@
 'use client';
 
-import { Restaurant, revalidateRestaurants } from '@/server/restaurants';
+import { type Restaurant, revalidateRestaurants } from '@/server/restaurants';
 import { differenceInMilliseconds } from 'date-fns';
 import { useEffect } from 'react';
 

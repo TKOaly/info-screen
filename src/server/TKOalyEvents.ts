@@ -1,6 +1,6 @@
 'use server';
 
-import { customLocale, mappedRelativeDateToken } from '@/lib/eventUtils';
+import { customLocale, type mappedRelativeDateToken } from '@/lib/eventUtils';
 import {
 	addMinutes,
 	compareAsc,

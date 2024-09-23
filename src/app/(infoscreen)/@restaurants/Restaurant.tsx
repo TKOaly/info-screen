@@ -1,6 +1,6 @@
 import {
-	Restaurant as RestaurantType,
-	Restaurants,
+	type Restaurant as RestaurantType,
+	type Restaurants,
 } from '@/server/restaurants';
 import { Food } from './Food';
 

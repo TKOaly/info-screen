@@ -37,7 +37,7 @@ const DateChip = ({
 				isToday(startDate) && 'bg-blue-600 text-white'
 			)}
 		>
-			{/\/\//.test(labelFormat) ? (
+			{labelFormat.includes('//') ? (
 				<I18n>{format(startDate, labelFormat)}</I18n>
 			) : (
 				<I18nFormatDate date={startDate} format={labelFormat} />

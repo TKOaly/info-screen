@@ -4,7 +4,7 @@ import { addMinutes, addYears, compareAsc, formatRelative } from 'date-fns';
 
 const ENTRYPOINT = 'https://ilotalo.matlu.fi/api/events/';
 
-import { customLocale, mappedRelativeDateToken } from '@/lib/eventUtils';
+import { customLocale, type mappedRelativeDateToken } from '@/lib/eventUtils';
 import { revalidateTag } from 'next/cache';
 import { GET } from './wrappers';
 

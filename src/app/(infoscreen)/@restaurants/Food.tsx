@@ -1,5 +1,5 @@
 import Chip from '@/components/Chip';
-import { Restaurant } from '@/server/restaurants';
+import { type Restaurant } from '@/server/restaurants';
 
 type FoodType = NonNullable<
 	NonNullable<Restaurant['menuGroups'][number]>[number]
