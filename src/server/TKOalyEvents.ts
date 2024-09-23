@@ -9,7 +9,6 @@ import {
 	startOfToday,
 } from 'date-fns';
 import { revalidateTag } from 'next/cache';
-import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
 const ENTRYPOINT = 'https://event-api.tko-aly.fi/api/events';
@@ -81,8 +80,12 @@ const getUpcomingEvents = async () =>
 const separateWeeklyAndMeetings = (events: TKOalyEvent[]) => {
 	const Weekly: TKOalyEvent[] = [];
 	const rest = events.filter((event) => {
-	 	// TODO: Have this not be manual. The best solution would be for the backend to support weekly events natively.
-		if (/weekly|chess club\b|shakkikerho\b|liikuntavuoro\b/i.test(event.name)) {
+		// TODO: Have this not be manual. The best solution would be for the backend to support weekly events natively.
+		if (
+			/weekly|chess club\b|shakkikerho\b|liikuntavuoro\b/i.test(
+				event.name
+			)
+		) {
 			if (
 				!Weekly.some(
 					(e) =>
@@ -129,13 +132,14 @@ export const getTKOalyEvents = async () => {
 		.then(separateWeeklyAndMeetings)
 		.then(({ Weekly, rest }) => ({
 			'Viikottaiset // Weekly': Weekly,
-			...groupBy(
+			...Object.groupBy(
+				rest,
 				(a: TKOalyEvent) =>
 					formatRelative(new Date(a.starts), new Date(), {
 						locale: customLocale,
 						weekStartsOn: 1,
 					}) as mappedRelativeDateToken
-			)(rest),
+			),
 		}));
 };
 

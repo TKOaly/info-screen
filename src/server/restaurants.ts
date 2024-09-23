@@ -14,7 +14,6 @@ import {
 import en from 'date-fns/locale/en-US';
 import fi from 'date-fns/locale/fi';
 import { revalidateTag } from 'next/cache';
-import { groupBy } from 'ramda';
 import { GET } from './wrappers';
 
 // Restaurants available in the Unicafe API
@@ -140,9 +139,8 @@ const mapFood = ({ name, price, meta }: FoodData): Food => {
 };
 
 // Group food by price category: vegan, meat, special, notices
-const groupByPriceCategory = groupBy(({ category }: Food) =>
-	category.toLowerCase()
-);
+const groupByPriceCategory = (menu: Food[]) =>
+	Object.groupBy(menu, ({ category }) => category.toLowerCase());
 
 /*
 Parse lunch times and exceptions and find the current days correct hours
@@ -162,7 +160,8 @@ I'M SO SORRY TO ANYONE WHO HAS TO READ THE FOLLOWING MONSTROSITY
 */
 const getLunchHours = (restaurant: RestaurantData) => {
 	// Group times by exceptions and normal open times
-	const times = groupBy(
+	const times = Object.groupBy(
+		restaurant.menuData.visitingHours.lounas.items,
 		(
 			times: RestaurantData['menuData']['visitingHours']['lounas']['items'][number]
 		) => {
@@ -183,7 +182,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 
 			return 'normal';
 		}
-	)(restaurant.menuData.visitingHours.lounas.items);
+	);
 
 	// Get string representation for the day's opening and closing hours for lunch
 	const lunchHours =

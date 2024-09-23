@@ -6,7 +6,6 @@ const ENTRYPOINT = 'https://ilotalo.matlu.fi/api/events/';
 
 import { customLocale, mappedRelativeDateToken } from '@/lib/eventUtils';
 import { revalidateTag } from 'next/cache';
-import { groupBy, sort } from 'ramda';
 import { GET } from './wrappers';
 
 const mapEvents = (events: IlotaloEventData[]) =>
@@ -15,17 +14,20 @@ const mapEvents = (events: IlotaloEventData[]) =>
 		starts: new Date(Number(event.starts) * 1000),
 	}));
 
-const sortEvents = sort((a: IlotaloEvent, b: IlotaloEvent) =>
-	compareAsc(Number(a.starts), Number(b.starts))
-);
+const sortEvents = (events: IlotaloEvent[]) =>
+	events.sort((a: IlotaloEvent, b: IlotaloEvent) =>
+		compareAsc(Number(a.starts), Number(b.starts))
+	);
 
-const groupEvents = groupBy(
-	(a: IlotaloEvent) =>
-		formatRelative(a.starts, new Date(), {
-			locale: customLocale,
-			weekStartsOn: 1,
-		}) as mappedRelativeDateToken
-);
+const groupEvents = (events: IlotaloEvent[]) =>
+	Object.groupBy(
+		events,
+		(event: IlotaloEvent) =>
+			formatRelative(event.starts, new Date(), {
+				locale: customLocale,
+				weekStartsOn: 1,
+			}) as mappedRelativeDateToken
+	);
 
 export type Room =
 	| 'Kerhotila'
