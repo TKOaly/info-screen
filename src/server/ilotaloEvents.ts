@@ -22,7 +22,7 @@ const sortEvents = (events: IlotaloEvent[]) =>
 const groupEvents = (events: IlotaloEvent[]) =>
 	Object.groupBy(
 		events,
-		(event: IlotaloEvent) =>
+		(event) =>
 			formatRelative(event.starts, new Date(), {
 				locale: customLocale,
 				weekStartsOn: 1,

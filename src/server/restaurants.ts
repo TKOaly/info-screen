@@ -107,6 +107,7 @@ export type Restaurant = {
 
 // Testing offset in hours
 const testingOffset = 0;
+
 const getNow = () =>
 	process.env.NODE_ENV === 'development'
 		? addHours(new Date(), testingOffset)
@@ -140,7 +141,9 @@ const mapFood = ({ name, price, meta }: FoodData): Food => {
 
 // Group food by price category: vegan, meat, special, notices
 const groupByPriceCategory = (menu: Food[]) =>
-	Object.groupBy(menu, ({ category }) => category.toLowerCase());
+	Object.fromEntries(
+		Map.groupBy(menu, (food) => food.category.toLowerCase())
+	);
 
 /*
 Parse lunch times and exceptions and find the current days correct hours
@@ -162,9 +165,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 	// Group times by exceptions and normal open times
 	const times = Object.groupBy(
 		restaurant.menuData.visitingHours.lounas.items,
-		(
-			times: RestaurantData['menuData']['visitingHours']['lounas']['items'][number]
-		) => {
+		(times) => {
 			if (times.closedException) {
 				// If hours are '11:00–19:45' and the label is 'ma-pe', this is a mistake and should be 'normal'
 				// This is a horrid hack. I'm so sorry.
