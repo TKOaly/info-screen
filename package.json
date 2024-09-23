@@ -28,14 +28,16 @@
 		"@types/ical": "^0.8.3",
 		"@types/node": "^20.11.30",
 		"@types/react": "^18.2.66",
+		"@typescript-eslint/eslint-plugin": "^8.6.0",
+		"@typescript-eslint/parser": "^8.6.0",
 		"autoprefixer": "^10.4.18",
 		"eslint": "^8.57.0",
 		"eslint-config-next": "^14.1.3",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.18.2",
-		"eslint-plugin-tailwindcss": "^3.15.1",
 		"postcss": "^8.4.35",
 		"prettier": "^3.2.5",
+		"prettier-plugin-tailwindcss": "^0.6.6",
 		"tailwindcss": "^3.4.1"
 	}
 }

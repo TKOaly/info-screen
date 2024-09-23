@@ -9,7 +9,7 @@
 		"incremental": true,
 		"esModuleInterop": true,
 		"module": "esnext",
-		"moduleResolution": "node",
+		"moduleResolution": "bundler",
 		"resolveJsonModule": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
@@ -25,6 +25,14 @@
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
+	"include": [
+		"next-env.d.ts",
+		".next/types/**/*.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"**/*.mjs",
+		"**/*.cjs",
+		"**/*.js"
+	],
 	"exclude": ["node_modules"]
 }
