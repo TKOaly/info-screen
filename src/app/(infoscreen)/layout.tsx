@@ -1,5 +1,4 @@
-import { Carousel, Slide, type SlideElement } from '@/components/Carousel';
-import Logo from '@/components/Logo';
+import { Carousel, type SlideElement } from '@/components/Carousel';
 
 type CarouselLayoutProps = Record<string, SlideElement>;
 
@@ -7,6 +6,7 @@ const CarouselLayout = ({
 	events,
 	restaurants,
 	ad,
+	transit,
 	lectures,
 	ilotalo,
 	children,
@@ -15,12 +15,9 @@ const CarouselLayout = ({
 		<main className="flex max-h-screen min-h-screen">
 			<Carousel loop duration={40} delay={20000}>
 				{events}
-				<Slide className="items-center justify-center bg-black text-yellow-400">
-					<Logo />
-				</Slide>
-				{/* transit */}
-				{restaurants}
 				{ad}
+				{restaurants}
+				{transit}
 				{lectures}
 				{ilotalo}
 				{children}
