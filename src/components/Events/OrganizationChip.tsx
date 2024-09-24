@@ -1,4 +1,4 @@
-import { Organization as IlotaloOrg } from '@/server/ilotaloEvents';
+import { type Organization as IlotaloOrg } from '@/server/ilotaloEvents';
 import Chip from '../Chip';
 import I18n from '../I18n/I18n';
 
@@ -171,7 +171,7 @@ const OrganizationChip = ({
 
 	return (
 		<Chip
-			className={`font-serif text-base ${orgTWColor || 'bg-black/20 text-grey-100'}`}
+			className={`font-serif text-base ${orgTWColor ?? 'bg-black/20 text-grey-100'}`}
 		>
 			<I18n>{displayName}</I18n>
 		</Chip>

@@ -1,4 +1,4 @@
-import { Carousel, Slide, SlideElement } from '@/components/Carousel';
+import { Carousel, Slide, type SlideElement } from '@/components/Carousel';
 import Logo from '@/components/Logo';
 
 type CarouselLayoutProps = {

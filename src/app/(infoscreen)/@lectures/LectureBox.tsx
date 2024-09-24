@@ -1,6 +1,6 @@
 import Chip from '@/components/Chip';
 import TimeChip from '@/components/Events/TimeChip';
-import { Lecture } from '@/server/lectures';
+import { type Lecture } from '@/server/lectures';
 import { isToday, isTomorrow } from 'date-fns';
 import DateChip from '../../../components/Events/DateChip';
 
@@ -10,7 +10,7 @@ export const LectureBox = async ({ lecture }: { lecture: Lecture }) => {
 
 	return (
 		<div
-			className={`flex flex-col justify-between gap-3 rounded-2xl bg-grey-950 p-3 pt-2 `}
+			className={`flex flex-col justify-between gap-3 rounded-2xl bg-grey-950 p-3 pt-2`}
 			key={lecture.uid}
 		>
 			<p className="w-5/6 text-wrap text-xl font-semibold">

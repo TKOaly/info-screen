@@ -119,7 +119,7 @@ export const Slide = ({
 				{/* Colored slide */}
 				<div
 					className={merge(
-						'flex flex-col min-h-0 min-w-full bg-grey-800',
+						'flex min-h-0 min-w-full flex-col bg-grey-800',
 						className,
 						'overflow-hidden rounded-2xl'
 					)}

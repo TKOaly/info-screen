@@ -1,3 +1,10 @@
+**/.git
+**/node_modules
+
 build
 coverage
-node_modules
+
+.next
+next-env.d.ts
+
+postcss.config.mjs

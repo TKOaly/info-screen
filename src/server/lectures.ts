@@ -1,6 +1,6 @@
 'use server';
 
-import { mappedRelativeDateToken } from '@/lib/eventUtils';
+import { type mappedRelativeDateToken } from '@/lib/eventUtils';
 import {
 	addHours,
 	addMinutes,
@@ -134,7 +134,7 @@ export const getLectureReservations = async () => {
 			program:
 				description // Match TKT, BSCS, MAT, CSM, DATA, MATR, MAST, LSI
 					?.match(/^.*\n/)?.[0]
-					?.match(/[A-Z]{3,4}(?=\d+\))/)?.[0] || undefined,
+					?.match(/[A-Z]{3,4}(?=\d+\))/)?.[0] ?? undefined,
 		}))
 		.sort(
 			(a, b) =>
@@ -143,9 +143,9 @@ export const getLectureReservations = async () => {
 					? 0
 					: compareAsc(a.start, addMinutes(b.start, 1))) ||
 				compareAsc(a.start, addMinutes(b.start, 1)) ||
-				programsOrder.indexOf(a.program || programsOrder[0]) -
+				programsOrder.indexOf(a.program ?? programsOrder[0]) -
 					programsOrder.indexOf(
-						b.program || programsOrder.slice(-1)[0]
+						b.program ?? programsOrder.slice(-1)[0]
 					)
 		);
 

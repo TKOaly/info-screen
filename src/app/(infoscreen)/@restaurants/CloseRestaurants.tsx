@@ -1,6 +1,6 @@
 'use client';
 
-import { Restaurant, revalidateRestaurants } from '@/server/restaurants';
+import { type Restaurant, revalidateRestaurants } from '@/server/restaurants';
 import { differenceInMilliseconds } from 'date-fns';
 import { useEffect } from 'react';
 
@@ -22,8 +22,8 @@ const CloseRestaurants = ({ restaurants }: { restaurants: Restaurant[] }) => {
 					return;
 
 				return setTimeout(
-					async () => {
-						await revalidateRestaurants();
+					() => {
+						void revalidateRestaurants();
 					},
 					differenceInMilliseconds(closingHour, new Date()) + 10000
 				);

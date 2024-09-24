@@ -24,8 +24,7 @@ export const getVotingActivity = async () => {
 		},
 	});
 	const matlu = data.children.faculties.find(
-		(obj) =>
-			obj && obj.name && obj.name === 'Matemaattis-luonnontieteellinen'
+		(obj) => obj?.name && obj.name === 'Matemaattis-luonnontieteellinen'
 	);
 	return {
 		faculty: matlu?.percentage,

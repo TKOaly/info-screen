@@ -10,7 +10,7 @@ const VotePercentage = async () => {
 	if (!isBefore(new Date(), votingEnds)) return null;
 
 	return (
-		<div className="absolute bottom-4 left-4 flex w-5/12 flex-col items-center border-4  border-yellow-tkoaly bg-grey-900 p-4">
+		<div className="absolute bottom-4 left-4 flex w-5/12 flex-col items-center border-4 border-yellow-tkoaly bg-grey-900 p-4">
 			<TickingChip
 				end={votingEnds}
 				className="absolute left-4 bg-yellow-tkoaly text-black"
