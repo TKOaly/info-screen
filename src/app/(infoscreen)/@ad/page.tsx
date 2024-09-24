@@ -14,6 +14,11 @@ type AdType = {
 const ads: AdType[] = [
 	{ url: '/fuksiaiset.png', until: new Date(2024, 9, 29) },
 	{ url: '/atkytp.png', until: new Date(2024, 10, 15) },
+	{
+		url: '/potentiaali.png',
+		from: new Date(2024, 10, 8),
+		until: new Date(2024, 11, 8),
+	},
 ];
 
 const Ad = () => {
