@@ -7,6 +7,7 @@ import { revalidatePohinaFactor } from '@/server/pohinaFactor';
 import { revalidateRestaurants } from '@/server/restaurants';
 import { useEffect } from 'react';
 
+// This file contains intervals for updating all the slides
 export const RefetchIntervals = () => {
 	useEffect(() => {
 		// Intervals for revalidating slide data

@@ -1,18 +1,12 @@
 import { Carousel, Slide, type SlideElement } from '@/components/Carousel';
 import Logo from '@/components/Logo';
 
-type CarouselLayoutProps = {
-	events: SlideElement;
-	restaurants: SlideElement;
-	transit: SlideElement; // TODO
-	lectures: SlideElement;
-	ilotalo: SlideElement;
-	children: SlideElement;
-};
+type CarouselLayoutProps = Record<string, SlideElement>;
 
 const CarouselLayout = ({
 	events,
 	restaurants,
+	ad,
 	lectures,
 	ilotalo,
 	children,
@@ -24,9 +18,9 @@ const CarouselLayout = ({
 				<Slide className="items-center justify-center bg-black text-yellow-400">
 					<Logo />
 				</Slide>
-				{/* <LofiGirl /> */}
-				{restaurants}
 				{/* transit */}
+				{restaurants}
+				{ad}
 				{lectures}
 				{ilotalo}
 				{children}
