@@ -1,3 +1,4 @@
+import { type StaticImport } from 'next/dist/shared/lib/get-img-props';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo404 from '../../public/404.svg';
@@ -18,7 +19,8 @@ export default function NotFound() {
 					className="animate-spin-slow"
 					width={400}
 					height={400}
-					src={Logo404}
+					src={Logo404 as StaticImport}
+					unoptimized
 					alt="NOT-found"
 				/>
 			</div>

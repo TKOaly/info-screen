@@ -215,7 +215,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 			// If the exception is a single day check if it's today
 			const date = parse(time.label, 'd.M.', getNow());
 			return isSameDay(date, getNow());
-		})?.hours ||
+		})?.hours ??
 		// Otherwise find the normal open hours by weekdays
 		times.normal?.find((time) => {
 			// Check if the weekdays are a range
@@ -244,7 +244,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 				locale: fi,
 			});
 			return isSameDay(day, getNow());
-		})?.hours ||
+		})?.hours ??
 		// Otherwise return the opening hours of the first entry in the list
 		// This should be Mon-Fri or the most common range for the restaurant
 		restaurant.menuData.visitingHours.lounas.items?.[0].hours;
@@ -303,7 +303,7 @@ export const getRestaurants = async (
 			// Map data to component format
 			.map((restaurant) => ({
 				name: restaurant.menuData.name,
-				menuGroups: groupByPriceCategory(getMenu(restaurant) || []),
+				menuGroups: groupByPriceCategory(getMenu(restaurant) ?? []),
 				...getLunchHours(restaurant),
 			}))
 			// Filter out restaurants that have an empty menu

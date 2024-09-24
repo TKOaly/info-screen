@@ -11,23 +11,23 @@ export const RefetchIntervals = () => {
 	useEffect(() => {
 		// Intervals for revalidating slide data
 		const TKOalyEventsInterval = setInterval(
-			async () => await revalidateTKOalyEvents(),
+			() => void revalidateTKOalyEvents(),
 			5 * 60 * 1000
 		);
 		const ilotaloEventsInterval = setInterval(
-			async () => await revalidateIlotaloEvents(),
+			() => void revalidateIlotaloEvents(),
 			15 * 60 * 1000
 		);
 		const pohinaFactorInterval = setInterval(
-			async () => await revalidatePohinaFactor(),
+			() => void revalidatePohinaFactor(),
 			5 * 60 * 1000
 		);
 		const restaurantsInterval = setInterval(
-			async () => await revalidateRestaurants(),
+			() => void revalidateRestaurants(),
 			60 * 60 * 1000
 		);
 		const lecturesInterval = setInterval(
-			async () => await revalidateLectures(),
+			() => void revalidateLectures(),
 			60 * 60 * 1000
 		);
 

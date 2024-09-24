@@ -18,15 +18,19 @@ export const Update = ({ initialVersion }: { initialVersion: string }) => {
 
 		console.log(`Initial server version '${initialVersion}'`);
 
-		const interval = setInterval(async () => {
-			const sha = await getServerVersion();
+		const interval = setInterval(() => {
+			const reloadOnNewVersion = async () => {
+				const sha = await getServerVersion();
 
-			if (sha && sha !== initialVersion) {
-				console.log(
-					`New version '${sha}' (current '${initialVersion}') detected, reloading page`
-				);
-				window.location.reload();
-			}
+				if (sha && sha !== initialVersion) {
+					console.log(
+						`New version '${sha}' (current '${initialVersion}') detected, reloading page`
+					);
+					window.location.reload();
+				}
+			};
+
+			void reloadOnNewVersion();
 		}, VERSION_CHECK_INTERVAL);
 
 		return () => clearInterval(interval);

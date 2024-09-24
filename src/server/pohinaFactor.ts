@@ -8,18 +8,24 @@ const ENTRYPOINT =
 	'https://klusteri.network/api/events/latest?sensors=[%22klusteri/ac/reed-1%22,%22klusteri/ac/reed-2%22]';
 
 type SensorData = {
-	sensors: Record<number, {
+	sensors: Record<
+		number,
+		{
 			id: number;
 			name: string;
 			created_at: string;
 			updated_at: string;
-		}>;
-	events: Record<number, {
+		}
+	>;
+	events: Record<
+		number,
+		{
 			id: string;
 			sensor_id: number;
 			type: string;
 			timestamp: string;
-		}>;
+		}
+	>;
 	pohinaFactor: number;
 };
 

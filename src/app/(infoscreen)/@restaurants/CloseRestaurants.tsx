@@ -22,8 +22,8 @@ const CloseRestaurants = ({ restaurants }: { restaurants: Restaurant[] }) => {
 					return;
 
 				return setTimeout(
-					async () => {
-						await revalidateRestaurants();
+					() => {
+						void revalidateRestaurants();
 					},
 					differenceInMilliseconds(closingHour, new Date()) + 10000
 				);
