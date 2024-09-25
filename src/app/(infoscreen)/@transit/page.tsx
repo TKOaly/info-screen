@@ -19,7 +19,7 @@ const Transit = async () => {
 				<div className="flex size-full flex-col divide-y-2">
 					<div className="flex w-full justify-between bg-sky-700 p-3">
 						<p>Line</p>
-						<p>Destination</p>
+						<p>Pohjoiseen / Länteen</p>
 						<p>Time</p>
 					</div>
 					<div className="flex w-full justify-between p-3">
@@ -41,7 +41,7 @@ const Transit = async () => {
 				<div className="flex w-full flex-col divide-y-2">
 					<div className="flex w-full justify-between bg-sky-700 p-3">
 						<p>Line</p>
-						<p>Destination</p>
+						<p>Etelään / Itään</p>
 						<p>Time</p>
 					</div>
 					<div className="flex w-full justify-between p-3">
