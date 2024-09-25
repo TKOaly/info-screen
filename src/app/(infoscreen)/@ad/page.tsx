@@ -3,21 +3,19 @@
 import { Slide } from '@/components/Carousel';
 import Logo from '@/components/Logo';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 type AdType = {
-	url: string;
 	from?: Date;
 	until: Date;
-};
+} & ({ url: string; component?: ReactNode } | { component: ReactNode });
 
 const ads: AdType[] = [
-	{ url: '/fuksiaiset.png', until: new Date(2024, 9, 29) },
-	{ url: '/atkytp.png', until: new Date(2024, 10, 15) },
+	{ url: '/fuksiaiset.png', until: new Date(2024, 8, 29) },
+	{ url: '/atkytp.png', until: new Date(2024, 9, 15) },
 	{
 		url: '/potentiaali.png',
-		from: new Date(2024, 10, 8),
-		until: new Date(2024, 11, 8),
+		until: new Date(2024, 10, 8),
 	},
 ];
 
@@ -51,12 +49,15 @@ const Ad = () => {
 	return (
 		<Slide>
 			<div className="relative size-full">
-				<Image
-					fill
-					className="object-cover"
-					src={ad.url}
-					alt={'Ad picture'}
-				/>
+				{'url' in ad && (
+					<Image
+						fill
+						className="object-cover"
+						src={ad.url}
+						alt={'Ad picture'}
+					/>
+				)}
+				{'component' in ad && ad.component}
 			</div>
 		</Slide>
 	);
