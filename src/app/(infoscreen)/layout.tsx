@@ -6,7 +6,6 @@ const CarouselLayout = ({
 	events,
 	restaurants,
 	ad,
-	transit,
 	lectures,
 	ilotalo,
 	children,
@@ -17,7 +16,7 @@ const CarouselLayout = ({
 				{events}
 				{ad}
 				{restaurants}
-				{transit}
+				{/*transit*/}
 				{lectures}
 				{ilotalo}
 				{children}
