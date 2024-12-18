@@ -3,6 +3,8 @@ import Clock from '@/components/Clock';
 import { getTransitData } from '@/server/transit';
 import { BusFront } from 'lucide-react';
 
+export const dynamic = 'force-dynamic'; // No idea how to stop transit api fetch during CI build
+
 const Transit = async () => {
 	const transitData = await getTransitData();
 	let stoptimes = [];
