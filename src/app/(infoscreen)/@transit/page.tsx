@@ -26,41 +26,39 @@ const Transit = async () => {
 			stoptimes.push({
 				el: (
 					<>
-						<div className="border-3 flex w-1/3 justify-between bg-white p-3">
-							<div className="flex w-1/4">
-								<p
-									className={
-										'rounded-lg ' +
-										(stoptime.trip.route.type == 701
-											? 'bg-sky-800'
-											: 'bg-green-800') +
-										' px-2'
-									}
-								>
-									{stoptime.trip.routeShortName}
-								</p>
-							</div>
-							<div className="flex w-full justify-between">
-								<p className="text-left text-black">
-									{stoptime.trip.tripHeadsign}
-								</p>
-								<p
-									className={
-										'font-medium ' +
-										(stoptime.realtime
-											? 'text-green-hsl_realtime'
-											: 'text-black')
-									}
-								>
-									{minutesUntil}{' '}
-									{arrival.getHours() +
-										':' +
-										arrival
-											.getMinutes()
-											.toString()
-											.padStart(2, '0')}
-								</p>
-							</div>
+						<div className="flex w-1/4">
+							<p
+								className={
+									'rounded-lg ' +
+									(stoptime.trip.route.type == 701
+										? 'bg-sky-800'
+										: 'bg-green-800') +
+									' px-2'
+								}
+							>
+								{stoptime.trip.routeShortName}
+							</p>
+						</div>
+						<div className="flex w-full justify-between">
+							<p className="text-left text-black">
+								{stoptime.trip.tripHeadsign}
+							</p>
+							<p
+								className={
+									'font-medium ' +
+									(stoptime.realtime
+										? 'text-green-hsl_realtime'
+										: 'text-black')
+								}
+							>
+								{minutesUntil}{' '}
+								{arrival.getHours() +
+									':' +
+									arrival
+										.getMinutes()
+										.toString()
+										.padStart(2, '0')}
+							</p>
 						</div>
 					</>
 				),
@@ -77,7 +75,22 @@ const Transit = async () => {
 		if (arrival_diff != 0) return arrival_diff;
 		return a.num.localeCompare(b.num);
 	});
-	const leftStoptimes = stoptimes.map((x) => x.el);
+	const rightStoptimes = stoptimes
+		.filter((x) => ['HSL:1240134', 'HSL:1240133'].includes(x.gtfsId))
+		.map((x) => (
+			<>
+				<div className="border-3 flex w-full justify-between bg-white p-3">
+					{x.el}
+				</div>
+			</>
+		));
+	const leftStoptimes = stoptimes.map((x) => (
+		<>
+			<div className="border-3 flex w-1/2 justify-between bg-white p-3">
+				{x.el}
+			</div>
+		</>
+	));
 	return (
 		<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
 			<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
@@ -93,10 +106,17 @@ const Transit = async () => {
 				</div>
 			</div>
 			<div className="flex h-full min-h-0 min-w-full justify-between divide-x-2 overflow-hidden text-3xl font-bold">
-				<div className="flex size-full w-full flex-col divide-y-2">
-					<div className="flex size-full w-full flex-col flex-wrap">
-						{leftStoptimes}
+				<div className="flex size-full w-2/3 flex-col flex-wrap">
+					<div className="flex w-1/2 justify-between bg-sky-700 p-3">
+						<p>Kumpulan kampus</p>
 					</div>
+					{leftStoptimes}
+				</div>
+				<div className="flex size-full w-1/3 flex-col flex-wrap">
+					<div className="flex w-full justify-between bg-sky-700 p-3">
+						<p>A.I. Virtasen aukio</p>
+					</div>
+					{rightStoptimes}
 				</div>
 			</div>
 		</Slide>
