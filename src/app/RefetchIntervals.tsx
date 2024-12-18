@@ -5,6 +5,7 @@ import { revalidateIlotaloEvents } from '@/server/ilotaloEvents';
 import { revalidateLectures } from '@/server/lectures';
 import { revalidatePohinaFactor } from '@/server/pohinaFactor';
 import { revalidateRestaurants } from '@/server/restaurants';
+import { revalidateTransit } from '@/server/transit';
 import { useEffect } from 'react';
 
 // This file contains intervals for updating all the slides
@@ -31,6 +32,10 @@ export const RefetchIntervals = () => {
 			() => void revalidateLectures(),
 			60 * 60 * 1000
 		);
+		const transitInterval = setInterval(
+			() => void revalidateTransit(),
+			5 * 1000
+		);
 
 		return () => {
 			clearInterval(TKOalyEventsInterval);
@@ -38,6 +43,7 @@ export const RefetchIntervals = () => {
 			clearInterval(pohinaFactorInterval);
 			clearInterval(restaurantsInterval);
 			clearInterval(lecturesInterval);
+			clearInterval(transitInterval);
 		};
 	}, []);
 

@@ -33,7 +33,7 @@ module.exports = {
 		extend: {
 			colors: {
 				blue: { hsl: '#007AC9' },
-				green: { unari: '#155C2C' },
+				green: { unari: '#155C2C', hsl_realtime: '#46850e' },
 				yellow: { tkoaly: '#fff500' },
 				org: {
 					tkoaly: '#FFF500',

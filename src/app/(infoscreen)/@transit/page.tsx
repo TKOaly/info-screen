@@ -1,9 +1,81 @@
 import { Slide } from '@/components/Carousel';
+import Clock from '@/components/Clock';
+import { getTransitData } from '@/server/transit';
 import { BusFront } from 'lucide-react';
 
-// WIP MOCKUP for the transit page
-
 const Transit = async () => {
+	const transitData = await getTransitData();
+	let stoptimes = [];
+	for (const stop of transitData.data.stops) {
+		const now = Date.now();
+		for (const stoptime of stop.stoptimesWithoutPatterns) {
+			const arrival = new Date(
+				(stoptime.serviceDay + stoptime.realtimeArrival) * 1000
+			);
+			if (arrival - now < 120 * 1000)
+				// Don't show if less than 2 minutes
+				continue;
+			let minutesUntil;
+			if (arrival - now < 1000 * 60 * 15) {
+				minutesUntil =
+					Math.floor((0, arrival - now) / 1000 / 60) + ' min';
+			}
+
+			stoptimes.push({
+				el: (
+					<>
+						<div className="border-3 flex w-1/3 justify-between bg-white p-3">
+							<div className="flex w-1/4">
+								<p
+									className={
+										'rounded-lg ' +
+										(stoptime.trip.route.type == 701
+											? 'bg-sky-800'
+											: 'bg-green-800') +
+										' px-2'
+									}
+								>
+									{stoptime.trip.routeShortName}
+								</p>
+							</div>
+							<div className="flex w-full justify-between">
+								<p className="text-left text-black">
+									{stoptime.trip.tripHeadsign}
+								</p>
+								<p
+									className={
+										'font-medium ' +
+										(stoptime.realtime
+											? 'text-green-hsl_realtime'
+											: 'text-black')
+									}
+								>
+									{minutesUntil}{' '}
+									{arrival.getHours() +
+										':' +
+										arrival
+											.getMinutes()
+											.toString()
+											.padStart(2, '0')}
+								</p>
+							</div>
+						</div>
+					</>
+				),
+				num: stoptime.trip.routeShortName,
+				arrival: arrival,
+				gtfsId: stop.gtfsId,
+			});
+		}
+	}
+	stoptimes = stoptimes.sort((a, b) => {
+		const arrival_diff =
+			Math.floor(a.arrival / 1000 / 60) -
+			Math.floor(b.arrival / 1000 / 60);
+		if (arrival_diff != 0) return arrival_diff;
+		return a.num - b.num;
+	});
+	const leftStoptimes = stoptimes.map((x) => x.el);
 	return (
 		<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
 			<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
@@ -14,45 +86,14 @@ const Transit = async () => {
 					<br />
 					<span className="font-normal">HRT</span>
 				</h2>
+				<div className="rounded-lg bg-white text-5xl font-bold text-black">
+					<Clock></Clock>
+				</div>
 			</div>
 			<div className="flex h-full min-h-0 min-w-full justify-between divide-x-2 overflow-hidden text-3xl font-bold">
-				<div className="flex size-full flex-col divide-y-2">
-					<div className="flex w-full justify-between bg-sky-700 p-3">
-						<p>Line</p>
-						<p>Destination</p>
-						<p>Time</p>
-					</div>
-					<div className="flex w-full justify-between p-3">
-						<p className="rounded-lg bg-sky-800 px-2">56</p>
-						<p>Kalasatama</p>
-						<p>5 min</p>
-					</div>
-					<div className="flex w-full justify-between p-3">
-						<p className="rounded-lg bg-sky-800 px-2">506</p>
-						<p>Viikki</p>
-						<p>~12 min</p>
-					</div>
-					<div className="flex w-full justify-between p-3">
-						<p className="rounded-lg bg-emerald-800 px-4">8</p>
-						<p>Rautatieasema</p>
-						<p>5 min</p>
-					</div>
-				</div>
-				<div className="flex w-full flex-col divide-y-2">
-					<div className="flex w-full justify-between bg-sky-700 p-3">
-						<p>Line</p>
-						<p>Destination</p>
-						<p>Time</p>
-					</div>
-					<div className="flex w-full justify-between p-3">
-						<p className="rounded-lg bg-sky-800 px-2">56</p>
-						<p>Kannelmäki</p>
-						<p>5 min</p>
-					</div>
-					<div className="flex w-full justify-between p-3">
-						<p className="rounded-lg bg-sky-800 px-2">506</p>
-						<p>Pasila</p>
-						<p>~12 min</p>
+				<div className="flex size-full w-full flex-col divide-y-2">
+					<div className="flex size-full w-full flex-col flex-wrap">
+						{leftStoptimes}
 					</div>
 				</div>
 			</div>

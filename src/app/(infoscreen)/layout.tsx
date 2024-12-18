@@ -5,6 +5,7 @@ type CarouselLayoutProps = Record<string, SlideElement>;
 const CarouselLayout = ({
 	events,
 	restaurants,
+	transit,
 	ad,
 	lectures,
 	ilotalo,
@@ -16,7 +17,7 @@ const CarouselLayout = ({
 				{events}
 				{ad}
 				{restaurants}
-				{/*transit*/}
+				{transit}
 				{lectures}
 				{ilotalo}
 				{children}
