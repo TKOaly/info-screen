@@ -101,7 +101,7 @@ export const getTransitData = async (): Promise<TransitData> => {
 			},
 			{
 				next: (data) => (result = data.data),
-				error: () => reject,
+				error: reject,
 				complete: () => {
 					if(result)
 						resolve(result)
