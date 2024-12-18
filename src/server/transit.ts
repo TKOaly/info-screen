@@ -76,7 +76,7 @@ export const getTransitData = async (): Promise<TransitData> => {
  gtfsId
     name
     code
-    stoptimesWithoutPatterns {
+    stoptimesWithoutPatterns(numberOfDepartures: 20) {
       arrivalDelay
       departureDelay
       headsign
