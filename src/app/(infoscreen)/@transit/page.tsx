@@ -6,19 +6,19 @@ import { BusFront } from 'lucide-react';
 const Transit = async () => {
 	const transitData = await getTransitData();
 	let stoptimes = [];
-	for (const stop of transitData.data.stops) {
+	for (const stop of transitData.stops) {
 		const now = Date.now();
 		for (const stoptime of stop.stoptimesWithoutPatterns) {
 			const arrival = new Date(
 				(stoptime.serviceDay + stoptime.realtimeArrival) * 1000
 			);
-			if (arrival - now < 120 * 1000)
+			if (arrival.getTime() - now < 120 * 1000)
 				// Don't show if less than 2 minutes
 				continue;
 			let minutesUntil;
-			if (arrival - now < 1000 * 60 * 15) {
+			if (arrival.getTime() - now < 1000 * 60 * 15) {
 				minutesUntil =
-					Math.floor((0, arrival - now) / 1000 / 60) + ' min';
+					Math.floor((arrival.getTime() - now) / 1000 / 60) + ' min';
 			}
 
 			stoptimes.push({
@@ -70,10 +70,10 @@ const Transit = async () => {
 	}
 	stoptimes = stoptimes.sort((a, b) => {
 		const arrival_diff =
-			Math.floor(a.arrival / 1000 / 60) -
-			Math.floor(b.arrival / 1000 / 60);
+			Math.floor(a.arrival.getTime() / 1000 / 60) -
+			Math.floor(b.arrival.getTime() / 1000 / 60);
 		if (arrival_diff != 0) return arrival_diff;
-		return a.num - b.num;
+		return a.num.localeCompare(b.num);
 	});
 	const leftStoptimes = stoptimes.map((x) => x.el);
 	return (

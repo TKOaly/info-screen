@@ -8,7 +8,7 @@ const fetchTag = 'hsl-transit';
 const client = createClient({
 	url: ENDPOINT,
 	headers: {
-		'digitransit-subscription-key': process.env.DIGITRANSIT_TOKEN,
+		'digitransit-subscription-key': process.env.DIGITRANSIT_TOKEN ?? "",
 	},
 	shouldRetry: async (err: NetworkError, retries: number) => {
 		if (retries > 3) {
@@ -17,7 +17,7 @@ const client = createClient({
 		}
 
 		// try again when service unavailable, could be temporary
-		if ([502, 503, 504].some(err.response?.status)) {
+		if (err.response?.status != undefined && [502, 503, 504].includes(err.response.status)) {
 			// wait one second (you can alternatively time the promise resolution to your preference)
 			await new Promise((resolve) => setTimeout(resolve, 1000));
 			return true;
@@ -37,13 +37,38 @@ const client = createClient({
 	},
 });
 
-export const getTransitData = async () => {
+type TransitData = {
+	stops: {
+		gtfsId: string
+		name: string
+		code: string
+		stoptimesWithoutPatterns: {
+			arrivalDelay: number
+			departureDelay: number
+			headsign: string
+			realtime: boolean
+			realtimeArrival: number
+			realtimeDeparture: number
+			realtimeState: string
+			serviceDay: number
+			scheduledArrival: number
+			scheduledDeparture: number
+			trip: {
+				tripHeadsign: string
+				route: {
+					type: number
+				}
+				routeShortName: string
+			}
+		}[]
+	}[]
+}
+
+export const getTransitData = async (): Promise<TransitData> => {
 	'use server';
-	let result;
-	console.log('Fetching transit data');
 	return await new Promise((resolve, reject) => {
-		let result;
-		client.subscribe(
+		let result: TransitData | null | undefined;
+		client.subscribe<TransitData>(
 			{
 				query: `
 {
@@ -75,9 +100,14 @@ export const getTransitData = async () => {
         `,
 			},
 			{
-				next: (data) => (result = data),
-				error: (err) => reject,
-				complete: () => resolve(result),
+				next: (data) => (result = data.data),
+				error: () => reject,
+				complete: () => {
+					if(result)
+						resolve(result)
+					else
+						reject(new Error("received undefined result from transit API"))
+				},
 			}
 		);
 	});
