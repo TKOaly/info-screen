@@ -84,13 +84,15 @@ const Transit = async () => {
 				</div>
 			</>
 		));
-	const leftStoptimes = stoptimes.map((x) => (
-		<>
-			<div className="border-3 flex w-1/2 justify-between bg-white p-3">
-				{x.el}
-			</div>
-		</>
-	));
+	const leftStoptimes = stoptimes
+		.filter((x) => !['HSL:1240134', 'HSL:1240133'].includes(x.gtfsId))
+		.map((x) => (
+			<>
+				<div className="border-3 flex w-1/2 justify-between bg-white p-3">
+					{x.el}
+				</div>
+			</>
+		));
 	return (
 		<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
 			<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
