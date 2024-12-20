@@ -1,12 +1,11 @@
 import { Slide } from '@/components/Carousel';
 import Clock from '@/components/Clock';
-import { getTransitData } from '@/server/transit';
+import { getTransitData, type TransitData } from '@/server/transit';
 import { BusFront } from 'lucide-react';
 
 export const dynamic = 'force-dynamic'; // No idea how to stop transit api fetch during CI build
 
-const Transit = async () => {
-	const transitData = await getTransitData();
+const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 	let stoptimes = [];
 	for (const stop of transitData.stops) {
 		const now = Date.now();
@@ -64,7 +63,6 @@ const Transit = async () => {
 				),
 				num: stoptime.trip.routeShortName,
 				arrival: arrival,
-				gtfsId: stop.gtfsId,
 			});
 		}
 	}
@@ -75,24 +73,47 @@ const Transit = async () => {
 		if (arrival_diff != 0) return arrival_diff;
 		return a.num.localeCompare(b.num);
 	});
-	const rightStoptimes = stoptimes
-		.filter((x) => ['HSL:1240134', 'HSL:1240133'].includes(x.gtfsId))
-		.map((x) => (
-			<>
-				<div className="border-3 flex w-full justify-between bg-white p-3">
-					{x.el}
-				</div>
-			</>
-		));
-	const leftStoptimes = stoptimes
-		.filter((x) => !['HSL:1240134', 'HSL:1240133'].includes(x.gtfsId))
-		.map((x) => (
-			<>
-				<div className="border-3 flex w-1/2 justify-between bg-white p-3">
-					{x.el}
-				</div>
-			</>
-		));
+	return stoptimes.map((x) => x.el);
+};
+
+const Transit = async () => {
+	const stoptimes1 = renderStoptimes(
+		await getTransitData(['HSL:1240134', 'HSL:1240133'])
+	);
+	const stoptimes2 = renderStoptimes(
+		await getTransitData([
+			'HSL:1240118',
+			'HSL:1240103',
+			'HSL:1240419',
+			'HSL:1240418',
+			'HSL:1230109',
+			'HSL:1230112',
+		])
+	);
+	const stoptimes3 = renderStoptimes(
+		await getTransitData(['HSL:1210405', 'HSL:1210406'])
+	);
+	const rightStoptimes = stoptimes1.map((x) => (
+		<>
+			<div className="border-3 flex w-full justify-between bg-white p-3">
+				{x}
+			</div>
+		</>
+	));
+	const leftStoptimes = stoptimes2.map((x) => (
+		<>
+			<div className="border-3 flex w-1/2 justify-between bg-white p-3">
+				{x}
+			</div>
+		</>
+	));
+	const thirdStoptimes = stoptimes3.map((x) => (
+		<>
+			<div className="border-3 flex w-full justify-between bg-white p-3">
+				{x}
+			</div>
+		</>
+	));
 	return (
 		<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
 			<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
@@ -115,10 +136,16 @@ const Transit = async () => {
 					{leftStoptimes}
 				</div>
 				<div className="flex size-full w-1/3 flex-col flex-wrap">
-					<div className="flex w-full justify-between bg-sky-700 p-3">
-						<p>A.I. Virtasen aukio</p>
+					<div className="flex h-3/4 w-full flex-col">
+						<div className="flex w-full justify-between bg-sky-700 p-3">
+							<p>A.I. Virtasen aukio</p>
+						</div>
+						{rightStoptimes}
 					</div>
-					{rightStoptimes}
+					<div className="flex w-full justify-between bg-sky-700 p-3">
+						<p>Nylanderinpuisto</p>
+					</div>
+					{thirdStoptimes}
 				</div>
 			</div>
 		</Slide>

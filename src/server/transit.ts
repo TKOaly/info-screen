@@ -37,7 +37,7 @@ const client = createClient({
 	},
 });
 
-type TransitData = {
+export type TransitData = {
 	stops: {
 		gtfsId: string
 		name: string
@@ -64,7 +64,7 @@ type TransitData = {
 	}[]
 }
 
-export const getTransitData = async (): Promise<TransitData> => {
+export const getTransitData = async (stops: string[]): Promise<TransitData> => {
 	'use server';
 	return await new Promise((resolve, reject) => {
 		let result: TransitData | null | undefined;
@@ -72,7 +72,7 @@ export const getTransitData = async (): Promise<TransitData> => {
 			{
 				query: `
 {
- stops(ids: ["HSL:1240134", "HSL:1240133", "HSL:1240118", "HSL:1240103", "HSL:1240419", "HSL:1240418", "HSL:1230109", "HSL:1230112"]) {
+ stops(ids: [${stops.map(x => `"${x}"`).join(',')} ]) {
  gtfsId
     name
     code
