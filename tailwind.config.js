@@ -52,6 +52,10 @@ module.exports = {
 				m_plus_rounded: ['var(--font-m-plus-rounded)'],
 				gabarito: ['var(--font-gabarito)'],
 			},
+			spacing: {
+				'5/14': '35.714286%',
+				'9/14': '64.285714%',
+			},
 		},
 	},
 	plugins: [],

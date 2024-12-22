@@ -136,13 +136,13 @@ const Transit = async () => {
 					{leftStoptimes}
 				</div>
 				<div className="flex size-full w-1/3 flex-col">
-					<div className="flex h-2/3 w-full flex-col">
+					<div className="flex h-9/14 w-full flex-col flex-wrap">
 						<div className="flex w-full justify-between bg-sky-700 p-3">
 							<p>A.I. Virtasen aukio</p>
 						</div>
 						{rightStoptimes}
 					</div>
-					<div className="flex h-1/3 w-full flex-col">
+					<div className="flex h-5/14 w-full flex-col flex-wrap">
 						<div className="flex w-full justify-between bg-sky-700 p-3">
 							<p>Nylanderinpuisto</p>
 						</div>
