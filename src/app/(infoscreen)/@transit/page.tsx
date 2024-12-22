@@ -135,17 +135,19 @@ const Transit = async () => {
 					</div>
 					{leftStoptimes}
 				</div>
-				<div className="flex size-full w-1/3 flex-col flex-wrap">
-					<div className="flex h-3/4 w-full flex-col">
+				<div className="flex size-full w-1/3 flex-col">
+					<div className="flex h-2/3 w-full flex-col">
 						<div className="flex w-full justify-between bg-sky-700 p-3">
 							<p>A.I. Virtasen aukio</p>
 						</div>
 						{rightStoptimes}
 					</div>
-					<div className="flex w-full justify-between bg-sky-700 p-3">
-						<p>Nylanderinpuisto</p>
+					<div className="flex h-1/3 w-full flex-col">
+						<div className="flex w-full justify-between bg-sky-700 p-3">
+							<p>Nylanderinpuisto</p>
+						</div>
+						{thirdStoptimes}
 					</div>
-					{thirdStoptimes}
 				</div>
 			</div>
 		</Slide>
