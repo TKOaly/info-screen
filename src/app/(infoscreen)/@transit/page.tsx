@@ -7,8 +7,8 @@ export const dynamic = 'force-dynamic'; // No idea how to stop transit api fetch
 
 const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 	let stoptimes = [];
+	const now = Date.now();
 	for (const stop of transitData.stops) {
-		const now = Date.now();
 		for (const stoptime of stop.stoptimesWithoutPatterns) {
 			const arrival = new Date(
 				(stoptime.serviceDay + stoptime.realtimeArrival) * 1000
@@ -61,17 +61,34 @@ const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 						</div>
 					</>
 				),
-				num: stoptime.trip.routeShortName,
+				routeNumber: stoptime.trip.routeShortName,
+				routeHeadsign: stoptime.trip.tripHeadsign,
 				arrival: arrival,
 			});
 		}
 	}
+	/* Why such a complex sorting function?
+	 * This is an attempt to make the sorting more stable. Arrival times come from the API with second precision and
+	 * are very unstable, so different buses with similar arrival times change their order all the time. This would be
+	 * inconvenient for the reader. In the UI the arrival times are shown with minute precision, so we can just as well
+	 * sort them by minute precision. This hides any unstability in the sub-minute arrival times but still keeps the
+	 * arrival minutes in order.
+	 * 
+	 * The drawback is that now buses with same minute arrivals may randomly change their order based on the order they
+	 * come from the API. For this reason the buses are sorted by every visible field to make their order as stable as
+	 * possible. */
 	stoptimes = stoptimes.sort((a, b) => {
-		const arrival_diff =
+		const clockMinutesDiff =
 			Math.floor(a.arrival.getTime() / 1000 / 60) -
 			Math.floor(b.arrival.getTime() / 1000 / 60);
-		if (arrival_diff != 0) return arrival_diff;
-		return a.num.localeCompare(b.num);
+		if (clockMinutesDiff !== 0) return clockMinutesDiff;
+		const untilMinutesDiff =
+			Math.floor((a.arrival.getTime() - now) / 1000 / 60) -
+			Math.floor((b.arrival.getTime() - now) / 1000 / 60);
+		if (untilMinutesDiff !== 0) return untilMinutesDiff;
+		const routeNumberDiff = a.routeNumber.localeCompare(b.routeNumber);
+		if (routeNumberDiff !== 0) return routeNumberDiff;
+		return a.routeHeadsign.localeCompare(b.routeHeadsign);
 	});
 	return stoptimes.map((x) => x.el);
 };
