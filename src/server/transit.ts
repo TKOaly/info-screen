@@ -5,37 +5,6 @@ import { revalidateTag } from 'next/cache';
 const ENDPOINT = 'https://api.digitransit.fi/routing/v2/hsl/gtfs/v1';
 const fetchTag = 'hsl-transit';
 
-const client = createClient({
-	url: ENDPOINT,
-	headers: {
-		'digitransit-subscription-key': process.env.DIGITRANSIT_TOKEN ?? "",
-	},
-	shouldRetry: async (err: NetworkError, retries: number) => {
-		if (retries > 3) {
-			// max 3 retries and then report service down
-			return false;
-		}
-
-		// try again when service unavailable, could be temporary
-		if (err.response?.status != undefined && [502, 503, 504].includes(err.response.status)) {
-			// wait one second (you can alternatively time the promise resolution to your preference)
-			await new Promise((resolve) => setTimeout(resolve, 1000));
-			return true;
-		}
-
-		// otherwise report error immediately
-		return false;
-	},
-	fetchFn: (res: string, opt?: RequestInit) => {
-		return fetch(res, {
-			next: {
-				tags: [fetchTag],
-				revalidate: 5,
-			},
-			...opt,
-		});
-	},
-});
 
 export type TransitData = {
 	stops: {
@@ -66,7 +35,38 @@ export type TransitData = {
 
 export const getTransitData = async (stops: string[]): Promise<TransitData> => {
 	'use server';
-	return await new Promise((resolve, reject) => {
+	return new Promise((resolve, reject) => {
+		const client = createClient({
+			url: ENDPOINT,
+			headers: {
+				'digitransit-subscription-key': process.env.DIGITRANSIT_TOKEN ?? "",
+			},
+			shouldRetry: async (err: NetworkError, retries: number) => {
+				if (retries > 3) {
+					// max 3 retries and then report service down
+					return false;
+				}
+		
+				// try again when service unavailable, could be temporary
+				if (err.response?.status != undefined && [502, 503, 504].includes(err.response.status)) {
+					// wait one second (you can alternatively time the promise resolution to your preference)
+					await new Promise((resolve) => setTimeout(resolve, 1000));
+					return true;
+				}
+		
+				// otherwise report error immediately
+				return false;
+			},
+			fetchFn: (res: string, opt?: RequestInit) => {
+				return fetch(res, {
+					next: {
+						tags: [fetchTag],
+						revalidate: 5,
+					},
+					...opt,
+				});
+			},
+		});
 		let result: TransitData | null | undefined;
 		client.subscribe<TransitData>(
 			{
