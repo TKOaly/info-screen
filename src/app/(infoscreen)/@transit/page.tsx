@@ -94,37 +94,42 @@ const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 };
 
 const Transit = async () => {
-	const stoptimes1 = renderStoptimes(
-		await getTransitData(['HSL:1240134', 'HSL:1240133'])
+	const stoptimes = await Promise.all(
+		[
+			['HSL:1240134', 'HSL:1240133'],
+			[
+				'HSL:1240118',
+				'HSL:1240103',
+				'HSL:1240419',
+				'HSL:1240418',
+				'HSL:1230109',
+				'HSL:1230112',
+			],
+			['HSL:1210405', 'HSL:1210406'],
+		].map(async (x) =>
+			renderStoptimes(
+				await getTransitData(x).catch((err) => {
+					console.error(err);
+					return { stops: [] };
+				})
+			)
+		)
 	);
-	const stoptimes2 = renderStoptimes(
-		await getTransitData([
-			'HSL:1240118',
-			'HSL:1240103',
-			'HSL:1240419',
-			'HSL:1240418',
-			'HSL:1230109',
-			'HSL:1230112',
-		])
-	);
-	const stoptimes3 = renderStoptimes(
-		await getTransitData(['HSL:1210405', 'HSL:1210406'])
-	);
-	const rightStoptimes = stoptimes1.map((x) => (
+	const rightStoptimes = stoptimes[0].map((x) => (
 		<>
 			<div className="border-3 flex w-full justify-between bg-white p-3">
 				{x}
 			</div>
 		</>
 	));
-	const leftStoptimes = stoptimes2.map((x) => (
+	const leftStoptimes = stoptimes[1].map((x) => (
 		<>
 			<div className="border-3 flex w-1/2 justify-between bg-white p-3">
 				{x}
 			</div>
 		</>
 	));
-	const thirdStoptimes = stoptimes3.map((x) => (
+	const thirdStoptimes = stoptimes[2].map((x) => (
 		<>
 			<div className="border-3 flex w-full justify-between bg-white p-3">
 				{x}
