@@ -117,23 +117,17 @@ const Transit = async () => {
 	);
 	const rightStoptimes = stoptimes[0].map((x) => (
 		<>
-			<div className="border-3 flex w-full justify-between bg-white p-3">
-				{x}
-			</div>
+			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
 	));
 	const leftStoptimes = stoptimes[1].map((x) => (
 		<>
-			<div className="border-3 flex w-1/2 justify-between bg-white p-3">
-				{x}
-			</div>
+			<div className="flex w-1/2 justify-between bg-white p-3">{x}</div>
 		</>
 	));
 	const thirdStoptimes = stoptimes[2].map((x) => (
 		<>
-			<div className="border-3 flex w-full justify-between bg-white p-3">
-				{x}
-			</div>
+			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
 	));
 	return (
@@ -150,7 +144,7 @@ const Transit = async () => {
 					<Clock></Clock>
 				</div>
 			</div>
-			<div className="flex h-full min-h-0 min-w-full justify-between divide-x-2 overflow-hidden text-3xl font-bold">
+			<div className="flex h-full min-h-0 min-w-full justify-between overflow-hidden bg-white text-3xl font-bold">
 				<div className="flex size-full w-2/3 flex-col flex-wrap">
 					<div className="flex w-1/2 justify-between bg-sky-700 p-3">
 						<p>Kumpulan kampus</p>
