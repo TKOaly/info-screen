@@ -29,7 +29,7 @@ const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 							<p
 								className={
 									'rounded-lg ' +
-									(stoptime.trip.route.type == 701
+									(Math.floor(stoptime.trip.route.type/100) == 7
 										? 'bg-sky-800'
 										: 'bg-green-800') +
 									' px-2'
