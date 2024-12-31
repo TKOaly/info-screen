@@ -25,7 +25,7 @@ export type TransitData = {
 			trip: {
 				tripHeadsign: string
 				route: {
-					type: number
+					mode: string
 				}
 				routeShortName: string
 			}
@@ -90,7 +90,7 @@ export const getTransitData = async (stops: string[]): Promise<TransitData> => {
     trip {
 	tripHeadsign
     route {
-    type
+    mode
     }
         routeShortName
       }
