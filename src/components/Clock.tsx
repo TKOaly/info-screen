@@ -1,15 +1,16 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useState } from 'react';
 
 const Clock = () => {
-	const ref = useRef<HTMLParagraphElement>(null)
+	const [clock, setClock] = useState('00:00');
 	useEffect(() => {
 		const intervalId = setInterval(() => {
-			if (ref.current != null)
-				ref.current.textContent = new Date(Date.now())
+			setClock(
+				new Date(Date.now())
 					.toLocaleTimeString('fi-Fi')
-					.replaceAll('.', ':');
+					.replaceAll('.', ':')
+			);
 		}, 1000);
 		return () => {
 			clearInterval(intervalId);
@@ -17,9 +18,7 @@ const Clock = () => {
 	}, []);
 	return (
 		<>
-			<p ref={ref}>{new Date(Date.now())
-				.toLocaleTimeString('fi-Fi')
-				.replaceAll('.', ':')}</p>
+			<p>{clock}</p>
 		</>
 	);
 };
