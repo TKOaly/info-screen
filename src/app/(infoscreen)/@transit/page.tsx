@@ -29,7 +29,7 @@ const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 							<p
 								className={
 									'rounded-lg ' +
-									(stoptime.trip.route.mode == "BUS"
+									(stoptime.trip.route.mode == 'BUS'
 										? 'bg-sky-800'
 										: 'bg-green-800') +
 									' px-2'
@@ -73,7 +73,7 @@ const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 	 * inconvenient for the reader. In the UI the arrival times are shown with minute precision, so we can just as well
 	 * sort them by minute precision. This hides any unstability in the sub-minute arrival times but still keeps the
 	 * arrival minutes in order.
-	 * 
+	 *
 	 * The drawback is that now buses with same minute arrivals may randomly change their order based on the order they
 	 * come from the API. For this reason the buses are sorted by every visible field to make their order as stable as
 	 * possible. */

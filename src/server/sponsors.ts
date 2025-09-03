@@ -4,13 +4,12 @@ import { revalidateTag } from 'next/cache';
 const ENDPOINT = 'https://jobs.tko-aly.fi/api/companies/partners';
 const fetchTag = 'sponsors';
 
-
 export type SponsorData = {
   name: {
-    xx: string
-  },
-  logoUrl?: string
-}
+    xx: string;
+  };
+  logoUrl?: string;
+};
 
 export const getSponsorData = async (): Promise<SponsorData[]> => {
   'use server';
@@ -19,7 +18,7 @@ export const getSponsorData = async (): Promise<SponsorData[]> => {
       tags: [fetchTag],
       revalidate: 3600,
     },
-  })
-  return response.json();
+  });
+  return response.json() as Promise<SponsorData[]>;
 };
 export const revalidateSponsorData = async () => revalidateTag(fetchTag);
