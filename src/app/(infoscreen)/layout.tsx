@@ -4,6 +4,7 @@ type CarouselLayoutProps = Record<string, SlideElement>;
 
 const CarouselLayout = ({
 	events,
+	sponsors,
 	restaurants,
 	transit,
 	ad,
@@ -14,12 +15,13 @@ const CarouselLayout = ({
 	return (
 		<main className="flex max-h-screen min-h-screen">
 			<Carousel loop duration={40} delay={20000}>
-				{events}
 				{ad}
-				{restaurants}
+				{sponsors}
+				{events}
+				{ilotalo}
 				{transit}
 				{lectures}
-				{ilotalo}
+				{restaurants}
 				{children}
 			</Carousel>
 		</main>

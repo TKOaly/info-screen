@@ -5,6 +5,7 @@ import { revalidateIlotaloEvents } from '@/server/ilotaloEvents';
 import { revalidateLectures } from '@/server/lectures';
 import { revalidatePohinaFactor } from '@/server/pohinaFactor';
 import { revalidateRestaurants } from '@/server/restaurants';
+import { revalidateSponsorData } from '@/server/sponsors';
 import { revalidateTransit } from '@/server/transit';
 import { useEffect } from 'react';
 
@@ -36,6 +37,10 @@ export const RefetchIntervals = () => {
 			() => void revalidateTransit(),
 			5 * 1000
 		);
+		const sponsorInterval = setInterval(
+			() => void revalidateSponsorData(),
+			3600 * 1000
+		);
 
 		return () => {
 			clearInterval(TKOalyEventsInterval);
@@ -44,6 +49,7 @@ export const RefetchIntervals = () => {
 			clearInterval(restaurantsInterval);
 			clearInterval(lecturesInterval);
 			clearInterval(transitInterval);
+			clearInterval(sponsorInterval);
 		};
 	}, []);
 
