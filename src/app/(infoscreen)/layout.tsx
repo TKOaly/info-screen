@@ -17,11 +17,11 @@ const CarouselLayout = ({
 			<Carousel loop duration={40} delay={20000}>
 				{ad}
 				{sponsors}
+				{lectures}
+				{restaurants}
 				{events}
 				{ilotalo}
 				{transit}
-				{lectures}
-				{restaurants}
 				{children}
 			</Carousel>
 		</main>
