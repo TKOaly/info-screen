@@ -17,6 +17,7 @@ const ads: AdType[] = [
 		url: '/potentiaali.png',
 		until: new Date(2024, 10, 8),
 	},
+	{ url: "/kjyr25.png", until: new Date(2025, 9, 20) }
 ];
 
 const Ad = () => {
@@ -52,7 +53,7 @@ const Ad = () => {
 				{'url' in ad && (
 					<Image
 						fill
-						className="object-cover"
+						className="object-cover w-[100%] m-auto"
 						src={ad.url}
 						alt={'Ad picture'}
 					/>
