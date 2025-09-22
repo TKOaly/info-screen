@@ -1,0 +1,2988 @@
+<svg
+						data-stacking-context="true"
+						aria-owns="element-to-export"
+						width="300"
+						height="300"
+						viewBox="213.23333740234375 141.3333282470703 200 200"
+						version="1.1"
+						id="svg257"
+						fill="white"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<defs id="defs257" />
+						<g
+							data-tag="div"
+							id="element-to-export"
+							data-z-index="auto"
+							data-stacking-context="true"
+							mask="url(#mask-for-element-to-export1)"
+							aria-owns="flex1"
+						>
+							<mask id="mask-for-element-to-export1">
+								<rect
+									width="200"
+									height="200"
+									x="213.23333740234375"
+									y="141.3333282470703"
+									fill="#ffffff"
+									id="rect7"
+								/>
+							</mask>
+							<mask id="mask-for-svg11">
+								<rect
+									width="200"
+									height="200"
+									x="213.23333740234375"
+									y="141.3333282470703"
+									fill="#ffffff"
+									id="rect14"
+								/>
+							</mask>
+							<defs
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="defs250"
+								transform="translate(213.233, 141.333)"
+							>
+								<clipPath id="svg1-clip-path-dot-color-35">
+									<path
+										d="M 67 13v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 54, 86)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path15"
+									/>
+									<path
+										d="M 79 13v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 98, -66)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path16"
+									/>
+									<path
+										d="M 109 13v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 128, -96)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path17"
+									/>
+									<path
+										d="M 127 13v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 114, 146)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path18"
+									/>
+									<path
+										d="M 133 13v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 152, -120)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path19"
+									/>
+									<path
+										d="M 61 19v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 42, 86)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path20"
+									/>
+									<rect
+										x="67"
+										y="19"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect20"
+									/>
+									<path
+										d="M 73 19v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 98, -54)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path21"
+									/>
+									<path
+										d="M 91 19v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 72, 116)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path22"
+									/>
+									<rect
+										x="97"
+										y="19"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect22"
+									/>
+									<path
+										d="M 121 19v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 102, 146)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path23"
+									/>
+									<path
+										d="M 127 19v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 152, -108)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path24"
+									/>
+									<path
+										d="M 85 25v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 60, 116)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path25"
+									/>
+									<rect
+										x="91"
+										y="25"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect25"
+									/>
+									<rect
+										x="97"
+										y="25"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect26"
+									/>
+									<rect
+										x="103"
+										y="25"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect27"
+									/>
+									<rect
+										x="109"
+										y="25"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect28"
+									/>
+									<rect
+										x="115"
+										y="25"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect29"
+									/>
+									<rect
+										x="121"
+										y="25"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect30"
+									/>
+									<path
+										d="M 67 31v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 36, 104)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path30"
+									/>
+									<path
+										d="M 79 31v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 116, -48)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path31"
+									/>
+									<path
+										d="M 91 31v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 128, -60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path32"
+									/>
+									<rect
+										x="103"
+										y="31"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect32"
+									/>
+									<rect
+										x="109"
+										y="31"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect33"
+									/>
+									<rect
+										x="121"
+										y="31"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect34"
+									/>
+									<rect
+										x="67"
+										y="37"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect35"
+									/>
+									<rect
+										x="73"
+										y="37"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect36"
+									/>
+									<rect
+										x="103"
+										y="37"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect37"
+									/>
+									<rect
+										x="109"
+										y="37"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect38"
+									/>
+									<rect
+										x="115"
+										y="37"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect39"
+									/>
+									<path
+										d="M 121 37v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 164, -84)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path39"
+									/>
+									<path
+										d="M 61 43v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 18, 110)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path40"
+									/>
+									<rect
+										x="73"
+										y="43"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect40"
+									/>
+									<path
+										d="M 79 43v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 128, -36)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path41"
+									/>
+									<path
+										d="M 115 43v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 164, -72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path42"
+									/>
+									<path
+										d="M 127 43v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 176, -84)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path43"
+									/>
+									<rect
+										x="61"
+										y="49"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect43"
+									/>
+									<rect
+										x="73"
+										y="49"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect44"
+									/>
+									<path
+										d="M 85 49v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 140, -36)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path44"
+									/>
+									<path
+										d="M 97 49v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 152, -48)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path45"
+									/>
+									<path
+										d="M 109 49v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 164, -60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path46"
+									/>
+									<path
+										d="M 121 49v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 176, -72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path47"
+									/>
+									<path
+										d="M 133 49v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 188, -84)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path48"
+									/>
+									<path
+										d="M 61 55v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 122, -6)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path49"
+									/>
+									<rect
+										x="73"
+										y="55"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect49"
+									/>
+									<rect
+										x="79"
+										y="55"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect50"
+									/>
+									<path
+										d="M 37 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -24, 104)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path50"
+									/>
+									<rect
+										x="43"
+										y="61"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect51"
+									/>
+									<rect
+										x="49"
+										y="61"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect52"
+									/>
+									<path
+										d="M 55 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 122, 6)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path52"
+									/>
+									<path
+										d="M 67 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 6, 134)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path53"
+									/>
+									<rect
+										x="79"
+										y="61"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect53"
+									/>
+									<path
+										d="M 97 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 36, 164)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path54"
+									/>
+									<path
+										d="M 109 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 48, 176)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path55"
+									/>
+									<path
+										d="M 127 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 66, 194)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path56"
+									/>
+									<path
+										d="M 133 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 200, -72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path57"
+									/>
+									<path
+										d="M 145 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 84, 212)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path58"
+									/>
+									<path
+										d="M 151 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 218, -90)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path59"
+									/>
+									<path
+										d="M 175 61v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 114, 242)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path60"
+									/>
+									<path
+										d="M 13 67v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 86, 54)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path61"
+									/>
+									<rect
+										x="37"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect61"
+									/>
+									<path
+										d="M 43 67v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 116, 24)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path62"
+									/>
+									<rect
+										x="67"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect62"
+									/>
+									<rect
+										x="73"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect63"
+									/>
+									<rect
+										x="79"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect64"
+									/>
+									<rect
+										x="85"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect65"
+									/>
+									<rect
+										x="91"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect66"
+									/>
+									<rect
+										x="97"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect67"
+									/>
+									<rect
+										x="103"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect68"
+									/>
+									<path
+										d="M 109 67v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 182, -42)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path68"
+									/>
+									<path
+										d="M 121 67v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 54, 194)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path69"
+									/>
+									<rect
+										x="127"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect69"
+									/>
+									<path
+										d="M 145 67v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 218, -78)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path70"
+									/>
+									<path
+										d="M 157 67v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 230, -90)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path71"
+									/>
+									<path
+										d="M 169 67v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 102, 242)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path72"
+									/>
+									<rect
+										x="175"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect72"
+									/>
+									<rect
+										x="181"
+										y="67"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect73"
+									/>
+									<path
+										d="M 19 73v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -54, 98)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path73"
+									/>
+									<rect
+										x="25"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect74"
+									/>
+									<rect
+										x="31"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect75"
+									/>
+									<rect
+										x="37"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect76"
+									/>
+									<path
+										d="M 49 73v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -24, 128)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path76"
+									/>
+									<rect
+										x="55"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect77"
+									/>
+									<rect
+										x="61"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect78"
+									/>
+									<rect
+										x="73"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect79"
+									/>
+									<path
+										d="M 85 73v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 164, -12)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path79"
+									/>
+									<path
+										d="M 97 73v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 176, -24)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path80"
+									/>
+									<rect
+										x="121"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect80"
+									/>
+									<rect
+										x="127"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect81"
+									/>
+									<path
+										d="M 139 73v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 66, 218)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path81"
+									/>
+									<rect
+										x="181"
+										y="73"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect82"
+									/>
+									<path
+										d="M 13 79v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -66, 98)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path82"
+									/>
+									<rect
+										x="37"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect83"
+									/>
+									<rect
+										x="43"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect84"
+									/>
+									<rect
+										x="61"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect85"
+									/>
+									<rect
+										x="67"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect86"
+									/>
+									<path
+										d="M 73 79v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 158, 6)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path86"
+									/>
+									<path
+										d="M 91 79v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 176, -12)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path87"
+									/>
+									<rect
+										x="121"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect87"
+									/>
+									<rect
+										x="127"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect88"
+									/>
+									<rect
+										x="133"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect89"
+									/>
+									<path
+										d="M 139 79v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 224, -60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path89"
+									/>
+									<path
+										d="M 151 79v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 72, 236)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path90"
+									/>
+									<path
+										d="M 157 79v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 242, -78)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path91"
+									/>
+									<path
+										d="M 175 79v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 96, 260)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path92"
+									/>
+									<rect
+										x="181"
+										y="79"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect92"
+									/>
+									<rect
+										x="13"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect93"
+									/>
+									<rect
+										x="19"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect94"
+									/>
+									<rect
+										x="25"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect95"
+									/>
+									<rect
+										x="31"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect96"
+									/>
+									<rect
+										x="37"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect97"
+									/>
+									<rect
+										x="43"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect98"
+									/>
+									<path
+										d="M 49 85v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 140, 36)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path98"
+									/>
+									<rect
+										x="61"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect99"
+									/>
+									<path
+										d="M 67 85v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 158, 18)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path99"
+									/>
+									<path
+										d="M 85 85v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 176, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path100"
+									/>
+									<path
+										d="M 109 85v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 24, 200)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path101"
+									/>
+									<path
+										d="M 133 85v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 224, -48)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path102"
+									/>
+									<path
+										d="M 151 85v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 242, -66)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path103"
+									/>
+									<path
+										d="M 163 85v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 254, -78)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path104"
+									/>
+									<rect
+										x="181"
+										y="85"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect104"
+									/>
+									<path
+										d="M 31 91v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 128, 60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path105"
+									/>
+									<path
+										d="M 103 91v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 12, 200)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path106"
+									/>
+									<rect
+										x="109"
+										y="91"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect106"
+									/>
+									<path
+										d="M 145 91v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 242, -54)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path107"
+									/>
+									<path
+										d="M 157 91v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 66, 254)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path108"
+									/>
+									<path
+										d="M 169 91v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 78, 266)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path109"
+									/>
+									<rect
+										x="175"
+										y="91"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect109"
+									/>
+									<rect
+										x="181"
+										y="91"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect110"
+									/>
+									<path
+										d="M 13 97v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 116, 84)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path110"
+									/>
+									<path
+										d="M 43 97v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -54, 146)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path111"
+									/>
+									<rect
+										x="49"
+										y="97"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect111"
+									/>
+									<rect
+										x="55"
+										y="97"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect112"
+									/>
+									<rect
+										x="61"
+										y="97"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect113"
+									/>
+									<path
+										d="M 73 97v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -24, 176)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path113"
+									/>
+									<path
+										d="M 91 97v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -6, 194)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path114"
+									/>
+									<rect
+										x="97"
+										y="97"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect114"
+									/>
+									<rect
+										x="103"
+										y="97"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect115"
+									/>
+									<rect
+										x="109"
+										y="97"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect116"
+									/>
+									<path
+										d="M 121 97v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 24, 224)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path116"
+									/>
+									<path
+										d="M 157 97v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 260, -60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path117"
+									/>
+									<rect
+										x="181"
+										y="97"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect117"
+									/>
+									<path
+										d="M 31 103v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 140, 72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path118"
+									/>
+									<path
+										d="M 43 103v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 152, 60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path119"
+									/>
+									<rect
+										x="55"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect119"
+									/>
+									<rect
+										x="61"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect120"
+									/>
+									<rect
+										x="73"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect121"
+									/>
+									<rect
+										x="79"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect122"
+									/>
+									<rect
+										x="109"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect123"
+									/>
+									<rect
+										x="115"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect124"
+									/>
+									<rect
+										x="121"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect125"
+									/>
+									<rect
+										x="127"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect126"
+									/>
+									<rect
+										x="133"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect127"
+									/>
+									<rect
+										x="139"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect128"
+									/>
+									<path
+										d="M 151 103v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 48, 260)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path128"
+									/>
+									<path
+										d="M 163 103v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 272, -60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path129"
+									/>
+									<rect
+										x="181"
+										y="103"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect129"
+									/>
+									<path
+										d="M 13 109v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -96, 128)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path130"
+									/>
+									<rect
+										x="19"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect130"
+									/>
+									<path
+										d="M 25 109v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 140, 84)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path131"
+									/>
+									<path
+										d="M 37 109v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 152, 72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path132"
+									/>
+									<path
+										d="M 49 109v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -60, 164)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path133"
+									/>
+									<rect
+										x="55"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect133"
+									/>
+									<rect
+										x="61"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect134"
+									/>
+									<path
+										d="M 67 109v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 182, 42)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path134"
+									/>
+									<rect
+										x="79"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect135"
+									/>
+									<rect
+										x="85"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect136"
+									/>
+									<rect
+										x="91"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect137"
+									/>
+									<path
+										d="M 103 109v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -6, 218)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path137"
+									/>
+									<path
+										d="M 109 109v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 224, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path138"
+									/>
+									<rect
+										x="127"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect138"
+									/>
+									<rect
+										x="133"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect139"
+									/>
+									<path
+										d="M 139 109v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 254, -30)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path139"
+									/>
+									<rect
+										x="151"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect140"
+									/>
+									<rect
+										x="181"
+										y="109"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect141"
+									/>
+									<path
+										d="M 13 115v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 134, 102)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path141"
+									/>
+									<path
+										d="M 73 115v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -42, 194)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path142"
+									/>
+									<rect
+										x="79"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect142"
+									/>
+									<rect
+										x="85"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect143"
+									/>
+									<rect
+										x="91"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect144"
+									/>
+									<rect
+										x="97"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect145"
+									/>
+									<rect
+										x="127"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect146"
+									/>
+									<rect
+										x="133"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect147"
+									/>
+									<path
+										d="M 145 115v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 30, 266)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path147"
+									/>
+									<rect
+										x="151"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect148"
+									/>
+									<path
+										d="M 157 115v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 278, -42)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path148"
+									/>
+									<rect
+										x="181"
+										y="115"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect149"
+									/>
+									<path
+										d="M 37 121v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 164, 84)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path149"
+									/>
+									<path
+										d="M 49 121v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -72, 176)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path150"
+									/>
+									<path
+										d="M 55 121v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 182, 66)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path151"
+									/>
+									<rect
+										x="73"
+										y="121"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect151"
+									/>
+									<rect
+										x="79"
+										y="121"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect152"
+									/>
+									<rect
+										x="85"
+										y="121"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect153"
+									/>
+									<rect
+										x="91"
+										y="121"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect154"
+									/>
+									<path
+										d="M 97 121v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 224, 24)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path154"
+									/>
+									<path
+										d="M 109 121v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -12, 236)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path155"
+									/>
+									<path
+										d="M 133 121v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 260, -12)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path156"
+									/>
+									<path
+										d="M 169 121v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 296, -48)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path157"
+									/>
+									<rect
+										x="181"
+										y="121"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect157"
+									/>
+									<path
+										d="M 25 127v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 158, 102)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path158"
+									/>
+									<path
+										d="M 61 127v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -66, 194)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path159"
+									/>
+									<rect
+										x="73"
+										y="127"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect159"
+									/>
+									<rect
+										x="79"
+										y="127"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect160"
+									/>
+									<rect
+										x="109"
+										y="127"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect161"
+									/>
+									<rect
+										x="115"
+										y="127"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect162"
+									/>
+									<path
+										d="M 151 127v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 24, 284)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path162"
+									/>
+									<rect
+										x="157"
+										y="127"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect163"
+									/>
+									<rect
+										x="163"
+										y="127"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect164"
+									/>
+									<path
+										d="M 181 127v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 314, -54)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path164"
+									/>
+									<path
+										d="M 13 133v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -120, 152)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path165"
+									/>
+									<path
+										d="M 19 133v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 158, 114)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path166"
+									/>
+									<path
+										d="M 37 133v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 176, 96)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path167"
+									/>
+									<path
+										d="M 49 133v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -84, 188)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path168"
+									/>
+									<rect
+										x="55"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect168"
+									/>
+									<rect
+										x="61"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect169"
+									/>
+									<rect
+										x="67"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect170"
+									/>
+									<rect
+										x="79"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect171"
+									/>
+									<rect
+										x="85"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect172"
+									/>
+									<path
+										d="M 97 133v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -36, 236)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path172"
+									/>
+									<rect
+										x="109"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect173"
+									/>
+									<rect
+										x="115"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect174"
+									/>
+									<rect
+										x="121"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect175"
+									/>
+									<path
+										d="M 133 133v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 0, 272)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path175"
+									/>
+									<rect
+										x="139"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect176"
+									/>
+									<rect
+										x="145"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect177"
+									/>
+									<rect
+										x="151"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect178"
+									/>
+									<rect
+										x="157"
+										y="133"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect179"
+									/>
+									<path
+										d="M 163 133v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 302, -30)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path179"
+									/>
+									<path
+										d="M 175 133v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 314, -42)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path180"
+									/>
+									<rect
+										x="61"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect180"
+									/>
+									<path
+										d="M 67 139v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 212, 72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path181"
+									/>
+									<rect
+										x="79"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect181"
+									/>
+									<rect
+										x="85"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect182"
+									/>
+									<rect
+										x="91"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect183"
+									/>
+									<rect
+										x="97"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect184"
+									/>
+									<rect
+										x="103"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect185"
+									/>
+									<rect
+										x="109"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect186"
+									/>
+									<rect
+										x="115"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect187"
+									/>
+									<rect
+										x="121"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect188"
+									/>
+									<rect
+										x="133"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect189"
+									/>
+									<rect
+										x="157"
+										y="139"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect190"
+									/>
+									<path
+										d="M 169 139v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 314, -30)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path190"
+									/>
+									<path
+										d="M 181 139v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 42, 326)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path191"
+									/>
+									<rect
+										x="61"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect191"
+									/>
+									<rect
+										x="79"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect192"
+									/>
+									<path
+										d="M 103 145v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 254, 42)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path192"
+									/>
+									<rect
+										x="115"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect193"
+									/>
+									<rect
+										x="121"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect194"
+									/>
+									<rect
+										x="127"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect195"
+									/>
+									<rect
+										x="133"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect196"
+									/>
+									<path
+										d="M 145 145v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 296, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path196"
+									/>
+									<rect
+										x="157"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect197"
+									/>
+									<rect
+										x="181"
+										y="145"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect198"
+									/>
+									<rect
+										x="61"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect199"
+									/>
+									<rect
+										x="67"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect200"
+									/>
+									<rect
+										x="73"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect201"
+									/>
+									<rect
+										x="79"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect202"
+									/>
+									<rect
+										x="85"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect203"
+									/>
+									<rect
+										x="91"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect204"
+									/>
+									<path
+										d="M 97 151v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 254, 54)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path204"
+									/>
+									<rect
+										x="121"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect205"
+									/>
+									<rect
+										x="127"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect206"
+									/>
+									<rect
+										x="133"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect207"
+									/>
+									<rect
+										x="157"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect208"
+									/>
+									<path
+										d="M 163 151v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 320, -12)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path208"
+									/>
+									<path
+										d="M 175 151v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, 24, 332)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path209"
+									/>
+									<rect
+										x="181"
+										y="151"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect209"
+									/>
+									<rect
+										x="61"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect210"
+									/>
+									<rect
+										x="67"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect211"
+									/>
+									<rect
+										x="73"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect212"
+									/>
+									<path
+										d="M 85 157v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 248, 72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path212"
+									/>
+									<path
+										d="M 115 157v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -42, 278)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path213"
+									/>
+									<rect
+										x="121"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect213"
+									/>
+									<rect
+										x="127"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect214"
+									/>
+									<rect
+										x="133"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect215"
+									/>
+									<rect
+										x="139"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect216"
+									/>
+									<rect
+										x="145"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect217"
+									/>
+									<rect
+										x="151"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect218"
+									/>
+									<path
+										d="M 157 157v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 320, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path218"
+									/>
+									<rect
+										x="175"
+										y="157"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect219"
+									/>
+									<path
+										d="M 181 157v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 344, -24)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path219"
+									/>
+									<rect
+										x="73"
+										y="163"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect220"
+									/>
+									<path
+										d="M 79 163v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 248, 84)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path220"
+									/>
+									<path
+										d="M 97 163v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -66, 266)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path221"
+									/>
+									<rect
+										x="103"
+										y="163"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect221"
+									/>
+									<path
+										d="M 109 163v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 278, 54)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path222"
+									/>
+									<path
+										d="M 151 163v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 320, 12)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path223"
+									/>
+									<path
+										d="M 163 163v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 332, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path224"
+									/>
+									<rect
+										x="175"
+										y="163"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect224"
+									/>
+									<rect
+										x="73"
+										y="169"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect225"
+									/>
+									<path
+										d="M 85 169v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -84, 260)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path225"
+									/>
+									<path
+										d="M 91 169v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 266, 78)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path226"
+									/>
+									<rect
+										x="103"
+										y="169"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect226"
+									/>
+									<path
+										d="M 127 169v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -42, 302)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path227"
+									/>
+									<rect
+										x="133"
+										y="169"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect227"
+									/>
+									<path
+										d="M 139 169v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 314, 30)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path228"
+									/>
+									<rect
+										x="175"
+										y="169"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect228"
+									/>
+									<rect
+										x="181"
+										y="169"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect229"
+									/>
+									<path
+										d="M 67 175v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -108, 248)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path229"
+									/>
+									<rect
+										x="73"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect230"
+									/>
+									<rect
+										x="85"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect231"
+									/>
+									<path
+										d="M 97 175v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -78, 278)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path231"
+									/>
+									<rect
+										x="103"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect232"
+									/>
+									<rect
+										x="109"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect233"
+									/>
+									<rect
+										x="115"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect234"
+									/>
+									<rect
+										x="121"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect235"
+									/>
+									<rect
+										x="133"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect236"
+									/>
+									<path
+										d="M 145 175v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, -1, 1, 0, -30, 326)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path236"
+									/>
+									<path
+										d="M 151 175v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 332, 24)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path237"
+									/>
+									<path
+										d="M 163 175v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 344, 12)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path238"
+									/>
+									<rect
+										x="175"
+										y="175"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect238"
+									/>
+									<path
+										d="M 181 175v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 362, -6)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path239"
+									/>
+									<rect
+										x="67"
+										y="181"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect239"
+									/>
+									<rect
+										x="73"
+										y="181"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect240"
+									/>
+									<rect
+										x="79"
+										y="181"
+										width="6"
+										height="6"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="rect241"
+									/>
+									<path
+										d="M 85 181v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 272, 96)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path241"
+									/>
+									<path
+										d="M 109 181v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 296, 72)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path242"
+									/>
+									<path
+										d="M 121 181v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 308, 60)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path243"
+									/>
+									<path
+										d="M 133 181v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 320, 48)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path244"
+									/>
+									<path
+										d="M 145 181v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 332, 36)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path245"
+									/>
+									<path
+										d="M 157 181v 3a 3 3, 0, 0, 0, 3 3h 3v -3a 3 3, 0, 0, 0, -3 -3"
+										transform="matrix(0, 1, -1, 0, 344, 24)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path246"
+									/>
+									<path
+										d="M 175 181v 6h 6a 6 6, 0, 0, 0, -6 -6"
+										transform="matrix(0, 1, -1, 0, 362, 6)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path247"
+									/>
+								</clipPath>
+								<clipPath id="svg1-clip-path-corners-square-color-0-0-35">
+									<path
+										clip-rule="evenodd"
+										d="M 13 28v 12a 15 15, 0, 0, 0, 15 15h 12a 15 15, 0, 0, 0, 15 -15v -12a 15 15, 0, 0, 0, -15 -15h -12a 15 15, 0, 0, 0, -15 15M 28 19h 12a 9 9, 0, 0, 1, 9 9v 12a 9 9, 0, 0, 1, -9 9h -12a 9 9, 0, 0, 1, -9 -9v -12a 9 9, 0, 0, 1, 9 -9"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path248"
+									/>
+								</clipPath>
+								<clipPath id="svg1-clip-path-corners-dot-color-0-0-35">
+									<circle
+										cx="34"
+										cy="34"
+										r="9"
+										transform="matrix(1, 0, 0, 1, 0, 0)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="circle248"
+									/>
+								</clipPath>
+								<clipPath id="svg1-clip-path-corners-square-color-1-0-35">
+									<path
+										clip-rule="evenodd"
+										d="M 145 28v 12a 15 15, 0, 0, 0, 15 15h 12a 15 15, 0, 0, 0, 15 -15v -12a 15 15, 0, 0, 0, -15 -15h -12a 15 15, 0, 0, 0, -15 15M 160 19h 12a 9 9, 0, 0, 1, 9 9v 12a 9 9, 0, 0, 1, -9 9h -12a 9 9, 0, 0, 1, -9 -9v -12a 9 9, 0, 0, 1, 9 -9"
+										transform="matrix(0, 1, -1, 0, 200, -132)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path249"
+									/>
+								</clipPath>
+								<clipPath id="svg1-clip-path-corners-dot-color-1-0-35">
+									<circle
+										cx="166"
+										cy="34"
+										r="9"
+										transform="matrix(0, 1, -1, 0, 200, -132)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="circle249"
+									/>
+								</clipPath>
+								<clipPath id="svg1-clip-path-corners-square-color-0-1-35">
+									<path
+										clip-rule="evenodd"
+										d="M 13 160v 12a 15 15, 0, 0, 0, 15 15h 12a 15 15, 0, 0, 0, 15 -15v -12a 15 15, 0, 0, 0, -15 -15h -12a 15 15, 0, 0, 0, -15 15M 28 151h 12a 9 9, 0, 0, 1, 9 9v 12a 9 9, 0, 0, 1, -9 9h -12a 9 9, 0, 0, 1, -9 -9v -12a 9 9, 0, 0, 1, 9 -9"
+										transform="matrix(0, -1, 1, 0, -132, 200)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="path250"
+									/>
+								</clipPath>
+								<clipPath id="svg1-clip-path-corners-dot-color-0-1-35">
+									<circle
+										cx="34"
+										cy="166"
+										r="9"
+										transform="matrix(0, -1, 1, 0, -132, 200)"
+										color="rgb(248, 250, 252)"
+										stroke="none"
+										id="circle250"
+									/>
+								</clipPath>
+							</defs>
+							<rect
+								x="0"
+								y="0"
+								height="200"
+								width="200"
+								clip-path='url("#svg1-clip-path-dot-color-35")'
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="rect251"
+								transform="translate(213.233, 141.333)"
+							/>
+							<rect
+								x="13"
+								y="13"
+								height="42"
+								width="42"
+								clip-path='url("#svg1-clip-path-corners-square-color-0-0-35")'
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="rect252"
+								transform="translate(213.233, 141.333)"
+							/>
+							<rect
+								x="25"
+								y="25"
+								height="18"
+								width="18"
+								clip-path='url("#svg1-clip-path-corners-dot-color-0-0-35")'
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="rect253"
+								transform="translate(213.233, 141.333)"
+							/>
+							<rect
+								x="145"
+								y="13"
+								height="42"
+								width="42"
+								clip-path='url("#svg1-clip-path-corners-square-color-1-0-35")'
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="rect254"
+								transform="translate(213.233, 141.333)"
+							/>
+							<rect
+								x="157"
+								y="25"
+								height="18"
+								width="18"
+								clip-path='url("#svg1-clip-path-corners-dot-color-1-0-35")'
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="rect255"
+								transform="translate(213.233, 141.333)"
+							/>
+							<rect
+								x="13"
+								y="145"
+								height="42"
+								width="42"
+								clip-path='url("#svg1-clip-path-corners-square-color-0-1-35")'
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="rect256"
+								transform="translate(213.233, 141.333)"
+							/>
+							<rect
+								x="25"
+								y="157"
+								height="18"
+								width="18"
+								clip-path='url("#svg1-clip-path-corners-dot-color-0-1-35")'
+								color="rgb(248, 250, 252)"
+								stroke="none"
+								id="rect257"
+								transform="translate(213.233, 141.333)"
+							/>
+						</g>
+					</svg>

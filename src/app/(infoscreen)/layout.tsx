@@ -11,6 +11,7 @@ const CarouselLayout = ({
 	lectures,
 	ilotalo,
 	children,
+	voting,
 }: CarouselLayoutProps) => {
 	return (
 		<main className="flex max-h-screen min-h-screen">
@@ -18,6 +19,7 @@ const CarouselLayout = ({
 				{ad}
 				{sponsors}
 				{lectures}
+				{voting}
 				{restaurants}
 				{events}
 				{ilotalo}
