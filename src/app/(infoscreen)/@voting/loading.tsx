@@ -1,10 +1,9 @@
 import { Slide } from '@/components/Carousel';
 import I18n from '@/components/I18n/I18n';
-import Image from 'next/image';
 
-import voteSvg from '/public/vote.svg';
+import { VotingSvg } from '@/components/VotingSvg';
 
-const VoteLoading = async () => {
+const VoteLoading = () => {
 	return (
 		<Slide className="bg-cyan-900">
 			<div className="flex min-h-full min-w-full flex-col gap-y-8 p-4">
@@ -34,11 +33,7 @@ const VoteLoading = async () => {
 						👉 <span className="underline">vaalit.hyy.fi</span> 👈
 					</p>
 
-					<Image
-						alt="vaalit.hyy.fi QR code"
-						className="mt-12 self-center"
-						src={voteSvg}
-					/>
+					<VotingSvg />
 				</div>
 			</div>
 		</Slide>

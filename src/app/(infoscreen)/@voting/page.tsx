@@ -1,19 +1,33 @@
 import { Slide } from '@/components/Carousel';
 import I18n from '@/components/I18n/I18n';
+import { VotingSvg } from '@/components/VotingSvg';
 
-import Image from 'next/image';
-import voteSvg from '/public/vote.svg';
+import { getVotingActivity } from '@/server/repcoVotes';
+
+const facultyTranslations = {
+	'Svenska social- och kommunalhögskolan': 'Swedish School of Social Science',
+	Eläinlääketieteellinen: 'Veterinary Medicine',
+	Lääketieteellinen: 'Medicine',
+	Valtiotieteellinen: 'Social Sciences',
+	Oikeustieteellinen: 'Law',
+	'Bio- ja ympäristötieteellinen': 'Biosciences and Environmental Sciences',
+	'Maatalous-metsätieteellinen': 'Agriculture and Forestry',
+	Farmasia: 'Pharmacy',
+	'Matemaattis-luonnontieteellinen': 'Science',
+	Humanistinen: 'Arts',
+	Teologinen: 'Theology',
+	Kasvatustieteellinen: 'Educational Sciences',
+} as const;
 
 const VoteSlide = async () => {
-	// FIXME: Use actual values from API
-	const votePercentage = 0.4;
-	const topVotePercentage = 0.6;
+	const votes = await getVotingActivity();
+
+	if (!votes) {
+		throw new Error('No voting data');
+	}
 
 	return (
-		<Slide
-			// fullWidth ( slides take up half the screen by default )
-			className="bg-cyan-900"
-		>
+		<Slide className="bg-cyan-900">
 			<div className="flex min-h-full min-w-full flex-col gap-y-8 p-4">
 				<h3 className="self-center text-3xl font-bold">
 					<I18n>
@@ -40,13 +54,9 @@ const VoteSlide = async () => {
 					<p className="mt-8 self-center text-5xl">
 						👉 <span className="underline">vaalit.hyy.fi</span> 👈
 					</p>
-
-					<Image
-						alt="vaalit.hyy.fi QR code"
-						className="mt-12 self-center"
-						src={voteSvg}
-					/>
 				</div>
+
+				<VotingSvg />
 
 				<div className="mb-16 mt-auto flex w-full flex-col gap-y-2">
 					<p className="text-3xl">
@@ -56,22 +66,22 @@ const VoteSlide = async () => {
 						<div
 							className="absolute h-full rounded-sm bg-orange-600"
 							style={{
-								width: `${(topVotePercentage ?? 0) * 100}%`,
+								width: `${votes.mostVoted.percentage ?? 0}%`,
 							}}
 						>
-							<p className="absolute -right-10 top-1/2 -translate-y-1/2 whitespace-nowrap font-bold text-orange-600">
-								{(topVotePercentage ?? 0) * 100} %
+							<p className="absolute -right-16 top-1/2 -translate-y-1/2 whitespace-nowrap font-bold text-orange-600">
+								{votes.mostVoted.percentage ?? 0} %
 							</p>
 						</div>
 
 						<div
 							className="absolute h-full rounded-sm bg-green-600"
 							style={{
-								width: `${(votePercentage ?? 0) * 100}%`,
+								width: `${votes.matluPercentage ?? 0}%`,
 							}}
 						>
 							<p className="absolute right-2 top-1/2 -translate-y-1/2 whitespace-nowrap font-bold text-white">
-								{(votePercentage ?? 0) * 100} %
+								{votes.matluPercentage ?? 0} %
 							</p>
 						</div>
 					</div>
@@ -79,8 +89,15 @@ const VoteSlide = async () => {
 						<p className="flex items-center gap-2 text-xl">
 							<span className="inline-block h-4 w-4 rounded-full bg-orange-600" />
 							<I18n>
-								Paras tiedekunta (Lääketieteellinen) // Best
-								Faculty (Medicine)
+								Paras tiedekunta ({votes.mostVoted.name}) //
+								Best Faculty (
+								{
+									facultyTranslations[
+										votes.mostVoted
+											.name as keyof typeof facultyTranslations
+									]
+								}
+								)
 							</I18n>
 						</p>
 						<p className="flex items-center gap-2 text-xl">

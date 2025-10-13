@@ -1,35 +1,40 @@
 'use client';
 
 import { Slide } from '@/components/Carousel';
+import I18n from '@/components/I18n/I18n';
+import { VotingSvg } from '@/components/VotingSvg';
 
-const VoteError = async () => {
+const VoteError = () => {
 	return (
 		<Slide className="bg-cyan-900">
 			<div className="flex min-h-full min-w-full flex-col gap-y-8 p-4">
 				<h3 className="self-center text-3xl font-bold">
-					HYYn Edustajistovaalit
-				</h3>
-				<h3 className="self-center text-2xl">
-					Student Union RepCo Elections
+					<I18n>
+						HYYn Edustajistovaalit // Student Union RepCo Elections
+					</I18n>
 				</h3>
 
-				<div className="mt-14 flex flex-col self-center text-center">
+				<div className="mb-auto mt-auto flex flex-col self-center text-center">
 					<p className="text-2xl">
-						Äänestä HYYn edustajistovaaleissa 15.-22.10.!
-					</p>
-					<p>
-						Vote in HYY Representative Council elections between
-						15.-22.10.
+						<I18n>
+							Äänestä HYYn edustajistovaaleissa 15.-22.10.! //
+							Vote in HYY Representative Council elections between
+							15.-22.10.
+						</I18n>
 					</p>
 
 					<p className="text-xl">
-						Saat ilmaisen pullan ja kahvin, kun äänestät!
+						<I18n>
+							Saat ilmaisen pullan ja kahvin, kun äänestät! // Get
+							a free bun and coffee when you vote!
+						</I18n>
 					</p>
-					<p>Get a free bun and coffee when you vote!</p>
 
 					<p className="mt-8 self-center text-5xl">
 						👉 <span className="underline">vaalit.hyy.fi</span> 👈
 					</p>
+
+					<VotingSvg />
 				</div>
 			</div>
 		</Slide>

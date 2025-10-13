@@ -4,6 +4,7 @@ import { revalidateTKOalyEvents } from '@/server/TKOalyEvents';
 import { revalidateIlotaloEvents } from '@/server/ilotaloEvents';
 import { revalidateLectures } from '@/server/lectures';
 import { revalidatePohinaFactor } from '@/server/pohinaFactor';
+import { revalidateRepcoVotes } from '@/server/repcoVotes';
 import { revalidateRestaurants } from '@/server/restaurants';
 import { revalidateSponsorData } from '@/server/sponsors';
 import { revalidateTransit } from '@/server/transit';
@@ -41,6 +42,10 @@ export const RefetchIntervals = () => {
 			() => void revalidateSponsorData(),
 			3600 * 1000
 		);
+		const repcoInterval = setInterval(
+			() => void revalidateRepcoVotes(),
+			15 * 60 * 1000
+		);
 
 		return () => {
 			clearInterval(TKOalyEventsInterval);
@@ -50,6 +55,7 @@ export const RefetchIntervals = () => {
 			clearInterval(lecturesInterval);
 			clearInterval(transitInterval);
 			clearInterval(sponsorInterval);
+			clearInterval(repcoInterval);
 		};
 	}, []);
 
