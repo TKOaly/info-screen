@@ -1,4 +1,5 @@
 import { Carousel, type SlideElement } from '@/components/Carousel';
+import { isWithinInterval } from 'date-fns';
 
 type CarouselLayoutProps = Record<string, SlideElement>;
 
@@ -13,13 +14,20 @@ const CarouselLayout = ({
 	children,
 	voting,
 }: CarouselLayoutProps) => {
+	// Check if today's date is between the 15th and 24th of October
+	const today = new Date();
+	const isVotingVisible = isWithinInterval(today, {
+		start: new Date(today.getFullYear(), 9, 13), // October is month 9 (0-indexed)
+		end: new Date(today.getFullYear(), 9, 24),
+	});
+
 	return (
 		<main className="flex max-h-screen min-h-screen">
 			<Carousel loop duration={40} delay={20000}>
 				{ad}
 				{sponsors}
 				{lectures}
-				{voting}
+				{isVotingVisible ? voting : <></>}
 				{restaurants}
 				{events}
 				{ilotalo}
