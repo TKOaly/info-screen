@@ -64,6 +64,11 @@ export const Carousel = ({
 	// Register keyboard event listener to document on mount
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
+			const slideNumber = parseInt(e.key);
+			const slideCount = emblaApi?.slideNodes().length || 0;
+			if (!isNaN(slideNumber) && slideNumber >= 0 && slideNumber < slideCount)
+				emblaApi?.scrollTo(slideNumber, true)
+
 			switch (e.key) {
 				case 'ArrowRight':
 				emblaApi?.scrollNext();
