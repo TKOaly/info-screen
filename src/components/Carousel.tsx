@@ -1,9 +1,11 @@
 'use client';
 
+import { langAtom } from '@/lib/lang';
 import { merge } from '@/lib/utils';
 import { type EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+import { useAtom } from 'jotai';
 import { Play } from 'lucide-react';
 import React, { useCallback, useEffect } from 'react';
 
@@ -37,6 +39,9 @@ export const Carousel = ({
 	// Show play button when autoplay is stopped
 	const [autoplay, setAutoplay] = React.useState(true);
 
+	//For toggling language with l
+	const [lang, setLang] = useAtom(langAtom);
+
 	useEffect(() => {
 		if (!emblaApi) return;
 		emblaApi.on('autoplay:stop', () => setAutoplay(false));
@@ -59,19 +64,26 @@ export const Carousel = ({
 	// Register keyboard event listener to document on mount
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'ArrowRight') {
+			switch (e.key) {
+				case 'ArrowRight':
 				emblaApi?.scrollNext();
 				e.preventDefault();
-			}
-			if (e.key === 'ArrowLeft') {
+					break;
+				case 'ArrowLeft':
 				emblaApi?.scrollPrev();
 				e.preventDefault();
+					break;
+				case 'l':
+					setLang(lang === 0 ? 1 : 0);
+					e.preventDefault();
+					break;
+
 			}
 		};
 
 		document.addEventListener('keydown', handleKeyDown);
 		return () => document.removeEventListener('keydown', handleKeyDown);
-	}, [emblaApi]);
+	}, [lang, setLang, emblaApi]);
 
 	return (
 		<>

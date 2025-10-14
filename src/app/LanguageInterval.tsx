@@ -10,7 +10,7 @@ export const LanguageInterval = () => {
 	useEffect(() => {
 		// Interval for switching language in event titles etc.
 		const langInterval = setInterval(
-			() => setlang(((lang + 1) % 2) as 0 | 1),
+			() => setlang(lang === 0 ? 1 : 0),
 			10 * 1000
 		);
 
