@@ -1,11 +1,9 @@
 'use client';
 
-import { langAtom } from '@/lib/lang';
 import { merge } from '@/lib/utils';
 import { type EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
-import { useAtom } from 'jotai';
 import { Play } from 'lucide-react';
 import React, { useCallback, useEffect } from 'react';
 
@@ -39,9 +37,6 @@ export const Carousel = ({
 	// Show play button when autoplay is stopped
 	const [autoplay, setAutoplay] = React.useState(true);
 
-	//For toggling language with l
-	const [lang, setLang] = useAtom(langAtom);
-
 	useEffect(() => {
 		if (!emblaApi) return;
 		emblaApi.on('autoplay:stop', () => setAutoplay(false));
@@ -71,24 +66,19 @@ export const Carousel = ({
 
 			switch (e.key) {
 				case 'ArrowRight':
-				emblaApi?.scrollNext();
-				e.preventDefault();
-					break;
-				case 'ArrowLeft':
-				emblaApi?.scrollPrev();
-				e.preventDefault();
-					break;
-				case 'l':
-					setLang(lang === 0 ? 1 : 0);
+					emblaApi?.scrollNext();
 					e.preventDefault();
 					break;
-
+				case 'ArrowLeft':
+					emblaApi?.scrollPrev();
+					e.preventDefault();
+					break;
 			}
 		};
 
 		document.addEventListener('keydown', handleKeyDown);
 		return () => document.removeEventListener('keydown', handleKeyDown);
-	}, [lang, setLang, emblaApi]);
+	}, [emblaApi]);
 
 	return (
 		<>
@@ -101,7 +91,7 @@ export const Carousel = ({
 			</div>
 			{/* Continue autoplay button */}
 			<div
-				className={`${autoplay ? 'invisible' : 'visible'} absolute bottom-8 right-8 z-50 rounded bg-white/0 p-2 hover:bg-white/30`}
+				className={`${autoplay ? 'invisible' : 'visible'} absolute bottom-8 right-8 z-50 rounded bg-white/30 p-2 hover:bg-white/90`}
 				onClick={resumeAutoplay}
 			>
 				<Play width={16} height={16} color="white" />
