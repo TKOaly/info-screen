@@ -3,6 +3,7 @@
 import { differenceInSeconds } from 'date-fns';
 import { useEffect, useState } from 'react';
 import Chip from '../Chip';
+import { useI18n } from '../I18n/I18n';
 
 const padZero = (num: number) => num.toString().padStart(2, '0');
 const formatCountdown = (diff: number) => {
@@ -48,12 +49,13 @@ type TickingChipProps = {
 } & React.ComponentProps<typeof Chip>;
 
 const TickingChip = ({ end, prefix = '', ...rest }: TickingChipProps) => {
+	const i18N = useI18n();
 	const [label] = useTickingLabel(end);
 	if (!label) {
 		return null;
 	}
 
-	return <Chip {...rest}>{`${prefix} ${label}`}</Chip>;
+	return <Chip {...rest}>{`${i18N(prefix)} ${label}`}</Chip>;
 };
 
 export default TickingChip;

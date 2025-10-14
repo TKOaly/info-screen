@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 const ErrorPage = ({ error }: { error: Error }) => {
-	console.error(error);
+	console.error(`Unrecoverable error`, error);
 
 	return (
 		<div className="flex min-h-screen min-w-full justify-evenly">
