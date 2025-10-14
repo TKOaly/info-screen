@@ -91,10 +91,10 @@ export const Carousel = ({
 			</div>
 			{/* Continue autoplay button */}
 			<div
-				className={`${autoplay ? 'invisible' : 'visible'} absolute bottom-8 right-8 z-50 rounded bg-white/30 p-2 hover:bg-white/90`}
+				className={`${autoplay ? 'invisible' : 'visible'} absolute bottom-8 right-8 z-50 rounded bg-white/0 p-2 hover:bg-white/30`}
 				onClick={resumeAutoplay}
 			>
-				<Play width={16} height={16} color="white" />
+				<Play width={16} height={16} color="#003278" />
 			</div>
 		</>
 	);
