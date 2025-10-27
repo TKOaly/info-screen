@@ -12,7 +12,6 @@ import {
 	setHours,
 } from 'date-fns';
 import en from 'date-fns/locale/en-US';
-import fi from 'date-fns/locale/fi';
 import { revalidateTag } from 'next/cache';
 import { GET } from './wrappers';
 
