@@ -222,11 +222,8 @@ const getLunchHours = (restaurant: RestaurantData) => {
 			if (time.label.includes('–')) {
 				const [startDay, endDay] = time.label.split('–').map(
 					(date) =>
-						parse(date, 'cccccc', setHours(getNow(), 0), {
-							locale: fi,
-						}) || undefined
+						parse(date, 'ccc', setHours(getNow(), 0)) || undefined
 				);
-
 				// Check if current date is in that range
 				return isWithinInterval(getNow(), {
 					start: startDay,
@@ -240,9 +237,7 @@ const getLunchHours = (restaurant: RestaurantData) => {
 			}
 
 			// If it is a single weekday check if that is today
-			const day = parse(time.label, 'cccccc', getNow(), {
-				locale: fi,
-			});
+			const day = parse(time.label, 'ccc', getNow());
 			return isSameDay(day, getNow());
 		})?.hours ??
 		// Otherwise return the opening hours of the first entry in the list
