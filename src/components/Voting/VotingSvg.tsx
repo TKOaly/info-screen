@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import voteSvg from '/public/vote.svg';
+import voteSvg from '../../../public/vote.svg';
 
 export const VotingSvg = () => (
 	<Image
