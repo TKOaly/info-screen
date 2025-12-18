@@ -6,7 +6,6 @@ import { getIlotaloEvents } from '@/server/ilotaloEvents';
 import Image from 'next/image';
 import { Fragment } from 'react';
 import { EventBox } from './EventBox';
-import PohinaFactor from './pohinaFactor';
 
 const IlotaloEvents = async () => {
 	const events = await getIlotaloEvents();
@@ -28,7 +27,6 @@ const IlotaloEvents = async () => {
 				</h2>
 				<div className="scrollbar-none -mt-20 flex min-h-0 w-full overflow-y-auto">
 					<div className="flex min-h-0 w-full flex-col pt-14">
-						<PohinaFactor />
 						{events &&
 							Object.entries(events).map(
 								([relativeWeek, events]) => (
