@@ -143,6 +143,18 @@ export const getTKOalyEvents = async () => {
 		}));
 };
 
+const selectOnlyKJYR = (events: TKOalyEvent[]) => {
+	const KJYREvents = events.filter((event) => /^KJYR\b/.test(event.name));
+	if(KJYREvents.length > 0)
+		return KJYREvents[0].starts;
+	return null;
+}
+
+export const getKJYRDate = async () => {
+	'use server';
+	return await getUpcomingEvents().then(selectOnlyKJYR)
+};
+
 export const revalidateTKOalyEvents = async () => {
 	'use server';
 	revalidateTag(fetchTag);
