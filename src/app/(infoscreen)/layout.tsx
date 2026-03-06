@@ -13,7 +13,7 @@ const CarouselLayout = ({
 	ilotalo,
 	children,
 	voting,
-  paninis,
+	paninis,
 }: CarouselLayoutProps) => {
 	// Check if today's date is between the 15th and 24th of October
 	const today = new Date();
@@ -34,7 +34,7 @@ const CarouselLayout = ({
 				{ilotalo}
 				{transit}
 				{children}
-        {paninis}
+				{paninis}
 			</Carousel>
 		</main>
 	);
