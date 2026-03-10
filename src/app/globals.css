@@ -1,28 +1,6 @@
-@import 'tailwindcss';
-
-@theme {
-	/* Colors */
-	--color-blue-hsl: #007ac9;
-	--color-green-unari: #155c2c;
-	--color-green-hsl_realtime: #46850e;
-	--color-yellow-tkoaly: #fff500;
-	--color-org-tkoaly: #fff500;
-	--color-org-matlu-primary: #fca412;
-	--color-org-matlu-secondary: #09773a;
-
-	/* Font families */
-	--font-inter: var(--font-inter);
-	--font-sans: var(--font-inter);
-	--font-m_plus_rounded: var(--font-m-plus-rounded);
-	--font-gabarito: var(--font-gabarito);
-
-	/* Spacing */
-	--spacing-5\/14: 35.714286%;
-	--spacing-9\/14: 64.285714%;
-
-	/* Animation */
-	--animate-spin-slow: spin 10s linear infinite;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
 	--foreground-rgb: 245, 245, 245;
