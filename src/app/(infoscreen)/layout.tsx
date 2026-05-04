@@ -10,7 +10,6 @@ const CarouselLayout = ({
 	transit,
 	ad,
 	lectures,
-	ilotalo,
 	children,
 	voting,
 }: CarouselLayoutProps) => {
@@ -30,7 +29,6 @@ const CarouselLayout = ({
 				{isVotingVisible ? voting : <></>}
 				{restaurants}
 				{events}
-				{ilotalo}
 				{transit}
 				{children}
 			</Carousel>
