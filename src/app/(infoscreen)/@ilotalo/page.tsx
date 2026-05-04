@@ -1,15 +1,9 @@
 'use server';
 
 import { Slide } from '@/components/Carousel';
-import I18n from '@/components/I18n/I18n';
-import { getIlotaloEvents } from '@/server/ilotaloEvents';
 import Image from 'next/image';
-import { Fragment } from 'react';
-import { EventBox } from './EventBox';
 
 const IlotaloEvents = async () => {
-	const events = await getIlotaloEvents();
-
 	return (
 		<Slide className="bg-org-matlu-primary pt-3 text-grey-900">
 			<div className="flex size-full min-h-0 flex-col items-center justify-start gap-y-4">
@@ -27,25 +21,7 @@ const IlotaloEvents = async () => {
 				</h2>
 				<div className="scrollbar-none -mt-20 flex min-h-0 w-full overflow-y-auto">
 					<div className="flex min-h-0 w-full flex-col pt-14">
-						{events &&
-							Object.entries(events).map(
-								([relativeWeek, events]) => (
-									<Fragment key={relativeWeek}>
-										<h3 className="p-2 text-2xl font-bold">
-											<I18n>{relativeWeek}</I18n>
-										</h3>
-										<hr className="w-full" />
-										<div className="grid grid-cols-2 gap-4 p-4">
-											{events.map((event) => (
-												<EventBox
-													key={event.id}
-													event={event}
-												/>
-											))}
-										</div>
-									</Fragment>
-								)
-							)}
+						<h2>R.I.P. Matlu-Klusteri<br/>2008&ndash;2026</h2>
 					</div>
 				</div>
 			</div>
