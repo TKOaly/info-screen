@@ -94,6 +94,29 @@ const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 };
 
 const Transit = async () => {
+	if (!process.env.DIGITRANSIT_TOKEN) {
+		return (<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
+			<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
+				<BusFront width={64} height={64} strokeWidth={1.5} />
+				<div className="h-full w-[10px] border-x-[3px]"></div>
+				<h2 className="text-4xl font-bold leading-8 tracking-tight">
+					HSL
+					<br />
+					<span className="font-normal">HRT</span>
+				</h2>
+				<div className="rounded-lg bg-white text-5xl font-bold text-black">
+					<Clock></Clock>
+				</div>
+			</div>
+			<div className="flex h-full min-h-0 min-w-full justify-between overflow-hidden bg-white text-3xl font-bold">
+				<div className="flex size-full flex-col flex-wrap">
+					<div className="flex justify-between bg-sky-700 p-3">
+					Error fetching HSL data: no token provided
+					</div>
+				</div>
+			</div>
+		</Slide>)
+	}
 	const stoptimes = await Promise.all(
 		[
 			['HSL:1240134', 'HSL:1240133'],
