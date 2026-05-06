@@ -5,6 +5,7 @@ type CarouselLayoutProps = Record<string, SlideElement>;
 
 const CarouselLayout = ({
 	events,
+	countdowns,
 	sponsors,
 	restaurants,
 	transit,
@@ -29,6 +30,7 @@ const CarouselLayout = ({
 				{isVotingVisible ? voting : <></>}
 				{restaurants}
 				{events}
+				{countdowns}
 				{transit}
 				{children}
 			</Carousel>
