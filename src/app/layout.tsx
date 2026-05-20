@@ -1,3 +1,4 @@
+import { LanguageCycle } from '@/components/LanguageCycle';
 import { getServerVersion } from '@/server/version';
 import { Provider } from 'jotai';
 import type { Metadata } from 'next';
@@ -32,6 +33,7 @@ export default async function RootLayout({
 				<Provider>
 					{children}
 					<LanguageInterval />
+					<LanguageCycle />
 					<RefetchIntervals />
 					<Update initialVersion={initialVersion} />
 				</Provider>

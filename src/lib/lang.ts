@@ -5,3 +5,8 @@ import { atom, useAtomValue } from 'jotai';
 export const langAtom = atom<0 | 1>(0);
 
 export const useLang = () => useAtomValue(langAtom);
+
+//When true language isn't cycled automatically
+export const doLangCycleAtom = atom<boolean>(true);
+
+export const useLangCycle = () => useAtomValue(doLangCycleAtom);
