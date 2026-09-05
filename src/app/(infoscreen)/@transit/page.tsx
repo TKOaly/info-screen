@@ -95,27 +95,29 @@ const renderStoptimes = (transitData: TransitData): JSX.Element[] => {
 
 const Transit = async () => {
 	if (!process.env.DIGITRANSIT_TOKEN) {
-		return (<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
-			<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
-				<BusFront width={64} height={64} strokeWidth={1.5} />
-				<div className="h-full w-[10px] border-x-[3px]"></div>
-				<h2 className="text-4xl font-bold leading-8 tracking-tight">
-					HSL
-					<br />
-					<span className="font-normal">HRT</span>
-				</h2>
-				<div className="rounded-lg bg-white text-5xl font-bold text-black">
-					<Clock></Clock>
-				</div>
-			</div>
-			<div className="flex h-full min-h-0 min-w-full justify-between overflow-hidden bg-white text-3xl font-bold">
-				<div className="flex size-full flex-col flex-wrap">
-					<div className="flex justify-between bg-sky-700 p-3">
-					Error fetching HSL data: no token provided
+		return (
+			<Slide fullWidth className="bg-blue-hsl font-m_plus_rounded">
+				<div className="flex items-center gap-x-4 bg-sky-700 p-4 pb-0">
+					<BusFront width={64} height={64} strokeWidth={1.5} />
+					<div className="h-full w-[10px] border-x-[3px]"></div>
+					<h2 className="text-4xl font-bold leading-8 tracking-tight">
+						HSL
+						<br />
+						<span className="font-normal">HRT</span>
+					</h2>
+					<div className="rounded-lg bg-white text-5xl font-bold text-black">
+						<Clock></Clock>
 					</div>
 				</div>
-			</div>
-		</Slide>)
+				<div className="flex h-full min-h-0 min-w-full justify-between overflow-hidden bg-white text-3xl font-bold">
+					<div className="flex size-full flex-col flex-wrap">
+						<div className="flex justify-between bg-sky-700 p-3">
+							Error fetching HSL data: no token provided
+						</div>
+					</div>
+				</div>
+			</Slide>
+		);
 	}
 	const stoptimes = await Promise.all(
 		[
@@ -138,17 +140,17 @@ const Transit = async () => {
 			)
 		)
 	);
-	const rightStoptimes = stoptimes[0].map((x) => (
+	const aiVirtanenPlazaStoptimes = stoptimes[0].map((x) => (
 		<>
 			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
 	));
-	const leftStoptimes = stoptimes[1].map((x) => (
+	const kumpulaCampusStoptimes = stoptimes[1].map((x) => (
 		<>
-			<div className="flex w-1/2 justify-between bg-white p-3">{x}</div>
+			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
 	));
-	const thirdStoptimes = stoptimes[2].map((x) => (
+	const nylanderParkStoptimes = stoptimes[2].map((x) => (
 		<>
 			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
@@ -172,20 +174,20 @@ const Transit = async () => {
 					<div className="flex w-1/2 justify-between bg-sky-700 p-3">
 						<p>Kumpulan kampus</p>
 					</div>
-					{leftStoptimes}
+					{kumpulaCampusStoptimes}
 				</div>
 				<div className="flex size-full w-1/3 flex-col">
 					<div className="flex h-9/14 w-full flex-col flex-wrap">
 						<div className="flex w-full justify-between bg-sky-700 p-3">
 							<p>A.I. Virtasen aukio</p>
 						</div>
-						{rightStoptimes}
+						{aiVirtanenPlazaStoptimes}
 					</div>
 					<div className="flex h-5/14 w-full flex-col flex-wrap">
 						<div className="flex w-full justify-between bg-sky-700 p-3">
 							<p>Nylanderinpuisto</p>
 						</div>
-						{thirdStoptimes}
+						{nylanderParkStoptimes}
 					</div>
 				</div>
 			</div>
