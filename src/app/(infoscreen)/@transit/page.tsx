@@ -121,15 +121,9 @@ const Transit = async () => {
 	}
 	const stoptimes = await Promise.all(
 		[
+			['HSL:1240118', 'HSL:1240419', 'HSL:1230112'],
+			['HSL:1240103', 'HSL:1240418', 'HSL:1230109'],
 			['HSL:1240134', 'HSL:1240133'],
-			[
-				'HSL:1240118',
-				'HSL:1240103',
-				'HSL:1240419',
-				'HSL:1240418',
-				'HSL:1230109',
-				'HSL:1230112',
-			],
 			['HSL:1210405', 'HSL:1210406'],
 		].map(async (x) =>
 			renderStoptimes(
@@ -140,17 +134,22 @@ const Transit = async () => {
 			)
 		)
 	);
-	const aiVirtanenPlazaStoptimes = stoptimes[0].map((x) => (
+	const kumpulaCampusToSouthStoptimes = stoptimes[0].map((x) => (
 		<>
 			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
 	));
-	const kumpulaCampusStoptimes = stoptimes[1].map((x) => (
+	const kumpulaCampusToNorthStoptimes = stoptimes[1].map((x) => (
 		<>
 			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
 	));
-	const nylanderParkStoptimes = stoptimes[2].map((x) => (
+	const aiVirtanenPlazaStoptimes = stoptimes[2].map((x) => (
+		<>
+			<div className="flex w-full justify-between bg-white p-3">{x}</div>
+		</>
+	));
+	const nylanderParkStoptimes = stoptimes[3].map((x) => (
 		<>
 			<div className="flex w-full justify-between bg-white p-3">{x}</div>
 		</>
@@ -170,11 +169,17 @@ const Transit = async () => {
 				</div>
 			</div>
 			<div className="flex h-full min-h-0 min-w-full justify-between overflow-hidden bg-white text-3xl font-bold">
-				<div className="flex size-full w-2/3 flex-col flex-wrap">
-					<div className="flex w-1/2 justify-between bg-sky-700 p-3">
-						<p>Kumpulan kampus</p>
+				<div className="flex size-full w-1/3 flex-col">
+					<div className="flex w-full justify-between bg-sky-700 p-3">
+						<p>Kumpulan kampus (etelään)</p>
 					</div>
-					{kumpulaCampusStoptimes}
+					{kumpulaCampusToSouthStoptimes}
+				</div>
+				<div className="flex size-full w-1/3 flex-col">
+					<div className="flex w-full justify-between bg-sky-700 p-3">
+						<p>Kumpulan kampus (pohjoiseen)</p>
+					</div>
+					{kumpulaCampusToNorthStoptimes}
 				</div>
 				<div className="flex size-full w-1/3 flex-col">
 					<div className="flex h-9/14 w-full flex-col flex-wrap">
