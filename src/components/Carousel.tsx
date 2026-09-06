@@ -59,13 +59,20 @@ export const Carousel = ({
 	// Register keyboard event listener to document on mount
 	useEffect(() => {
 		const handleKeyDown = (e: KeyboardEvent) => {
-			if (e.key === 'ArrowRight') {
-				emblaApi?.scrollNext();
-				e.preventDefault();
-			}
-			if (e.key === 'ArrowLeft') {
-				emblaApi?.scrollPrev();
-				e.preventDefault();
+			const slideNumber = parseInt(e.key);
+			const slideCount = emblaApi?.slideNodes().length || 0;
+			if (!isNaN(slideNumber) && slideNumber >= 0 && slideNumber < slideCount)
+				emblaApi?.scrollTo(slideNumber, true)
+
+			switch (e.key) {
+				case 'ArrowRight':
+					emblaApi?.scrollNext();
+					e.preventDefault();
+					break;
+				case 'ArrowLeft':
+					emblaApi?.scrollPrev();
+					e.preventDefault();
+					break;
 			}
 		};
 
@@ -87,7 +94,7 @@ export const Carousel = ({
 				className={`${autoplay ? 'invisible' : 'visible'} absolute bottom-8 right-8 z-50 rounded bg-white/0 p-2 hover:bg-white/30`}
 				onClick={resumeAutoplay}
 			>
-				<Play width={16} height={16} color="white" />
+				<Play width={16} height={16} color="#003278" />
 			</div>
 		</>
 	);

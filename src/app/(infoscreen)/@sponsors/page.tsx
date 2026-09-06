@@ -1,6 +1,7 @@
 'use client';
 
 import { Slide } from '@/components/Carousel';
+import I18n from '@/components/I18n/I18n';
 import { getSponsorData, type SponsorData } from '@/server/sponsors';
 import { useEffect, useState } from 'react';
 
@@ -18,7 +19,7 @@ const Sponsors = () => {
 	return (
 		<Slide className="bg-white">
 			<h1 className="text-center text-[3em] text-black">
-				Yhteistyökumppanit
+				<I18n>Yhteistyökumppanit // Sponsors</I18n>
 			</h1>
 			<div className="max-w-m relative flex flex-wrap items-center justify-evenly">
 				{sponsors?.filter((sponsor) => sponsor.logoUrl).map((sponsor) => (
