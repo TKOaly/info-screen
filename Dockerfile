@@ -17,12 +17,12 @@ COPY . .
 
 ARG COMMIT_SHA
 # Expose the commit sha environment variable to next for cached build steps
-ENV NEXT_COMMIT_SHA $COMMIT_SHA
+ENV NEXT_COMMIT_SHA=$COMMIT_SHA
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
 
 # If using npm comment out above and use below instead
 RUN npm run build
@@ -31,9 +31,9 @@ RUN npm run build
 FROM node:21-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during runtime.
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -49,12 +49,12 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
+ENV PORT=3000
 
 # Force timezone to be Helsinki
-ENV TZ Europe/Helsinki
+ENV TZ=Europe/Helsinki
 
 ARG COMMIT_SHA
-ENV NEXT_COMMIT_SHA $COMMIT_SHA
+ENV NEXT_COMMIT_SHA=$COMMIT_SHA
 
 CMD ["node", "server.js"]

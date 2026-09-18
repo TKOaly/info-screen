@@ -10,9 +10,11 @@ const Sponsors = () => {
 	);
 
 	useEffect(() => {
-		getSponsorData().then((data) => {
-			setSponsors(data);
-		}).catch(err => console.error("failed to update sponsors: ", err));
+		getSponsorData()
+			.then((data) => {
+				setSponsors(data);
+			})
+			.catch((err) => console.error('failed to update sponsors: ', err));
 	}, [setSponsors]);
 
 	return (
@@ -24,6 +26,7 @@ const Sponsors = () => {
 				{sponsors?.filter((sponsor) => sponsor.logoUrl).map((sponsor) => (
 					<img
 						key={sponsor.logoUrl}
+						alt={sponsor.name.xx}
 						className="aspect-[3/2] w-[15em] object-contain"
 						src={sponsor.logoUrl}
 					/>

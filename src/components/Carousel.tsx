@@ -1,11 +1,12 @@
 'use client';
 
 import { merge } from '@/lib/utils';
-import { type EmblaOptionsType } from 'embla-carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import { Play } from 'lucide-react';
 import React, { useCallback, useEffect } from 'react';
+
+type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>;
 
 type CarouselProps = {
 	delay?: number;
@@ -16,7 +17,7 @@ export const Carousel = ({
 	children,
 	delay = 3000,
 	...rest
-}: CarouselProps & EmblaOptionsType) => {
+}: CarouselProps & CarouselOptions) => {
 	const slidesLength = children
 		.map((child) => (child.props.fullWidth ? 2 : 1))
 		.reduce((a, b) => a + b, 0);
