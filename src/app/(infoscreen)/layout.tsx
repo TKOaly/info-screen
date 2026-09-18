@@ -8,6 +8,7 @@ const CarouselLayout = ({
 	sponsors,
 	restaurants,
 	transit,
+	airquality,
 	ad,
 	lectures,
 	children,
@@ -30,6 +31,7 @@ const CarouselLayout = ({
 				{restaurants}
 				{events}
 				{transit}
+				{airquality}
 				{children}
 			</Carousel>
 		</main>
