@@ -13,9 +13,11 @@ type CarouselProps = {
 	children: SlideElement[];
 };
 
+const MOUSE_MOVE_AUTOPLAY_DELAY = 1000 * 20;
+
 export const Carousel = ({
 	children,
-	delay = 3000,
+	delay = MOUSE_MOVE_AUTOPLAY_DELAY,
 	...rest
 }: CarouselProps & CarouselOptions) => {
 	const slidesLength = children
@@ -56,6 +58,17 @@ export const Carousel = ({
 
 		return () => clearTimeout(autoplayTimeout);
 	}, [autoplay, resumeAutoplay]);
+
+	useEffect(() => {
+		if (!emblaApi || !autoplay) return;
+
+		const handleMouseMove = () => {
+			emblaApi.plugins().autoplay?.reset();
+		};
+
+		document.addEventListener('mousemove', handleMouseMove);
+		return () => document.removeEventListener('mousemove', handleMouseMove);
+	}, [autoplay, emblaApi]);
 
 	// Register keyboard event listener to document on mount
 	useEffect(() => {
