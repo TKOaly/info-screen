@@ -5,6 +5,11 @@ import { type ReactNode } from 'react';
 
 // Update this when the next KJYR date is announced.
 const KJYR_DATE = new Date(2026, 9, 23);
+const ATK_YTP_MONTH_INDEX = 9;
+const ATK_YTP_DAY = 14;
+const ATK_YTP_OPACITY_WINDOW_DAYS = 365;
+const ATK_YTP_MIN_OPACITY = 0.06;
+const ATK_YTP_MAX_OPACITY = 0.72;
 const tjMathMl =
 	'<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><msub><mi>tj</mi><mi>kjyr</mi></msub><mo>&#x2208;</mo><mo>{</mo><mi>n</mi><mo>:</mo><mi>n</mi><mo>&#x2208;</mo><mi mathvariant="double-struck">R</mi><mo>}</mo></math>';
 const cabinMathMl =
@@ -101,17 +106,36 @@ const getNextYearlyDate = (
 const getKjyrJoke = (tj: number, jokes: ReactNode[]) =>
 	jokes[((tj % jokes.length) + jokes.length) % jokes.length];
 
+const getAtkYtpOpacity = (daysUntilEvent: number) => {
+	const boundedDays = Math.min(
+		Math.max(daysUntilEvent, 0),
+		ATK_YTP_OPACITY_WINDOW_DAYS
+	);
+	const closeness = 1 - boundedDays / ATK_YTP_OPACITY_WINDOW_DAYS;
+
+	return (
+		ATK_YTP_MIN_OPACITY +
+		(ATK_YTP_MAX_OPACITY - ATK_YTP_MIN_OPACITY) * closeness
+	);
+};
+
 type CounterProps = {
 	label: string;
 	value: number;
+	background?: ReactNode;
 };
 
-const Counter = ({ label, value }: CounterProps) => (
-	<div className="flex min-h-0 flex-col items-center justify-center gap-2 border-t border-cyan-100/20 px-6 text-center first:border-t-0">
-		<div className="text-3xl font-black uppercase text-cyan-100">
+const Counter = ({ label, value, background }: CounterProps) => (
+	<div className="relative flex min-h-0 flex-col items-center justify-center gap-2 overflow-hidden border-t border-cyan-100/20 px-6 text-center first:border-t-0">
+		{background && (
+			<div className="pointer-events-none absolute inset-0 z-0">
+				{background}
+			</div>
+		)}
+		<div className="relative z-10 text-3xl font-black uppercase text-cyan-100">
 			{label}
 		</div>
-		<div className="flex items-baseline justify-center gap-3">
+		<div className="relative z-10 flex items-baseline justify-center gap-3">
 			<span className="text-8xl font-black leading-none text-white">
 				{value}
 			</span>
@@ -124,7 +148,11 @@ const TJCounter = () => {
 	const today = new Date();
 	const kjyrTJ = getMorningCount(KJYR_DATE, today);
 	const kjyrJokes = getKjyrJokes(kjyrTJ);
-	const atkYtpTJ = getMorningCount(getNextYearlyDate(9, 14, today), today);
+	const atkYtpTJ = getMorningCount(
+		getNextYearlyDate(ATK_YTP_MONTH_INDEX, ATK_YTP_DAY, today),
+		today
+	);
+	const atkYtpOpacity = getAtkYtpOpacity(atkYtpTJ);
 	const vappuTJ = getMorningCount(getNextYearlyDate(4, 1, today), today);
 
 	return (
@@ -199,7 +227,21 @@ const TJCounter = () => {
 				</section>
 				<section className="grid min-h-0 shrink-0 grow-0 basis-7/12 grid-rows-2 bg-teal-800">
 					<Counter label="Vappu" value={vappuTJ} />
-					<Counter label="ATK-YTP" value={atkYtpTJ} />
+					<Counter
+						label="ATK-YTP"
+						value={atkYtpTJ}
+						background={
+							<Image
+								src="/kolmio.gif"
+								alt=""
+								fill
+								aria-hidden="true"
+								className="object-contain"
+								style={{ opacity: atkYtpOpacity }}
+								unoptimized
+							/>
+						}
+					/>
 				</section>
 			</div>
 		</Slide>
