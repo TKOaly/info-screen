@@ -1,7 +1,21 @@
-import { Carousel, type SlideElement } from '@/components/Carousel';
+import { Carousel } from '@/components/Carousel';
 import { isWithinInterval } from 'date-fns';
+import { type ReactNode } from 'react';
 
-type CarouselLayoutProps = Record<string, SlideElement>;
+type CarouselLayoutProps = {
+	events: ReactNode;
+	sponsors: ReactNode;
+	restaurants: ReactNode;
+	transit: ReactNode;
+	airquality: ReactNode;
+	panini: ReactNode;
+	tjcounter: ReactNode;
+	template: ReactNode;
+	ad: ReactNode;
+	lectures: ReactNode;
+	children: ReactNode;
+	voting: ReactNode;
+};
 
 const CarouselLayout = ({
 	events,
@@ -10,6 +24,7 @@ const CarouselLayout = ({
 	transit,
 	airquality,
 	panini,
+	tjcounter,
 	ad,
 	lectures,
 	children,
@@ -29,11 +44,12 @@ const CarouselLayout = ({
 				{sponsors}
 				{lectures}
 				{isVotingVisible ? voting : <></>}
+				{panini}
 				{restaurants}
 				{events}
+				{tjcounter}
 				{transit}
 				{airquality}
-				{panini}
 				{children}
 			</Carousel>
 		</main>

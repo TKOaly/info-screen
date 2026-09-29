@@ -10,7 +10,7 @@ type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>;
 
 type CarouselProps = {
 	delay?: number;
-	children: SlideElement[];
+	children: React.ReactNode[];
 };
 
 const MOUSE_MOVE_AUTOPLAY_DELAY = 1000 * 20;
@@ -20,8 +20,12 @@ export const Carousel = ({
 	delay = MOUSE_MOVE_AUTOPLAY_DELAY,
 	...rest
 }: CarouselProps & CarouselOptions) => {
-	const slidesLength = children
-		.map((child) => (child.props.fullWidth ? 2 : 1))
+	const slidesLength = React.Children.toArray(children)
+		.map((child) =>
+			React.isValidElement<SlideProps>(child) && child.props.fullWidth
+				? 2
+				: 1
+		)
 		.reduce((a, b) => a + b, 0);
 
 	const [emblaRef, emblaApi] = useEmblaCarousel(
