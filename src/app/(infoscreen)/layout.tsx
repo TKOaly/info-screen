@@ -1,5 +1,4 @@
 import { Carousel } from '@/components/Carousel';
-import { isWithinInterval } from 'date-fns';
 import { type ReactNode } from 'react';
 
 type CarouselLayoutProps = {
@@ -14,7 +13,6 @@ type CarouselLayoutProps = {
 	ad: ReactNode;
 	lectures: ReactNode;
 	children: ReactNode;
-	voting: ReactNode;
 };
 
 const CarouselLayout = ({
@@ -28,14 +26,7 @@ const CarouselLayout = ({
 	ad,
 	lectures,
 	children,
-	voting,
 }: CarouselLayoutProps) => {
-	// Check if today's date is between the 15th and 24th of October
-	const today = new Date();
-	const isVotingVisible = isWithinInterval(today, {
-		start: new Date(today.getFullYear(), 9, 13), // October is month 9 (0-indexed)
-		end: new Date(today.getFullYear(), 9, 24),
-	});
 
 	return (
 		<main className="flex max-h-screen min-h-screen">
@@ -43,7 +34,6 @@ const CarouselLayout = ({
 				{ad}
 				{sponsors}
 				{lectures}
-				{isVotingVisible ? voting : <></>}
 				{panini}
 				{restaurants}
 				{events}
