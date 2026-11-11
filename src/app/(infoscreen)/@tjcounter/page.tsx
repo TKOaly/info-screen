@@ -1,12 +1,18 @@
 import { Slide } from '@/components/Carousel';
-import { differenceInCalendarDays } from 'date-fns';
+import {
+	addDays,
+	addWeeks,
+	differenceInCalendarDays,
+	startOfISOWeek,
+} from 'date-fns';
 import Image from 'next/image';
 import { type ReactNode } from 'react';
 
 // Update this when the next KJYR date is announced.
 const KJYR_DATE = new Date(2026, 9, 23);
-const ATK_YTP_MONTH_INDEX = 9;
-const ATK_YTP_DAY = 14;
+// ATK-YTP is held on Wednesday of ISO week 42.
+const ATK_YTP_ISO_WEEK = 42;
+const ATK_YTP_ISO_WEEKDAY = 3;
 const ATK_YTP_OPACITY_WINDOW_DAYS = 365;
 const ATK_YTP_MIN_OPACITY = 0.06;
 const ATK_YTP_MAX_OPACITY = 0.72;
@@ -103,6 +109,29 @@ const getNextYearlyDate = (
 	return new Date(today.getFullYear() + 1, monthIndex, day);
 };
 
+const getIsoWeekDate = (year: number, isoWeek: number, isoWeekday: number) => {
+	// January 4th is always in ISO week 1.
+	const firstIsoWeek = startOfISOWeek(new Date(year, 0, 4));
+
+	return addDays(addWeeks(firstIsoWeek, isoWeek - 1), isoWeekday - 1);
+};
+
+const getNextAtkYtpDate = (today = new Date()) => {
+	const thisYear = getIsoWeekDate(
+		today.getFullYear(),
+		ATK_YTP_ISO_WEEK,
+		ATK_YTP_ISO_WEEKDAY
+	);
+
+	if (getMorningCount(thisYear, today) >= 0) return thisYear;
+
+	return getIsoWeekDate(
+		today.getFullYear() + 1,
+		ATK_YTP_ISO_WEEK,
+		ATK_YTP_ISO_WEEKDAY
+	);
+};
+
 const getKjyrJoke = (tj: number, jokes: ReactNode[]) =>
 	jokes[((tj % jokes.length) + jokes.length) % jokes.length];
 
@@ -148,10 +177,7 @@ const TJCounter = () => {
 	const today = new Date();
 	const kjyrTJ = getMorningCount(KJYR_DATE, today);
 	const kjyrJokes = getKjyrJokes(kjyrTJ);
-	const atkYtpTJ = getMorningCount(
-		getNextYearlyDate(ATK_YTP_MONTH_INDEX, ATK_YTP_DAY, today),
-		today
-	);
+	const atkYtpTJ = getMorningCount(getNextAtkYtpDate(today), today);
 	const atkYtpOpacity = getAtkYtpOpacity(atkYtpTJ);
 	const vappuTJ = getMorningCount(getNextYearlyDate(4, 1, today), today);
 
@@ -161,24 +187,15 @@ const TJCounter = () => {
 				<section className="relative flex min-h-0 shrink-0 grow-0 basis-5/12 flex-col items-center justify-center bg-sky-300 px-6 py-5 text-center text-sky-950">
 					<h2 className="text-4xl font-black">Tänään Jäljellä</h2>
 					<div className="mt-2 flex max-w-xl flex-col items-center justify-center gap-3">
-						{kjyrTJ >= 0 && (
-							<div className="flex items-baseline justify-center gap-3">
-								<span className="text-4xl font-black uppercase">
-									KJYR
-								</span>
-								<span className="text-8xl font-black leading-none">
-									{kjyrTJ}
-								</span>
-								<span className="text-3xl font-bold">
-									aamua
-								</span>
-							</div>
-						)}
-						{kjyrTJ < 0 && (
+						<div className="flex items-baseline justify-center gap-3">
 							<span className="text-4xl font-black uppercase">
 								KJYR
 							</span>
-						)}
+							<span className="text-8xl font-black leading-none">
+								{kjyrTJ >= 0 ? kjyrTJ : '?'}
+							</span>
+							<span className="text-3xl font-bold">aamua</span>
+						</div>
 						<div className="text-3xl font-black leading-tight">
 							{getKjyrJoke(kjyrTJ, kjyrJokes)}
 						</div>
