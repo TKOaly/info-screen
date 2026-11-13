@@ -4,3 +4,6 @@ static/js/bundle.js
 
 # Next.js
 .next
+
+# TypeScript
+tsconfig.tsbuildinfo

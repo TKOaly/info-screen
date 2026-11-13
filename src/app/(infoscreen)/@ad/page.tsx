@@ -8,6 +8,11 @@ import { type ReactNode, useEffect, useState } from 'react';
 type AdType = {
 	from?: Date;
 	until: Date;
+	// Take up two slide widths instead of one
+	fullWidth?: boolean;
+	// Fit the whole image inside the slide (keeping aspect ratio) on a
+	// transparent background instead of cropping it to cover the slide
+	contain?: boolean;
 } & ({ url: string; component?: ReactNode } | { component: ReactNode });
 
 const ads: AdType[] = [
@@ -16,6 +21,12 @@ const ads: AdType[] = [
 	{
 		url: '/potentiaali.png',
 		until: new Date(2024, 10, 8),
+	},
+	{
+		url: '/nordea-sijoita-unelmiisi.jpg',
+		until: new Date(2026, 11, 2, 17, 30),
+		fullWidth: true,
+		contain: true,
 	},
 ];
 
@@ -47,12 +58,17 @@ const Ad = () => {
 		);
 
 	return (
-		<Slide>
+		<Slide
+			fullWidth={ad.fullWidth}
+			className={ad.contain ? 'bg-transparent' : undefined}
+		>
 			<div className="relative size-full">
 				{'url' in ad && (
 					<Image
 						fill
-						className="object-cover"
+						className={
+							ad.contain ? 'object-contain' : 'object-cover'
+						}
 						src={ad.url}
 						alt={'Ad picture'}
 					/>
