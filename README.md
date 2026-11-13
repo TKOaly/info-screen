@@ -15,6 +15,8 @@ npm install
 npm run dev
 ```
 
+To set up the correct environment variables, rename `.env.example` to `.env` and fill in your `DIGITRANSIT_TOKEN`. You can obtain a token by following [this guide](https://digitransit.fi/en/developers/api-registration/).
+
 ## Project structure
 
 Slides are defined as parallel routes in [`src/app/(infoscreen)/layout.tsx`](<src/app/(infoscreen)/layout.tsx>)
